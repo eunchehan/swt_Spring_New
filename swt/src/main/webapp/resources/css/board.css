@@ -1,0 +1,262 @@
+ul {
+    list-style-type: none;
+}
+a{
+	cursor: pointer;
+}
+.btn_img {
+	width: 35px;
+	height: 35px;
+	float: left;
+}
+.text_center {
+    text-align: center;
+    position: relative;
+}
+.text_center > span {
+	position: absolute;
+	right: 10px;
+	top: 0px;
+}	
+.btn_good {
+	position: absolute;
+	left: 0px;
+	top: -2px;
+}
+.btn_hits {
+	position: absolute;
+	left: 0px;
+	top: -5px;
+}
+.btn_att {
+	position: absolute;
+	top: -7px;
+	left: 5px;
+}
+#contentWrapper {
+    position: relative;
+    background-color: white;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 80%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    border-left: 3px double #dee2e6;
+    border-right: 3px double #dee2e6;
+}
+.content01 {
+    padding: 37px 0;
+    border-top: 1px solid #f2f2f2 !important;
+}
+#content {
+	width: 900px;
+	min-height: 600px;
+	padding-bottom: 30px;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    margin: 0px 300px 30px;
+    padding: 20px;
+}
+
+#ribon {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 130px;
+}
+#order_board {
+    display: inline-block;
+    padding-top: 15px;
+    padding-left: 5px;
+}
+#order_board > span {
+    cursor: pointer;
+}
+#order_board > span {
+    margin-right: 8px;
+    display: inline-block;
+    height: 29px;
+    line-height: 40px;
+}
+.board_btn {
+    padding: 7px 15px;
+    font-size: 14px;
+    border-radius: 25px;
+    background-color: #F39C12;
+    color: white;
+    outline: none;
+    border: 0px;
+    float: right;
+    cursor: pointer;
+}
+.box-body {
+    margin-top: 7px;
+}
+table {
+    width: 960px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-radius: 4px;
+}
+th {
+    font-size: 20px;
+    background-color: #adbac7 !important;
+    color: #ececef; /* #363240 */
+    height: 35px;
+}
+th, td {
+    border-bottom: 1px solid black;
+}
+	
+td:nth-child(2) {
+    text-align: left;
+    padding-left: 10px;
+}
+td {
+    height: 35px;
+    background-color: white;
+    text-align: center;
+}
+.table td, .table th {
+	border: 3px double #dee2e6;
+}
+#div_search {
+    float: right;
+    margin: 10px 0 20px;
+}
+#selsearch {
+    height: 40px;
+    width: 89px;
+    font-size: 15px;
+    float: left;
+    border-radius: 5px;
+    outline: none;
+}
+#search_board {
+    height: 40px;
+    width: 200px;
+    margin: 0 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 8px;
+}
+.btn_search {
+    margin-top: 0;
+}
+
+.board_pagination {
+    clear: both;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-top: 40px;
+}
+.pagination > li {
+    display: inline-block;
+    border: 3px double #dee2e6;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    vertical-align: middle;
+    background-color: #a49bb9!important;
+  
+}
+.pagination > li > a {
+	color: #d6d2df;
+}
+.pagination * {
+    font-weight: bold;
+    display: inline-block;
+    height: 30px;
+}
+.active {
+    /* background-color: #d6d2df #a49bb9; */
+    color: white;
+    position: relative;
+    /* margin-right: 3px; */
+}
+
+.active > a {
+	color: white!important;
+}
+
+.fa-angle-right:before {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+.fa-angle-double-right:before {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+.fa-angle-double-left:before {
+	position: absolute;
+	top: 5px;
+	left: 3px;
+}
+.fa-angle-left:before {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+.pagination a {
+    padding: 0px 10px;
+    line-height: 24px;
+}
+.div_search {
+	float: right;
+}
+#search_btn > img{
+	width: 45px;
+	height: 45px;
+	float: right;
+}
+#btn_regi {
+	width: 70px;
+	height: 70px;
+	float: right;
+}
+
+.new_time {
+	background-color: #8e99df;
+	font-size: 11px;
+	color: white;
+	border-radius: 25px;
+	padding: 2px 5px;
+	animation-name: twinkle;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+}
+@keyframes twinkle {
+	0% {opacity: 0;}
+	100%{opacity: 1;}
+}
+.replyCnt_Color {
+	background-color: rgb(180, 172, 206);
+	font-size: 11px;
+	color: white;
+	border-radius: 25px;
+	padding: 1px 7px;
+	
+}
+/*검색결과*/
+#search_result{
+	color: #555555;
+	font-size: 14px;
+	font-weight: 400;
+	padding-left: 5px;
+	padding-top: 5px;
+	border-bottom: 3px double #cecece;
+	display: inline-block;
+}
+.search_span{
+	color: #4a4aa2;
+	font-weight: 600;
+	font-size: 15px;
+}
