@@ -8,7 +8,7 @@
 
 <title>회원가입 동의</title>
 <!-- favicon -->
-<link rel="icon" type="image/png" href="images/logoswt_trans.png"> 
+<link rel="icon" type="image/png" href="${path}/resources/images/logoswt_trans.png"> 
 <style type="text/css">
 	@import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR');
 		* {
@@ -63,7 +63,7 @@
 			border: 3px double #dee2e6;
 		}
 		.lang>select {
-			background: url('${path}/images/sel_arr.gif') 100% 50% no-repeat;
+			background: url('${path}/resources/images/sel_arr.gif') 100% 50% no-repeat;
 			-webkit-appearance: none; 
 			width: 98px;
 			height: 35px;
@@ -95,7 +95,7 @@
 			position: relative;
 		}
 		.terms_span > label {
-			background: url('${path}/images/check_off.gif') 100% 50% no-repeat;
+			background: url('${path}/resources/images/check_off.gif') 100% 50% no-repeat;
 			display: block;
 			line-height: 20px;
 			height: 58px;
@@ -110,7 +110,7 @@
 			height: 58px;
 		}
 		.terms_span > input:checked +label {
-			background-image: url('${path}/images/check_on.gif');
+			background-image: url('${path}/resources/images/check_on.gif');
 		}
 		.terms_ul {
 			padding-bottom: 7px;
@@ -154,11 +154,11 @@
 			top: 50%;
 		}
 		.ul_li_span > label {
-			background: url('${path}/images/check_off.gif') 100% 50% no-repeat;
+			background: url('${path}/resources/images/check_off.gif') 100% 50% no-repeat;
 			display: block;
 		}
 		.ul_li_span > input:checked +label {
-			background-image: url('${path}/images/check_on.gif');
+			background-image: url('${path}/resources/images/check_on.gif');
 		}
 		.terms_box {
 			position: relative;
@@ -249,8 +249,8 @@
 <header>
 		<div class="header">
 			<h1 class="swt_logo">
-				<a href="index.swt" class="n_logo">
-					<img src="${path}/images/mylogo_constract2.png">
+				<a href="${path}/" class="n_logo">
+					<img src="${path}/resources/images/mylogo_constract2.png">
 				</a>
 			</h1>
 			<div class="lang">
@@ -414,7 +414,7 @@
 				
 				if(essential1==true && essential2==true ){
 					// 페이지 이동 
-					location.href="member.swt";
+					location.href="${path}/member/create";
 					//같은 폴더에 있으니 이렇게 써도 됨. 이렇게 하면 보안이 취약함. 나중에 웹개발할때 바꿔줌 
 				}else {
 					$("#err_check").css("display","block");

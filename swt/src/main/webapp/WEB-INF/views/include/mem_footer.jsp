@@ -92,14 +92,14 @@
 				
 				<div class="address">
 					<span>
-						<a href="index.swt">
-							<img class="addr_logo" alt="S.W.T 로고" src="${path}/images/logoswt_trans.png">
+						<a href="${path}/">
+							<img class="addr_logo" alt="S.W.T 로고" src="${path}/resources/images/logoswt_trans.png">
 						</a>
 					</span>
 					<span>Copyright</span>
 					<span>ⓒ</span>
 					<span>
-						<strong><a href="${path}/index.swt">S.W.T Corp.</a></strong>
+						<strong><a href="${path}/">S.W.T Corp.</a></strong>
 					</span>
 					<span>All Rights Reserved.</span>
 				</div>

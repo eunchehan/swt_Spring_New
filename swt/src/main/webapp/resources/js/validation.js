@@ -145,11 +145,10 @@ function ajaxCheck(memId){
 	//		결론: web.xml로 이동!
 	
 	// id에 값이 있는 경우에만 ajax 동작! : 중복체크 
-	$.ajax({
-		url: "idCheck.swt",
+	$.ajax({				//주소창에 뜨는 url이니까 소문자
 		type: "POST",
-		dataType: "json",
-		data: "id="+memId,
+		url: "idcheck?id="+memId,
+		contentType: "application/json",
 //		<1>. <input type="text" value=memID name="id">
 //		<2>. Ajax>> data: "id="+memid,
 //		<3>. 쿼리스트링: "idCheck.swt?id="+memId
@@ -158,11 +157,12 @@ function ajaxCheck(memId){
 		
 		
 		success: function(data) {
+			console.log(data);
 			// 29. Action단에서 전송한 message, id를 data 매개변수로 받음 
 			// 30. data.message의 값이 -1이면 => 중복메시지 출력 
 			//     data.message의 값이 1이면 => 사용가능메시지 출력
 			// 아직 끝나지 않음! 호출한 곳으로 돌아가야 함. 
-			if(data.message == "-1"){
+			if(data == 1){
 				$("#error_id").css("display","block").css("color","#b30000").text("중복된 ID 입니다");
 				return "-1";
 			}else {

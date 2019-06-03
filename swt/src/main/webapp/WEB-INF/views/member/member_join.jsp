@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${path}/css/common.css?v=1"> 
+<link rel="stylesheet" href="${path}/resources/css/common.css?v=1"> 
 <title>회원가입</title>
+<!-- favicon -->
+<link rel="icon" type="image/png" href="${path}/resources/images/logoswt_trans.png"> 
 <style type="text/css">
 		* { 
 			box-sizing: border-box; 
@@ -59,7 +61,7 @@
 			display: block;
 			width: 240px;
 			height: 44px;
-			background: url('img/pc_sp_join.png') 0 -106px;
+			background: url('${path}/resources/images/pc_sp_join.png') 0 -106px;
 			margin: auto;
 		}
 		/* 회원가입 정보 */
@@ -253,7 +255,7 @@
 			font-weight: 400px;
 			width: 100%;
 			padding: 6px 8px 5px 7px;
-			background: url('images/sel_arr.gif') 100% 50% no-repeat;
+			background: url('${path}/resources/images/sel_arr.gif') 100% 50% no-repeat;
 			-webkit-appearance: none; 
 		}
 		.ps_mm {
@@ -270,7 +272,7 @@
 		#mm {
 			width: 80%;
 			padding: 6px 8px 5px 7px;
-			background: url('images/sel_arr.gif') 100% 50% no-repeat;
+			background: url('${path}/resources/images/sel_arr.gif') 100% 50% no-repeat;
 			-webkit-appearance: none; 
 		}
 		#mm > option {
@@ -340,8 +342,8 @@
 	<header>
 		<div class="header">
 			<h1 class="swt_logo">
-				<a href="index.swt" class="s_logo">
-					<img alt="로고 이미지 "src="${path}/images/mylogo_constract2.png">
+				<a href="${path}/" class="s_logo">
+					<img alt="로고 이미지 "src="${path}/resources/images/mylogo_constract2.png">
 				</a>
 			</h1>
 		</div>
@@ -516,7 +518,7 @@
 	
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/validation.js"></script> 
+	<script type="text/javascript" src="${path}/resources/js/validation.js"></script> 
 	<script type="text/javascript">
 	$(document).ready(function(){
 			$('#join_btn_type').click(function(){

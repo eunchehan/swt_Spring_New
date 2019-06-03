@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.swt.domain.product.ProductDTO;
 
 @Repository	// DAO라고 인식시켜줌 
-public class ProductDAOimpl implements ProductDAO {
+public class ProductDAOImpl implements ProductDAO {
 
 	@Inject
 	private SqlSession sqlSession;

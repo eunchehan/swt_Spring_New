@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService{
 		// 베스트상품과 신상품을 받아서 index로 전달 
 		List<ProductDTO> bList = pDao.bestList();
 		List<ProductDTO> nList = pDao.newList();
-		
+		// bList, nList를 한번에 return으로 보낼 수 없으니까 HashMap으로 보냄
 		HashMap<String, List<ProductDTO>> map = new HashMap<>();
 		map.put("bList", bList); // Controller단으로 이동 map에다가 list를 두개를 보낼수 있움
 		map.put("nList", nList);

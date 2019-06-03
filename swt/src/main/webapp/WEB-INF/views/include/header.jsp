@@ -78,7 +78,7 @@
 				<c:choose>
 					<c:when test="${empty sessionScope.loginUser}">
 					<li><a id="open_btn">Login</a></li>
-					<li><a href="${path}/constract.swt" target="_blank">Join</a></li>
+					<li><a href="${path}/member/constract" target="_blank">Join</a></li>
 					</c:when>
 					<c:otherwise>
 					<li id="loginInfo">
@@ -112,7 +112,7 @@
 	<div class="two_wrap">
 		<div class="header_logo">
 			<div class="inner_header">
-				<a href="index.swt">
+				<a href="${path}/">
 					<img id="logo" src="resources/images/mylogo_6.png" alt="로고이미지">
 				</a>
 			</div>

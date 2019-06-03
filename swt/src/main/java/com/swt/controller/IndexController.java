@@ -34,10 +34,15 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String index(Model model) {
-		log.info("index 페이지");
+		log.info(">>>>index 페이지");
 		HashMap<String, List<ProductDTO>> map = service.productList();
 		
+		// 화면단으로 데이터 전송 pLists라는 이름으로.. 화면단에서 ${pLists.}해서 값 꺼내쓰면 됨 
 		model.addAttribute("pLists", map);
-		return "index";
+		return "index"; 
+		//DispathcerService로 가서 index가 뭔지 알기전에 ViewResolver로 감(suvlet-context.xml로 가서 정확한 화면단 위치 알아서
+		// DispathcerServlet으로 돌아와서 어딘지 정확히 경로 알아서 그 화면단으로 감 
+		// 그러면 views폴더의 index.jsp로 가서 c:forEach문써서 items=${pList.bList}로 베스트상품 꺼내오고 
+		// items="${pList.nList}로 신상품리스트 꺼내옴
 	}
 }
