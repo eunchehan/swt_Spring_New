@@ -9,9 +9,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 							<!-- depth가 닫라서 상위폴더로 나가서 경로 찾아가야함 -->
-<link rel="stylesheet" href="${path}/css/common.css?v=1"> 
-<link rel="stylesheet" href="${path}/css/header.css?v=1"> 
+<link rel="stylesheet" href="resources/css/common.css?v=1"> 
+<link rel="stylesheet" href="resources/css/header.css?v=1"> 
 
 
 <title>SleepWellTea</title>
@@ -33,7 +34,7 @@
 				<div id="swt_content">
 					<div id="login_area">
 						<div id="login_logo">
-							<h3>Welcome Back! :D</h3>
+							<img alt="Welcome" src="resources/images/ribon_wel.png">
 						</div>
 						<div id="login_modal_container">
 							<form name="" action="" method="POST" id="login_form">
@@ -50,13 +51,12 @@
 							</form>
 								<div>
 									<a href="#" id="btn_login">
-										<button class="btn btn1">Login</button>
+										<button class="login-btn">Login</button>
 									</a>
 								</div>
 								<span id="step_url"></span>
-							<div id="login_help">
-								<!-- <a href="#">Join Us</a> -->
-								<div class="right">
+						
+								<div id="right">
 									<a href="#">아이디 찾기</a>
 									<span class="right_bar">｜</span>
 									<a href="#">비밀번호 재설정</a>
@@ -91,16 +91,15 @@
 					
 					<li class="mydrop1">
 						<a href="#">MyPage</a>
-						<div class="mydrop2">
-						<%-- <c:choose>
-							<c:when test="${empty sessionScope.loginUser}"> --%>
-							<a href="${path}/infoUpdate.swt">Account</a>
-							<a href="${path}/pwUpdate.swt">Password</a>
-							<a href="${path}/dropMember.swt">ByeBye</a>
-							<a href="#">Order</a>
-							<a href="#">WishList</a>
-							<%-- </c:when>
-						</c:choose> --%>
+						<div id="mydrop2">
+						<c:choose>
+							<c:when test="${!empty sessionScope.loginUser}">
+								<a href="${path}/infoUpdate.swt" target="_blank">Account</a>
+								<a href="${path}/pwUpdate.swt" target="_blank">Password</a>
+								<a href="#">Order</a>
+								<a href="#">WishList</a>
+							</c:when>
+						</c:choose>
 						</div> 
 					</li>
 					<li><a href="#">Cart</a></li>
@@ -111,14 +110,14 @@
 		</div>
 	</div>
 	<div class="two_wrap">
-		<div class="header_logo jbFixed_logo">
+		<div class="header_logo">
 			<div class="inner_header">
 				<a href="index.swt">
-					<img id="logo" src="${path}/images/mylogo_6.png" alt="로고이미지">
+					<img id="logo" src="resources/images/mylogo_6.png" alt="로고이미지">
 				</a>
 			</div>
 		</div>
-		<div class="header_nav jbFixed_nav">
+		<div class="header_nav">
 			<div class="inner_header">
 				<div class="inner_header_nav">
 					<ul>
@@ -130,22 +129,22 @@
 								<a href="#">Tea Sachet</a>
 							</div>
 						</li>
-						<li><a>·</a></li>
+						<li><a class="ihn_dot">·</a></li>
 						<li><a class="ihn" href="#">Teawear</a></li>
-						<li><a>·</a></li>
+						<li><a class="ihn_dot">·</a></li>
 						<li><a class="ihn" href="#">GIFT & SET</a></li>
-						<li><a>·</a></li>
+						<li><a class="ihn_dot">·</a></li>
 						<li><a class="ihn" href="#">S.W.T</a></li>
-						<li><a>·</a></li>
+						<li><a class="ihn_dot">·</a></li>
 						<li><a class="ihn" href="${path}/boardList.swt">CS Center</a></li>
 					</ul>
 				</div>
-				<div class="search_box" id="sc_box">
-					<a class="search_btn">
-						<input class="search_txt" id="searchtxt" type="text" name="searchtxt" placeholder="Search">
-						<i class="fas fa-search header_search_btn" id="searchbar"></i>
-					</a> 
+				
+				<div id="search_box">
+					<input class="search_txt" id="searchtxt" type="text" name="searchtxt" placeholder="Search">
+					<i class="fas fa-search" id="header_search_btn"></i>
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -176,32 +175,38 @@
 		$('#btn_login').click(function(){
 			var id = $.trim($('#login_id').val());
 			var pw = $.trim($('#login_pw').val());
-			/* alert(id+','+pw); */
 		});
 		var inputs = $('#searchtxt').val();
-		/* 검색바 */
-		$('#searchbar').mouseenter(function(){
-			$('#searchtxt').css('display','block').css('transition','.4s');
+		//검색바 
+		$('#header_search_btn').hover(function(){		
+			$('#searchtxt').css('display','block').css('opacity','0.7');	
 			$('#searchtxt').focus();
-		});
-		$('#searchtxt').mouseenter(function(){		
-			$('#searchtxt').css('display','block').css('transition','.4s');		
-		});		
-		
-		$('#searchtxt').hasFocus(function(){		
-			$('#searchtxt').css('display','block');	
 		});	
 		
-		/* $('#searchtxt').hasFocus(function(){
-			$('#searchtxt').css('display','block').css('transition','.4s');			
-		});
-		$('#searchtxt').hasFocus(function(){
-			$('#searchtxt').css('display','block').css('transition','.4s');			
-		}); */
-		$('#searchbar').mouseleave(function(){
-			$('#searchtxt').css('display','none');
+		$('#searchtxt').change(function(){		
+			$('#searchtxt').css('display','block').css('opacity','0.7');	
 		});
 		
+		$('#search_box').mouseleave(function(){		
+			$('#searchtxt').css('display','none');		
+		});	 
+		
+		$('#header_search_btn').click(function(){		
+			$('#searchtxt').hide();	
+		});	
+		
+		 $("input[name=searchtxt]").keydown(function (key) {
+			 
+		        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+		        	$('#searchtxt').css('display','none');
+		        }
+		 
+		    });
+		
+		/* $('.two_wrap').mouseleave(function(){		
+			$('#searchtxt').css('display','none');		
+		});	  */
+		// mouseenter mouseleave
 		
 
 		$(".logout_btn").click(function(){
@@ -221,7 +226,6 @@
 		$('#btn_login').click(function(){
 			var id = $.trim($('#login_id').val());
 			var pw = $.trim($('#login_pw').val());
-			/* alert(id+','+pw); */
 			
 			var regEmpty = /\s/g; // 공백문자 체크
 			//1. null값 체크

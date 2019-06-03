@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${path}/css/common.css?v=1">
+<link rel="stylesheet" href="resources/css/common.css?v=1">
 <title>S.W.T</title>
 <style type="text/css">
 /* 캐로셀 */ 
@@ -207,13 +207,10 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 }
 /* 메인페이지 */
 .container {
-	width: 80%;
 	margin: 0 auto;
 	background-color: white;
 	display: flex;
 	flex-direction: column;
-	max-width: 1215.35px;
-	max-width: 80%!important;
 	height: auto;
 	justify-content: center;
 	align-items: center;
@@ -221,13 +218,16 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
     border-right: 3px double #dee2e6;
 	/* opacity: 0.8; */
 }
+#main_container{
+	max-width: 80%;
+}
 </style>
 </head>
 <body>
 	
 	<section>
 		<article>
-			<div class="container">
+			<div class="container" id="main_container">
 				<div id="demo" class="carousel slide" data-ride="carousel">
 				  <!-- Indicators -->
 				  <ul class="carousel-indicators">
@@ -239,13 +239,13 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 				  <!-- The slideshow -->
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
-				      <img src="images/main01.png" alt="First Slide" width="1100" height="500">
+				      <img src="resources/images/main01.png" alt="First Slide" width="1100" height="500">
 				    </div>
 				    <div class="carousel-item">
-				      <img src="images/main02.png" alt="Second Slide" width="1100" height="500">
+				      <img src="resources/images/main02.png" alt="Second Slide" width="1100" height="500">
 				    </div>
 				    <div class="carousel-item">
-				      <img src="images/main04.png" alt="Third Slide" width="1100" height="500">
+				      <img src="resources/images/main04.png" alt="Third Slide" width="1100" height="500">
 				    </div>
 				  </div>
 				  
@@ -260,15 +260,15 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 				
 				<div class="main_categories">
 					<div class="category_block">
-						<div class="category" style="background-image: url(images/cont_img01.jpg);">
+						<div class="category" style="background-image: url(resources/images/cont_img01.jpg);">
 						</div>
 					</div>
 					<div class="category_block">
-						<div class="category" style="background-image: url(images/cont_img03.jpg);">
+						<div class="category" style="background-image: url(resources/images/cont_img03.jpg);">
 						</div>
 					</div>
 					<div class="category_block">
-						<div class="category" style="background-image: url(images/cont_img04.jpg);">
+						<div class="category" style="background-image: url(resources/images/cont_img04.jpg);">
 							<!-- 문법 오류 아닌가?  -->
 						</div>
 					</div>
@@ -281,14 +281,14 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 							    <ul>
 							      <li>
 							        <div>
-							          <p class="text01"><img src="images/cont_ico01.png"></p>
+							          <p class="text01"><img src="resources/images/cont_ico01.png"></p>
 							          <h3 class="cs_num">062)123-4567</h3>
 							          <p class="text03 m_b10">평일 AM 10:00 - PM 17:00  토요일 및 일요일 <span>휴무</span></p>
 							        </div>
 							      </li>
 							      <li>
 							        <div>
-							          <p class="text01 m_t10"><img src="images/cont_ico02.png"></p>
+							          <p class="text01 m_t10"><img src="resources/images/cont_ico02.png"></p>
 							          <h3 class="cs_num">123.45678.91.011</h3>
 							          <p class="text03"><span>광주은행</span> 예금주 : S.W.T 코리아 주식회사</p>
 							        </div>
@@ -299,10 +299,10 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 					   <div class="main_info02">
 						<div>
 						    <p class="text01">
-						    	<img src="images/cont_ico03.png">
+						    	<img src="resources/images/cont_ico03.png">
 						    	<span>
 						    		<a href="#">
-						    			<img src="images/more_ico.jpg">
+						    			<img src="resources/images/more_ico.jpg">
 						    		</a>
 						    	</span>
 						    </p>
@@ -335,17 +335,17 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 					   <div class="main_info03">
 							<div>
 							    <ul>
-							      <li class="b_right b_bottom"><a href="#"><img src="images/cont_img07.png"
-							onmouseover="this.src='images/cont_img07_on.png'" onmouseout="this.src='images/cont_img07.png'"
+							      <li class="b_right b_bottom"><a href="#"><img src="resources/images/cont_img07.png"
+							onmouseover="this.src='resources/images/cont_img07_on.png'" onmouseout="this.src='resources/images/cont_img07.png'"
 							id="info03_01"></a></li>
-							      <li class="b_bottom"><a href="#"><img src="images/cont_img08.png"
-							onmouseover="this.src='images/cont_img08_on.png'" onmouseout="this.src='images/cont_img08.png'"
+							      <li class="b_bottom"><a href="#"><img src="resources/images/cont_img08.png"
+							onmouseover="this.src='resources/images/cont_img08_on.png'" onmouseout="this.src='resources/images/cont_img08.png'"
 							id="info03_02"></a></li>
-							      <li class="b_right"><a href="JavaScript:onetoone()"><img src="images/cont_img09.png"
-							onmouseover="this.src='images/cont_img09_on.png'" onmouseout="this.src='images/cont_img09.png'"
+							      <li class="b_right"><a href="JavaScript:onetoone()"><img src="resources/images/cont_img09.png"
+							onmouseover="this.src='resources/images/cont_img09_on.png'" onmouseout="this.src='resources/images/cont_img09.png'"
 							id="info03_03"></a></li>
-							      <li><a href="#"><img src="images/cont_img10.png"
-							onmouseover="this.src='images/cont_img10_on.png'" onmouseout="this.src='images/cont_img10.png'"
+							      <li><a href="#"><img src="resources/images/cont_img10.png"
+							onmouseover="this.src='resources/images/cont_img10_on.png'" onmouseout="this.src='resources/images/cont_img10.png'"
 							id="info03_04"></a></li>
 							    </ul>
 							</div>
