@@ -140,7 +140,7 @@ header > a:not([href]):not([tabindex]) {
 	color: white;
 	background-color: #66395C;
 	z-index: 999;
-	box-shadow: 0 6px 12px rgba(80, 51, 139, 0.5);
+	box-shadow: 0 6px 8px rgb(105, 109, 152);
 	display: none;  	
 }
 .dropdown2 > a {
@@ -379,6 +379,7 @@ header > a:not([href]):not([tabindex]) {
 	min-width: 240px; /* 최소너비 */ 
 	margin: 15px;
 	transition: color 0.4s linear; /* linear : 골고루 시간 분배  */
+	transition: background-color 0.4s linear;
 	position: relative;
 }
 .login-btn:hover {

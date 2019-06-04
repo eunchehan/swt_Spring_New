@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- <%@ include file="../include/header.jsp" %> --%>
 <%@ include file="../include/common.jsp" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${path}/css/common.css?v=1"> 
+<link rel="stylesheet" href="${path}/resources/css/common.css?v=1"> 
 <title>회원정보 수정</title>
 <style type="text/css">
 		* { 
@@ -53,7 +54,7 @@
 			display: block;
 			width: 240px;
 			height: 44px;
-			background: url('img/pc_sp_join.png') 0 -106px;
+			background: url('${path}/resources/images/pc_sp_join.png') 0 -106px;
 			margin: auto;
 		}
 		/* 회원정보 */
@@ -194,6 +195,14 @@
 			text-align: center;
 			background-color: #816288;
 			border: 3px double #dee2e6;
+			transition: color 0.4s linear;
+			transition: background-color 0.4s linear;
+		}
+		#btn_cancel:hover, #btn_update:hover {
+			color: #555555;
+			background-color: #f8f9fa;
+			border: 3px double #252851;
+			font-weight: normal;
 		}
 	
 		#btn_cancel {
@@ -245,7 +254,7 @@
 			font-weight: 400px;
 			width: 100%;
 			padding: 6px 8px 5px 7px;
-			background: url('images/sel_arr.gif') 100% 50% no-repeat;
+			background: url('${path}/resources/images/sel_arr.gif') 100% 50% no-repeat;
 			-webkit-appearance: none; 
 		}
 		.ps_mm {
@@ -262,7 +271,7 @@
 		#mm {
 			width: 80%;
 			padding: 6px 8px 5px 7px;
-			background: url('images/sel_arr.gif') 100% 50% no-repeat;
+			background: url('${path}/resources/images/sel_arr.gif') 100% 50% no-repeat;
 			-webkit-appearance: none; 
 		}
 		#mm > option {
@@ -301,13 +310,12 @@
 			position: relative;
 			height: 29px;
 			margin: 10px 14px;
-			line-height: 29px;
 			background: transparent;
 			font-size: 15px;
 			z-index: 10;
 			outline: none;
 			background-color: #816288;
-			border: 0.5px outset #dadada;
+			border: 3px double #dee2e6;
 			color: white;
 		}
 		.chenked_btn {
@@ -349,8 +357,8 @@
 <header>
 		<div class="header">
 			<h1 class="swt_logo">
-				<a href="index.swt" class="s_logo">
-					<img alt="로고 이미지 "src="${path}/images/mylogo_constract2.png">
+				<a href="${path}/" class="s_logo">
+					<img alt="로고 이미지 "src="${path}/resources/images/mylogo_constract2.png">
 				</a>
 			</h1>
 		</div>
@@ -368,7 +376,7 @@
 									<label for="id">아이디</label>
 								</h3>
 								<span class="ps_box int_id">
-									<input type="text" id="id" name="id" class="int" maxlength="15" readonly="readonly" value="${sessionScope.loginUser.id}">
+									<input type="text" id="id" name="id" class="int" maxlength="15" readonly="readonly" value="${one.id}">
 									<span class="step_url" id="error_id"></span>
 									<!-- <span class="step_url">@naver.com</span> -->
 								</span>
@@ -383,7 +391,7 @@
 									<label for="name">이름</label>
 								</h3>
 								<span class="ps_box">
-									<input type="text" id="name" name="name" class="int" maxlength="10" value="${sessionScope.loginUser.name}" >
+									<input type="text" id="name" name="name" class="int" maxlength="10" value="${one.name}" >
 									<span class="step_url"></span>
 								</span>
 							</div>
@@ -396,12 +404,13 @@
 							<div class="bir_wrap">
 								<div class="bir_yy">
 									<span class="ps_box">
-										<input type="text" id="yy" name="yy" placeholder="년(4자,Year)" class="int" maxlength="4" readonly="readonly" value="${sessionScope.loginUser.bir_yy}">
+										<input type="text" id="yy" name="yy" placeholder="년(4자,Year)" class="int" maxlength="4" readonly="readonly" value="${one.bir_yy}">
 										<span class="step_url"></span> 
 									</span>
 								</div>
 								<div class="bir_mm">
 									<span class="ps_mm">
+										<!-- js에서 가져옴 -->
 										<select id="mm" class="sel" name="mm" disabled="disabled">
 											<option>월(Month)</option>
 											<option value="1">01(Jan.)</option>
@@ -421,7 +430,7 @@
 								</div>
 								<div class="bir_dd">
 									<span class="ps_box">
-										<input type="text" id="dd" name="dd" placeholder="일(Day)" class="int" maxlength="2" readonly="readonly" value="${sessionScope.loginUser.bir_dd}">
+										<input type="text" id="dd" name="dd" placeholder="일(Day)" class="int" maxlength="2" readonly="readonly" value="${one.bir_dd}">
 										<span class="step_url"></span>
 									</span>
 								</div>
@@ -433,7 +442,7 @@
 								</h3>
 							
 								<span class="addr_wrap">
-									<input type="text" class="addrbtn" name="zipcode" id="sample6_postcode" placeholder="우편번호" readonly="readonly" value="${sessionScope.loginUser.zipcode}">
+									<input type="text" class="addrbtn" name="zipcode" id="sample6_postcode" placeholder="우편번호" readonly="readonly" value="${one.zipcode}">
 								</span>
 							
 							
@@ -442,9 +451,9 @@
 								</span>
 							
 								<span class="addr_wrap">
-									<input type="text" class="addrbtn" id="sample6_address" name="addr1" placeholder="주소" readonly="readonly" value="${sessionScope.loginUser.addr1}">
+									<input type="text" class="addrbtn" id="sample6_address" name="addr1" placeholder="주소" readonly="readonly" value="${one.addr1}">
 									
-									<input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소" value="${sessionScope.loginUser.addr2}">
+									<input type="text" id="sample6_detailAddress" name="addr2" placeholder="상세주소" value="${one.addr2}">
 									<span class="step_addr"></span> 
 									
 								</span>
@@ -456,7 +465,7 @@
 									<label for="phone">휴대전화</label>
 								</h3>
 								<span class="ps_box int_id">
-									<input type="text" id="phone" name="phone" class="int" maxlength="11" placeholder="- 제외하고 입력" value="${sessionScope.loginUser.phone}">
+									<input type="text" id="phone" name="phone" class="int" maxlength="11" placeholder="- 제외하고 입력" value="${one.phone}">
 									<span class="step_url"></span>
 								</span>
 								<h3 class="join_title">
@@ -465,7 +474,7 @@
 								</h3>
 								<div id="wrap_email">
 									<span class="ps_box int_id">
-										<input type="text" id="email" name="email" class="int" placeholder="ex)id@email.com" value="${sessionScope.loginUser.email}">
+										<input type="text" id="email" name="email" class="int" placeholder="ex)id@email.com" value="${one.email}">
 										<span class="step_url"></span>
 									</span>
 								</div>
@@ -474,7 +483,7 @@
 					</div>
 					<div class="btn_double_area">
 						<span>
-							<a href="#" class="info_btn_type" id="btn_cancel">취소</a>
+							<a href="${path}/" class="info_btn_type" id="btn_cancel">취소</a>
 							<a href="#" class="info_btn_type" id="btn_update">회원수정</a>	
 						</span>
 					</div>
@@ -489,7 +498,7 @@
 	
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/validation.js"></script> 
+	<script type="text/javascript" src="${path}/resources/js/validation.js"></script> 
 	<script type="text/javascript">
 	$(document).ready(function(){
 			$('.info_btn_type').click(function(){
@@ -583,7 +592,7 @@
 			});
 			// 비번이랑 아이디랑 생년월일이랑 같은지 체크해주는것도 좋음 여기서는 안 하지만...
 			
-			var val = "${sessionScope.loginUser.bir_mm}";
+			var val = "${one.bir_mm}";
 			/* alert(val); */
 			$('#mm').val(val).prop("selected",true);
 			

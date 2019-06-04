@@ -76,14 +76,14 @@
 				<ul>
 				
 				<c:choose>
-					<c:when test="${empty sessionScope.loginUser}">
+					<c:when test="${empty sessionScope.name}">
 					<li><a id="open_btn">Login</a></li>
 					<li><a href="${path}/member/constract" target="_blank">Join</a></li>
 					</c:when>
 					<c:otherwise>
 					<li id="loginInfo">
-						<span>${sessionScope.loginUser.name}</span>
-							(${sessionScope.loginUser.id})
+						<span>${sessionScope.name}</span>
+							(${sessionScope.userid})
 					</li>
 					<li><a href="#" class="logout_btn">Logout</a></li>
 					</c:otherwise>
@@ -92,10 +92,11 @@
 					<li class="mydrop1">
 						<a href="#">MyPage</a>
 						<div id="mydrop2">
+						<a href="${path}/member/update">Account</a>
 						<c:choose>
-							<c:when test="${!empty sessionScope.loginUser}">
-								<a href="${path}/infoUpdate.swt" target="_blank">Account</a>
-								<a href="${path}/pwUpdate.swt" target="_blank">Password</a>
+							<c:when test="${!empty sessionScope}">
+								<!-- Account 있었던 곳 -->
+								<a href="${path}/pwUpdate.swt">Password</a>
 								<a href="#">Order</a>
 								<a href="#">WishList</a>
 							</c:when>
@@ -208,13 +209,12 @@
 		});	  */
 		// mouseenter mouseleave
 		
-
+		/* logout버튼 누를 때 동작 */
 		$(".logout_btn").click(function(){
 			$.ajax({
-				url: "logoutAjax.swt",
+				url: "${path}/member/logout",
 				type: "POST",
-				dataType: "json",
-				success: function(data) {
+				success: function() {
 					location.reload();
 				},
 				error:function(){
@@ -246,14 +246,14 @@
 			}
 			
 			$.ajax({
-				url: "login.swt",
+				url: "${path}/member/login",
 				type: "POST",
-				dataType: "json",
+				dataType: "text", // return타입 데이터 flag는 String타입인가 화면단에선 text 
 				data: "id="+id+"&pw="+pw,
-				success: function(data) {
-					if(data.message == "1") {
+				success: function(data) {// controller부터 쭉 타고와서 controller return으로 보내준 String flag의 값이 담김 
+					if(data == "1") {
 						location.reload(); // 새로고침 
-					} else if(data.message == "-1"){
+					} else if(data == "-1"){
 						$('#login_id').focus();
 						$('#step_url').text('회원 아이디 또는 비밀번호가 일치하지 않습니다.').css('display','block');
 					}

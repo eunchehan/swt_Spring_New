@@ -351,7 +351,8 @@
 
 	<section>
 		<div class="container">
-			<form class="join_form" id="join_frm" method="POST" action="memberPlay.swt">
+		<!-- 주소 똑같아도 method 다르면 다르게 인식 -->
+			<form class="join_form" id="join_frm" method="POST" action="${path}/member/create">
 				<div class="join_content">
 					<div class="join_box_wrap">
 						<div class="row_group">
@@ -373,7 +374,7 @@
 									<label for="pswd1">비밀번호</label>
 								</h3>
 								<span class="ps_box int_pass">
-									<input type="password" id="pswd1" name="pswd1" class="int" maxlength="12">
+									<input type="password" id="pswd1" name="pw" class="int" maxlength="12">
 									<span class="step_url"></span>
 								</span>
 	
@@ -409,13 +410,13 @@
 							<div class="bir_wrap">
 								<div class="bir_yy">
 									<span class="ps_box">
-										<input type="text" id="yy" name="yy" placeholder="년(4자,Year)" class="int" maxlength="4">
+										<input type="text" id="yy" name="bir_yy" placeholder="년(4자,Year)" class="int" maxlength="4">
 										<span class="step_url"></span> 
 									</span>
 								</div>
 								<div class="bir_mm">
 									<span class="ps_mm">
-										<select id="mm" class="sel" name="mm">
+										<select id="mm" class="sel" name="bir_mm">
 											<option>월(Month)</option>
 											<option value="01">01(Jan.)</option>
 											<option value="02">02(Feb.)</option>
@@ -434,11 +435,12 @@
 								</div>
 								<div class="bir_dd">
 									<span class="ps_box">
-										<input type="text" id="dd" name="dd" placeholder="일(Day)" class="int" maxlength="2">
+										<input type="text" id="dd" name="bir_dd" placeholder="일(Day)" class="int" maxlength="2">
 										<span class="step_url"></span>
 									</span>
 								</div>
 							</div>
+							
 							<div class="daumaddr">
 								<h3 class="join_title">
 									<i class="fas fa-asterisk" id="star"></i>
@@ -521,7 +523,14 @@
 	<script type="text/javascript" src="${path}/resources/js/validation.js"></script> 
 	<script type="text/javascript">
 	$(document).ready(function(){
+		
 			$('#join_btn_type').click(function(){
+				// email이 두 줄일 경우 email을 합치고 input(hidden) 담아야 전송가능
+			 /* var email_id = $('#email_id').val();
+				var email_url = $('#email_url').val();
+				var email = email_id+"@"+email_url;
+				$('#email').val(email); */
+				
 				$('#join_frm').submit();
 			});
 		
@@ -629,9 +638,8 @@
 				}
 				return false;
 			});
-			// 비번이랑 아이디랑 생년월일이랑 같은지 체크해주는것도 좋음 여기서는 안 하지만...
 			
-		//이름 1널값체크2중간에공백체크3length 4자제한 4. 멋진이름이네
+		//이름 1널값체크2중간에공백체크3length 4자제한 
 		$("#name").blur(function(){
 				var name = $.trim($(this).val());
 				var regEmpty = /\s/g; // 공백 문자 
@@ -684,7 +692,7 @@
 				return false;
 			} else {
 				$(this).next().css('display','block').text('좋은 휴대폰 번호네요').css('color','dodgerblue');
-				// 포트폴리오 낼 땐 말장난 치면 안됨. 폰트체도 깔끔하고 가독성 높은걸로. 귀여운거X
+				// 말장난X. 폰트체도 깔끔하고 가독성 높은걸로. 귀여운거X
 			}
 		});
 		
