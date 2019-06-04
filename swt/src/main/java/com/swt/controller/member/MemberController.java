@@ -73,7 +73,7 @@ public class MemberController {
 		// servlet에서도 엄밀히 따지면 controller에서 데이터 받아서 action으로 request로 넘겨주는 것이었음 
 		if(result>0) {
 			log.info("가입성공");
-			rttr.addFlashAttribute("message","Welcome! 1회성 데이터"); // 단발성으로 한번만 보낼 수 있음
+//			rttr.addFlashAttribute("message","Welcome! 1회성 데이터"); // 단발성으로 한번만 보낼 수 있음
 			return "redirect:/"; // 회원가입하면 데이터 바뀌니까 redirect
 		} else {
 			log.info("가입실패");

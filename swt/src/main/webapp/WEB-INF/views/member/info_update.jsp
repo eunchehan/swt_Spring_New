@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${path}/resources/css/common.css?v=1"> 
 <title>회원정보 수정</title>
+<!-- favicon -->
+<link rel="icon" type="image/png" href="${path}/resources/images/logoswt_trans.png"> 
 <style type="text/css">
 		* { 
 			box-sizing: border-box; 

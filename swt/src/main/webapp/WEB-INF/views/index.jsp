@@ -355,6 +355,14 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 			</div>
 		</article>
 	</section> 
+	
+	<!-- <script type="text/javascript">
+		$(function(){
+			alert('${message}');
+		});
+	</script> -->
+	
+	
 	<%@ include file="include/footer.jsp" %>
 </body>
 </html>

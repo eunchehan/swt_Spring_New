@@ -85,25 +85,25 @@ header > a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hove
 	float:left;
 	height: 35px;
 }
-.header_member ul > li > a{
-	color: #A7AFCC!important;
+#modal_member ul > li > a{
+	color: #A7AFCC;
 	text-decoration: none;
 	line-height: 35px;
 	padding: 0px 10px 0px 10px; 
-	/* 나중에 로그인 올리면 색깔변하게 할거라 margin보다는 padding이 더 예쁨 */
 	font-size: 13px; 
 	height: 29px;
 	display: inline-block; /* ★<a>는 항상 그 사이즈만큼만 줘야함. <li>사이즈야 맞춰줘야 hover했을때 손가락 뜸. <a>사이즈가 작으면 마우스 커서 올려도 손가락마우스버튼으로 안 바뀔 수 있음 */
 	font-weight: bold;
     cursor: pointer;
+    transition: color 0.4s linear;
+	transition: background-color 0.4s linear; 
 }
-.header_member > ul > li > a:hover{
+#modal_member > ul > li > a:hover{
 	/* text-decoration: underline; */
 	color: #252851;
 }
 /*header_menu의 로긴 cs센터 등등 */
-.header_member > ul > li:hover{
-	
+#modal_member > ul > li:hover{
 	background-color: #DAD6E3;
 }
 /*부트 스트랩 적용하고 수정된 부분 fix*/

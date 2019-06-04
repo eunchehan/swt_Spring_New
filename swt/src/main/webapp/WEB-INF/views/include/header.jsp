@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="common.jsp" %>    
-<%-- <%
-	String referer = request.getHeader("referer");
-%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -71,7 +68,7 @@
 	<!-- 모달 로그인 끝  -->
 	<div class="header_menu jbFixed_menu" id="header_line">
 		<div class="inner_header inner_header_menu">
-			<div class="header_member">
+			<div class="header_member" id="modal_member">
 				
 				<ul>
 				
