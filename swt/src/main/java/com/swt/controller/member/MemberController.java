@@ -89,13 +89,12 @@ public class MemberController {
 		model.addAttribute("one", mDto);
 		return "member/info_update";
 	}
-	// 세션이 안됨!!!!
+	
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	public String updatePlay(MemberDTO mDto, HttpSession session) {
 		log.info(">>>>>>> 회원수정 액션");
 		log.info(mDto.toString());
 		service.memUpdate(mDto, session);
-		
 		return "redirect:/";
 	}
 	
