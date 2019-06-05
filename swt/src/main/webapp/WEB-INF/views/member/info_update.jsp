@@ -503,7 +503,7 @@
 	<script type="text/javascript" src="${path}/resources/js/validation.js"></script> 
 	<script type="text/javascript">
 	$(document).ready(function(){
-		
+			var flag = false;
 			//우편번호, 주소 클릭시 다음주소API 창 출력
 			$('.addrbtn').click(function(){
 				var zipcode = $('.addrbtn').eq(0).val();
@@ -520,83 +520,20 @@
 				if(dAddr==""||dAddr.length==0){
 					$(this).next().text("필수입력 정보입니다").css("display","block").css("color","#b30000").css("font-size","13px").css("padding-left","15px");
 					return false;
-				}
-			});
-			/* // 1. input(#id)에 값을 입력 후 blur()하면 이벤트 발생
-			$("#id").blur(function(){
-				// 2. input(#id) value값을 가져와 memId에 담음 
-				var memId = $.trim($("#id").val());
-				// 3. joinValidate의 checkId() 함수를 실행, memId를 매개변수로 보냄 
-				// 7. checkId() 함수를 실행 후 결과값(code, desc)을 변수 checkResult에 담음 
-				var checkResult  = joinValidate.checkId(memId); // code, desc를 가져와서 변수에 담음 
-				
-				if(checkResult.code != 0) { 
-					// 8-1(실패). code값이 0이 아닌 경우 => 유효한 값 아님 
-					// 			  경고 메시지 출력!
-					$(this).next().text(checkResult.desc).css('display','block').css('color','#b30000');
-					return false;
-				} else { 
-					// 8-2(성공). code값이 0인 경우 => 유효한 값 
-					//			 중복값인지 Ajax(에이젝스)로 검증 시작!
-					// 9. ajaxCheck() 메서드 실행, memId를 매개변수로 보냄 
-					// 31. ajaxCheck(memId)의 return값이 1이면 return true; (유효성체크완료, 사용가능한 아이디) 
-					if(ajaxCheck(memId)=="1"){
-						return true;
-					}
-				}
-				return false; // if(ajaxCheck(memId)=="1") 제외하고는 return false;해서 종료
-				
-				
-			}); */
-			
-			$("#pswd1").blur(function(){
-				var memPw = $.trim($("#pswd1").val());
-				var memRpw = $.trim($("#pswd2").val());
-				var checkResult  = joinValidate.checkPw(memPw,memRpw); // code, desc를 가져와서 변수에 담음 
-				
-				if(checkResult.code != 0) { //실패했을때
-					$(this).next().text(checkResult.desc).css('display','block').css('color','#b30000');
-					return false;
-				} else { // code = 0일때. 즉, 성공했을때 success
-					$(this).next().text(checkResult.desc).css('display','block').css('color','dodgerblue');
-					return true;
-				}
-				return false;
-			});
-			
-			$("#pswd2").blur(function(){
-				var pw = $.trim($("#pswd1").val());
-				var rpw = $.trim($(this).val());
-				var regEmpty = /\s/g; // 공백 문자
-				var pwReg = RegExp(/^[a-zA-Z0-9]{4,12}$/); // 비밀번호 체크
-				
-				
-				if(rpw == ""||rpw.length==0){
-					$(this).next().text("필수입력 정보입니다").css("display","block").css("color","#b30000");
-					return false;
-				} else if(rpw.match(regEmpty)) {
-					$(this).next().text("공백없이 입력해주세요").css("display","block").css("color","#b30000");
-					return false;
-				} else if(!pwReg.test(pw)) {
-					$(this).next().text("올바른 비밀번호(4~12자)를 입력해주세요").css("display","block").css("color","#b30000");
-					return false;
-				} else if(pw != rpw){
-					$(this).next().text("입력하신 비밀번호와 일치하지 않습니다").css("display","block").css("color","#b30000");
-					return false;
 				} else {
-					$(this).next().text("사용가능한 비밀번호 입니다").css("display","block").css("color","dodgerblue");
-					
+					$(this).next().css("display","none");
+					flag = true;
+					return flag;
 				}
-				
 			});
-			
+		
 			var val = "${one.bir_mm}";
 			/* alert(val); */
 			$('#mm').val(val).prop("selected",true);
 			
 			
 			
-		//이름 1널값체크2중간에공백체크3length 4자제한 4. 멋진이름이네
+		//이름 1널값체크2중간에공백체크3length 4자제한 4. 멋진이름
 		$("#name").blur(function(){
 				var name = $.trim($(this).val());
 				var regEmpty = /\s/g; // 공백 문자 
@@ -609,16 +546,21 @@
 					return false;
 				} else if(!nameReg.test(name)) {
 					$(this).next().text("이름은 표준한글만 입력가능합니다").css("display","block").css("color","#b30000");
-					return false;
-				} else if(name.length<2||name.length>4) {
-					$(this).next().text("이름은 공백없이 2자 이상~4자 이하만 가능합니다").css("display","block").css("color","#b30000");
+					$(this).focus();	// 이렇게하면 유효한 값 입력전까지 tab키 안 먹음 
 					return false;
 				} else {
 					$(this).next().text("멋진 이름이네요").css("display","block").css("color","dodgerblue");
 					$("#yy").select();
+					flag=true;
+					return flag;
 				}
 				
 			});
+		
+		/* else if(name.length<2||name.length>4) { 정규식에서 체크함
+			$(this).next().text("이름은 공백없이 2자 이상~4자 이하만 가능합니다").css("display","block").css("color","#b30000");
+			return false;
+		}  */
 		
 		/* 숫자만 들어오게 일수랑 달은 1~31 년은 
 		2월은 28일까지만 
@@ -649,7 +591,8 @@
 				return false;
 			} else {
 				$(this).next().css('display','block').text('좋은 휴대폰 번호네요').css('color','dodgerblue');
-				// 포트폴리오 낼 땐 말장난 치면 안됨. 폰트체도 깔끔하고 가독성 높은걸로. 귀여운거X
+				flag=true;
+				return flag;
 			}
 		});
 		
@@ -668,6 +611,8 @@
 				return false;
 			} else{
 				$(this).next().css("display","block").text('샤이니한 이메일이네요').css('color','dodgerblue');
+				flag=true;
+				return flag;
 			}  
 		});
 		
@@ -697,8 +642,14 @@
 		var emailurl = email.substring(index+1); */
 		
 		// 이렇게 하면 안됨 blur안하고 그냥 수정안하고 form 보내짐 
+		
 		$('#btn_update').click(function(){
-			$('#info_frm').submit();
+			if(flag==true){
+				$('#info_frm').submit();
+			}else{
+				alert("유효한 값으로 수정해주세요!");
+			}
+			
 		});
 		
 		
