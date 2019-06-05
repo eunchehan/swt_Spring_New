@@ -36,4 +36,19 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectOne("member.viewMember", id);
 	}
 
+	@Override
+	public void pwUpdate(MemberDTO mDto) {
+		 sqlSession.update("member.pwUpdate", mDto);
+	}
+
+	@Override
+	public int memUpdate(MemberDTO mDto) {
+		return sqlSession.update("member.memUpdate", mDto);
+	}
+
+	@Override
+	public int delete(String id) {
+		 return sqlSession.delete("member.delete", id);
+	}
+
 }

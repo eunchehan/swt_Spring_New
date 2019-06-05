@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${path}/css/common.css?v=1"> 
+<link rel="stylesheet" href="${path}/resources/css/common.css?v=1"> 
 <title>회원탈퇴</title>
+<!-- favicon -->
+<link rel="icon" type="image/png" href="${path}/resources/images/logoswt_trans.png"> 
 <style type="text/css">
 		* { 
 			box-sizing: border-box; 
@@ -313,14 +315,14 @@
 		<div class="header">
 			<h1 class="swt_logo">
 				<a href="index.swt" class="s_logo">
-					<img alt="로고 이미지 "src="${path}/images/mylogo_constract2.png">
+					<img alt="로고 이미지 "src="${path}/resources/images/mylogo_constract2.png">
 				</a>
 			</h1>
 		</div>
 	</header>
 	<section>
 		<div class="container">
-			<form class="join_form" id="join_frm" method="POST" action="">
+			<form class="mdel_form" id="mdel_frm" name="mdel_frm" method="POST" action="${path}/member/delete">
 				<!-- 모달 창  -->
 				<div id="modal_all">
 					<div id="modal">
@@ -341,7 +343,7 @@
 				<div class="join_content">
 					<div class="check_container">
 						<span class="terms_wrap" id="terms_h">
-							<br><span class="focus_text">"${sessionScope.loginUser.name}님"</span> 회원탈퇴 시 아래의 조치가 취해집니다.<br><br>
+							<br><span class="focus_text">"${sessionScope.name}님"</span> 회원탈퇴 시 아래의 조치가 취해집니다.<br><br>
 						</span>
 						<span class="terms_wrap">
 							1. 계정정보는 <span class="focus_text">"개인 정보 보호 정책"에 따라 60일간 보관(잠김)</span>되며, 60일이 경과된 후에는
@@ -368,33 +370,29 @@
 								<span class="step_url pwAjax"></span>
 							</span>
 						</div>
-						
 					</div>
 				</div>
-					<div class="btn_double_area">
-						<span>
-							<a href="#" class="dropmem_btn_type" id="btn_cancel">취소</a>
-							<a href="#" class="dropmem_btn_type" id="btn_memout">회원탈퇴</a>	
-						</span>
-					</div>
-					
+				<div class="btn_double_area">
+					<span>
+						<a href="#" class="dropmem_btn_type" id="btn_cancel">취소</a>
+						<a href="#" class="dropmem_btn_type" id="btn_memout">회원탈퇴</a>	
+					</span>
 				</div>
+				<input type="hidden" name="id" value="${sessionScope.userid}">
 			</form>
 		</div>
 	</section>
 	<%@ include file="../include/mem_footer.jsp" %>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/validation.js"></script> 
+	<script type="text/javascript" src="${path}/resources/js/validation.js"></script> 
 	<script type="text/javascript">
 	$(document).ready(function(){
-			/* $('.dropmem_btn_type').click(function(){
-				$('#join_frm').submit();
-			}); */
+		
 			var state = false;
 			
 			$("#pswd1").blur(function(){
-				var nowId = "${sessionScope.loginUser.id}";
+				var nowId = "${sessionScope.userid}";
 				var nowPw = $(this).val();
 				state = ajaxPwCheck(nowId,nowPw);
 				
@@ -415,12 +413,10 @@
 			$('#btn_no').click(function(){
 				$('#modal_all').css('display','none');
 			});
+			
+			// 탈퇴버튼 눌렀을 때 
 			$('#btn_yes').click(function(){
-				// 아이디값 가져오고 이동하는 방법 중 하나 
-				/* var id = "${sessionScope.loginUser.id}";
-				location.href="dropMember.swt?id="+id; */
-				
-				location.href="dropMemberPlay.swt";
+				$('#mdel_frm').submit();
 			});
 		});
 	</script>

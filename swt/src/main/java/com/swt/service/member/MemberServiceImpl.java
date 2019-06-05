@@ -29,6 +29,21 @@ public class MemberServiceImpl implements MemberService {
 		// Spring와서는 try~catch안함 다 setting돼있음
 		return mDao.create(mDto);	
 	}
+	
+	@Override
+	public void memUpdate(MemberDTO mDto, HttpSession session) {
+		// 비즈니스로직 
+		// 1) 회원정보수정 
+		int result = mDao.memUpdate(mDto);
+		
+		// 2) 회원정보 수정 성공하면
+		//    - session의 name값을 수정한 이름으로 변경 
+		if(result>0) {
+			session.removeAttribute("name");	// 기존에 있는 값 지워서 session 초기화 
+			session.setAttribute("name", mDto.getName());	// DTO에 있는 name 값 꺼내서 변경된 name으로 바꿔줌
+		}
+		
+	}
 
 	@Override
 	public boolean login(MemberDTO mDto, HttpSession session) {
@@ -69,5 +84,43 @@ public class MemberServiceImpl implements MemberService {
 		MemberDTO mDto = mDao.viewMember(id);
 		return mDto;
 	}
+
+	@Override
+	public String pwCheck(MemberDTO mDto) {
+		// id => 현재 로그인한 유저의 ID
+		// pw => 사용자가 입력한 현재비밀번호 값
+		// DB에 등록되어있는 비밀번호 값이 필요 
+		// 여기서 비즈니스 로직 처리
+		// DB에서 가져온 현재비밀번호와 사용자가 입력한 비밀번호가 같은지 체크해서
+		// 같으면 1, 틀리면 -1을 view단으로 전송 
+		String name = mDao.login(mDto); // sql문 결과 조회되면 맞는거고 안되면 틀린거임 login할때 sql문과 동일하니까 login메서드 재사용 
+		String result = "-1";
+		if(name!=null) {
+			result="1";
+		}
+		return result;
+	}
+
+	@Override
+	public void pwUpdate(MemberDTO mDto) {
+		// DB에 있는 비밀번호를 수정
+		// data: id, pw => mDto
+		
+		mDao.pwUpdate(mDto);
+	}
+
+	@Override
+	public void delete(String id, HttpSession session) {
+		// 비즈니스 로직
+		// 1) 회원삭제 
+		//    - ID필요 -> session 
+		int result = mDao.delete(id);
+		// 2) 회원삭제 성공 시 => 세션 전체 값 초기화
+		if(result>0) {
+			session.invalidate();
+		}
+	}
+
+	
 
 }

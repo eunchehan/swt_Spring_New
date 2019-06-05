@@ -89,11 +89,11 @@
 					<li class="mydrop1">
 						<a href="#">MyPage</a>
 						<div id="mydrop2">
-						<a href="${path}/member/update">Account</a>
+						
 						<c:choose>
 							<c:when test="${!empty sessionScope}">
-								<!-- Account 있었던 곳 -->
-								<a href="${path}/pwUpdate.swt">Password</a>
+								<a href="${path}/member/update">Account</a>
+								<a href="${path}/member/pwupdate">Password</a>
 								<a href="#">Order</a>
 								<a href="#">WishList</a>
 							</c:when>

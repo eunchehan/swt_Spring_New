@@ -180,16 +180,16 @@ function ajaxCheck(memId){
 
 
 
-function ajaxPwCheck(nowId, nowPw){
+function ajaxPwCheck(nowId, nowPw){ // 현재 접속한 유저의 아이디(세션), 현재비밀번호라고 회원이 입력한 비밀번호 
 	var return_val = false;
 	$.ajax({
-		url: 'pwCheck.swt',
+		// Controller에서 쿼리스트링으로 보낸 데이터 받을 수 있음
+		url: 'pwcheck?id='+nowId+'&pw='+nowPw,
 		type: 'POST',
-		dataType: 'json',
 		async: false,
-		data: 'id='+nowId+'&pw='+nowPw,
 		success: function(data) {
-			if(data.flag){
+			console.log(data);
+			if(data=="1"){
 				$(".pwAjax").css('color','dodgerblue').css('display','block').text('비밀번호가 일치합니다.');
 				return_val = true;
 			} else {

@@ -368,7 +368,7 @@
 
 	<section>
 		<div class="container">
-			<form class="info_form" id="info_frm" method="POST" action="infoUpdatePlay.swt">
+			<form class="info_form" id="info_frm" name="info_frm" method="POST" action="${path}/member/update">
 				<div class="info_content">
 					<div class="info_up_wrap">
 						<div class="row_group">
@@ -406,14 +406,14 @@
 							<div class="bir_wrap">
 								<div class="bir_yy">
 									<span class="ps_box">
-										<input type="text" id="yy" name="yy" placeholder="년(4자,Year)" class="int" maxlength="4" readonly="readonly" value="${one.bir_yy}">
+										<input type="text" id="yy" name="bir_yy" placeholder="년(4자,Year)" class="int" maxlength="4" readonly="readonly" value="${one.bir_yy}">
 										<span class="step_url"></span> 
 									</span>
 								</div>
 								<div class="bir_mm">
 									<span class="ps_mm">
 										<!-- js에서 가져옴 -->
-										<select id="mm" class="sel" name="mm" disabled="disabled">
+										<select id="mm" class="sel" name="bir_mm" disabled="disabled">
 											<option>월(Month)</option>
 											<option value="1">01(Jan.)</option>
 											<option value="2">02(Feb.)</option>
@@ -432,7 +432,7 @@
 								</div>
 								<div class="bir_dd">
 									<span class="ps_box">
-										<input type="text" id="dd" name="dd" placeholder="일(Day)" class="int" maxlength="2" readonly="readonly" value="${one.bir_dd}">
+										<input type="text" id="dd" name="bir_dd" placeholder="일(Day)" class="int" maxlength="2" readonly="readonly" value="${one.bir_dd}">
 										<span class="step_url"></span>
 									</span>
 								</div>
@@ -486,11 +486,11 @@
 					<div class="btn_double_area">
 						<span>
 							<a href="${path}/" class="info_btn_type" id="btn_cancel">취소</a>
-							<a href="#" class="info_btn_type" id="btn_update">회원수정</a>	
+							<a class="info_btn_type" id="btn_update">회원수정</a>	
 						</span>
 					</div>
 					<div class="cancel_area">
-						<span><a href="${path}/dropMember.swt" id="cancel_mem">회원탈퇴</a></span>
+						<span><a href="${path}/member/delete" id="cancel_mem">회원탈퇴</a></span>
 					</div>
 				</div>
 			</form>
@@ -503,9 +503,6 @@
 	<script type="text/javascript" src="${path}/resources/js/validation.js"></script> 
 	<script type="text/javascript">
 	$(document).ready(function(){
-			$('.info_btn_type').click(function(){
-				$('#info_frm').submit();
-			});
 		
 			//우편번호, 주소 클릭시 다음주소API 창 출력
 			$('.addrbtn').click(function(){
@@ -592,7 +589,6 @@
 				}
 				
 			});
-			// 비번이랑 아이디랑 생년월일이랑 같은지 체크해주는것도 좋음 여기서는 안 하지만...
 			
 			var val = "${one.bir_mm}";
 			/* alert(val); */
@@ -700,8 +696,9 @@
 		var emailid = email.substring(0, index);
 		var emailurl = email.substring(index+1); */
 		
-		$("#btn_update").click(function(){
-			$("#info_frm").submit;
+		// 이렇게 하면 안됨 blur안하고 그냥 수정안하고 form 보내짐 
+		$('#btn_update').click(function(){
+			$('#info_frm').submit();
 		});
 		
 		
