@@ -1,5 +1,6 @@
+# General
 pom.properties
-MANIFEST.MF
+META-INF/MANIFEST.MF
 
 # Compiled class file
 *.class
