@@ -10,8 +10,8 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="${path}/css/board.css?v=1"> 
-<title>Q&A</title>
+<link rel="stylesheet" href="${path}/resources/css/board.css?v=1"> 
+<title>QnA</title>
 </head>
 <body>
 	<section>
@@ -23,26 +23,26 @@
 						<div class="page_body">
 							<div class="bd_hd">
 								<div class="bd_tit01">
-									<img alt="제목" src="${path}/images/ribon2.png" id="ribon">
+									<img alt="제목" src="${path}/resources/images/ribon2.png" id="ribon">
 									<div id="order_board">
 										<input type="hidden" value="new" id="code">
 										<span>
 											<!-- rgb(231, 29, 54) -->
-											<a href="${path}/boardList.swt?sort_type=new&search_option=${search_option}&keyword=${keyword}" id="orderNew">최신순</a>
+											<a href="${path}/board/list?sort_option=new&search_option=${map.search_option}&keyword=${map.keyword}" id="orderNew">최신순</a>
 										</span>
 										<span>
-											<a href="${path}/boardList.swt?sort_type=good&search_option=${search_option}&keyword=${keyword}" id="orderGood">추천순</a>
+											<a href="${path}/board/list?sort_option=good&search_option=${map.search_option}&keyword=${map.keyword}" id="orderGood">추천순</a>
 										</span>
 										<span>
-											<a href="${path}/boardList.swt?sort_type=reply&search_option=${search_option}&keyword=${keyword}" id="orderReply">댓글순</a>
+											<a href="${path}/board/list?sort_option=reply&search_option=${map.search_option}&keyword=${map.keyword}" id="orderReply">댓글순</a>
 										</span>
 										<span>
-											<a href="${path}/boardList.swt?sort_type=view&search_option=${search_option}&keyword=${keyword}" id="orderCnt">조회순</a>
+											<a href="${path}/board/list?sort_option=view&search_option=${map.search_option}&keyword=${map.keyword}" id="orderCnt">조회순</a>
 										</span>
 									</div>
 									<!-- <button class="board_btn btn-primary">게시글 등록</button> -->
 									<a href="#">
-										<img id="btn_regi" alt="게시글 등록" src="${path}/images/regi.png">
+										<img id="btn_regi" alt="게시글 등록" src="${path}/resources/images/regi.png">
 									</a>
 								</div>
 								
@@ -79,7 +79,7 @@
 										<tbody>							
 																
 											<!-- 게시글 리스트 시작(한페이지당 게시글 수)-->
-										<c:forEach items="${list}" var="bDto">
+										<c:forEach items="${map.list}" var="bDto">
 											<!-- 현재시간 구하기  -->
 											<jsp:useBean id="now" class="java.util.Date"/>
 											<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
@@ -127,7 +127,7 @@
 												<td>
 													<!-- 좋아요 -->
 													<div class="text_center">
-														<img class="btn_img btn_good" alt="좋아요" src="${path}/images/good.png">
+														<img class="btn_img btn_good" alt="좋아요" src="${path}/resources/images/good.png">
 														<span class="good_cnt">
 															${bDto.goodcnt}
 														</span>
@@ -137,7 +137,7 @@
 													<!-- 조회수 -->
 													
 													<div class="text_center">
-														<img class="btn_img btn_hits" alt="조회수" src="${path}/images/hits.png">
+														<img class="btn_img btn_hits" alt="조회수" src="${path}/resources/images/hits.png">
 														<span>${bDto.viewcnt}</span>
 													</div>
 												</td>
@@ -146,7 +146,7 @@
 													<div class="text_center">
 														<c:if test="${bDto.filesize >0}">
 															<!-- <i class="fas fa-sticky-note"></i> -->
-															<img class="btn_img btn_att" alt="첨부파일" src="${path}/images/attachment1.png">
+															<img class="btn_img btn_att" alt="첨부파일" src="${path}/resources/images/attachment1.png">
 															<!-- ${bDto.filesize} -->
 														</c:if>
 													</div>
@@ -162,22 +162,22 @@
 									<div class="div_search">
 									
 										<select id="selsearch" name="selsearch">
-											<option value="1" selected="selected">제목+내용</option>
-											<option value="2">제목</option>
-											<option value="3">내용</option>
-											<option value="4">작성자</option>
+											<option value="all" selected="selected">제목+내용</option>
+											<option value="title">제목</option>
+											<option value="content">내용</option>
+											<option value="writer">작성자</option>
 										</select>
 										
 										<input type="text" placeholder="검색할 값을 입력하세요" id="search_board" name="search_board">
-										<a href="#" id="search_btn"><img alt="검색" src="${path}/images/search2.png"></a>
+										<a href="#" id="search_btn"><img alt="검색" src="${path}/resources/images/search2.png"></a>
 										
 										<!-- class="board_btn btn_search" -->
 									</div>
 									
-									<c:if test="${!empty keyword}">
+									<c:if test="${!empty map.keyword}">
 										<div id="search_result">
-											<span class="search_span">"${keyword}"</span>로 검색한 결과는 총
-											<span class="search_span">${totalCount}</span>건 입니다.  
+											<span class="search_span">"${map.keyword}"</span>로 검색한 결과는 총
+											<span class="search_span">${map.count}</span>건 입니다.  
 										</div>
 									</c:if>
 									
@@ -185,9 +185,9 @@
 									<div class="board_pagination">
 										<ul class="pagination">
 										
-											<c:if test="${pageMaker.prev}">
+											<c:if test="${map.pager.curBlock > 1}">
 												<li class="active">
-													<a href="${path}/boardList.swt?page=${pageMaker.startPage - 1}&sort_type=${sort_type}&search_option=${search_option}&keyword=${keyword}">
+													<a href="${path}/board/list?curPage=${map.pager.blockBegin-10}&sort_option=${map.sort_option}&search_option=${map.search_option}&keyword=${map.keyword}">
 														<i class="fas fa-angle-double-left"></i>
 													</a>
 												</li>
@@ -198,7 +198,7 @@
 												</li> -->
 												
 												<li>
-													<a href="${path}/boardList.swt?page=1&sort_type=${sort_type}&search_option=${search_option}&keyword=${keyword}">1</a>
+													<a href="${path}/board/list?curPage=1&sort_option=${map.sort_option}&search_option=${map.search_option}&keyword=${map.keyword}">1</a>
 												</li>
 												<li>
 													<a href="">...</a>
@@ -206,26 +206,26 @@
 											</c:if>
 											<!-- begin end로 몇번부터 몇번까지 반복하게 설정. startPage(1)부터 begin해서 endPage(10)에서 end. var="idx"는 for문의 i(index) 같은거
 											c:out은 출력임. 삼항연산자 사용. pageMaker.criDto.page : 선택한 페이지 == idx랑 같으면 class="active"효과를 주는 거 -->
-											<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-												<li <c:out value="${pageMaker.criDto.page == idx ? 'class=active':''}"/>>
-													<a href="${path}/boardList.swt?page=${idx}&sort_type=${sort_type}&search_option=${search_option}&keyword=${keyword}">${idx}</a>
+											<c:forEach begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}" var="idx">
+												<li <c:out value="${map.pager.curPage == idx ? 'class=active':''}"/>>
+													<a href="${path}/board/list?curPage=${idx}&sort_option=${map.sort_option}&search_option=${map.search_option}&keyword=${map.keyword}">${idx}</a>
 												</li>
 											</c:forEach>
 											
-											<c:if test="${pageMaker.next}">
+											<c:if test="${map.pager.curBlock < map.pager.totBlock}">
 												<li class="active">
 													<a href="">...</a>
 												</li>
 												
 												<li>
-													<a href="${path}/boardList.swt?page=${pageMaker.finalPage}&sort_type=${sort_type}&search_option=${search_option}&keyword=${keyword}">
-														${pageMaker.finalPage}
+													<a href="${path}/board/list?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&search_option=${map.search_option}&keyword=${map.keyword}">
+														${map.pager.totPage}
 														<!-- <i class="fas fa-angle-right"></i> -->
 													</a>
 												</li>
 												
 												<li class="active">
-													<a href="${path}/boardList.swt?page=${pageMaker.endPage+1}&sort_type=${sort_type}&search_option=${search_option}&keyword=${keyword}">
+													<a href="${path}/board/list?curPage=${map.pager.blockEnd+1}&sort_option=${map.sort_option}&search_option=${map.search_option}&keyword=${map.keyword}">
 														<!-- &raquo; --> 
 														<i class="fas fa-angle-double-right"></i>
 													</a>
@@ -255,14 +255,14 @@
 			}
 			
 			
-			var sort_type = "${sort_type}";
-			if(sort_type == "new"){
+			var sort_option = "${map.sort_option}";
+			if(sort_option == "new"){
 				$("#orderNew").css("color","rgb(36, 195, 182)").css("font-weight", "bold").css("text-decoration", "underline");
-			} else if(sort_type == "good"){
+			} else if(sort_option == "good"){
 				$("#orderGood").css("color","rgb(36, 195, 182)").css("font-weight", "bold").css("text-decoration", "underline");
-			} else if(sort_type == "reply"){
+			} else if(sort_option == "reply"){
 				$("#orderReply").css("color","rgb(36, 195, 182)").css("font-weight", "bold").css("text-decoration", "underline");
-			} else if(sort_type == "view"){
+			} else if(sort_option == "view"){
 				$("#orderCnt").css("color","rgb(36, 195, 182)").css("font-weight", "bold").css("text-decoration", "underline");
 			}
 			
@@ -302,7 +302,7 @@
 				
 			}
 //			alert(search_option+","+keyword);
-			location.href="${path}/boardList.swt?search_option="+search_option+"&keyword="+keyword;
+			location.href="${path}/board/list?search_option="+search_option+"&keyword="+keyword;
 		});
 		
 	

@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 
 							<!-- depth가 닫라서 상위폴더로 나가서 경로 찾아가야함 -->
-<link rel="stylesheet" href="resources/css/common.css?v=1"> 
-<link rel="stylesheet" href="resources/css/header.css?v=1"> 
+<link rel="stylesheet" href="${path}/resources/css/common.css?v=1"> 
+<link rel="stylesheet" href="${path}/resources/css/header.css?v=1"> 
 
 
 <title>SleepWellTea</title>
@@ -31,7 +31,7 @@
 				<div id="swt_content">
 					<div id="login_area">
 						<div id="login_logo">
-							<img alt="Welcome" src="resources/images/ribon_wel.png">
+							<img alt="Welcome" src="${path}/resources/images/ribon_wel.png">
 						</div>
 						<div id="login_modal_container">
 							<form name="" action="" method="POST" id="login_form">
@@ -111,7 +111,7 @@
 		<div class="header_logo">
 			<div class="inner_header">
 				<a href="${path}/">
-					<img id="logo" src="resources/images/mylogo_6.png" alt="로고이미지">
+					<img id="logo" src="${path}/resources/images/mylogo_6.png" alt="로고이미지">
 				</a>
 			</div>
 		</div>
@@ -134,7 +134,7 @@
 						<li><a class="ihn_dot">·</a></li>
 						<li><a class="ihn" href="#">S.W.T</a></li>
 						<li><a class="ihn_dot">·</a></li>
-						<li><a class="ihn" href="${path}/boardList.swt">CS Center</a></li>
+						<li><a class="ihn" href="${path}/board/list">CS Center</a></li>
 					</ul>
 				</div>
 				
