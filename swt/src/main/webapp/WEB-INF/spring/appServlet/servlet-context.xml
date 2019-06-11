@@ -24,8 +24,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	<!-- 스프링 빈을 태그로 등록하지 않고 자동으로 검색(auto scan) --> 
-	<context:component-scan base-package="com.swt.*" />
-	
+	<!-- com.swt.*하는 것 보다 세부적으로 설정해놔야 충돌이 예방된다. -->
+	<context:component-scan base-package="com.swt.controller" />
+	<context:component-scan base-package="com.swt.service" />
+	<context:component-scan base-package="com.swt.persistence" />
 	<!-- 인터셉터 빈을 등록 -->
 	<beans:bean id="loginInterceptor" class="com.swt.interceptor.LoginInterceptor"></beans:bean>
 	

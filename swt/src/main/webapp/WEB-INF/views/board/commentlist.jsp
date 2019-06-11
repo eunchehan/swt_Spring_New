@@ -30,7 +30,7 @@
 				<div class="content-body panel-body pull-left">
 					<div class="avatar avatar-medium clearfix">
 						<a href="#" class="avatar-photo">
-							<img alt="사진" src="${path}/images/avatar_tea.png">
+							<img alt="사진" src="${path}/resources/images/avatar_tea.png">
 							<%-- <img alt="사진" src="${path}/images/avatar1.png"> --%>
 						</a>
 						<div class="avatar-info">
@@ -50,7 +50,7 @@
 					</fieldset>
 				</div>
 				<div class="content-function-cog note-submit-buttons clearfix">
-					<c:if test="${sessionScope.loginUser.id == replyview.writer}">
+					<c:if test="${sessionScope.userid == replyview.writer}">
 						<p>
 							<a id="note-create-delete-btn" class="bd-btn btn-default btn-wide reply-del" style="" data_num="${replyview.rno}">삭제</a>
 						</p>
@@ -62,7 +62,7 @@
 		</c:forEach>
 		
 		<c:choose>
-			<c:when test="${empty sessionScope.loginUser}">
+			<c:when test="${empty sessionScope.userid}">
 				<li class="list-group-item note-item clearfix">
 					<h5>
 						<a href="#" class="link">로그인</a>을 하시면 댓글을 등록할 수 있습니다.
@@ -75,7 +75,7 @@
 						<div class="content-body panel-body pull-left">
 							<div class="avatar avatar-medium clearfix" id="comment_area_div">
 								<a href="#" class="avatar-photo">
-									<img alt="사진" src="${path}/images/avatar1.png">
+									<img alt="사진" src="${path}/resources/images/avatar1.png">
 								</a>
 								<div class="avatar-info">
 									<a class="nickname" href="#">은체</a>
@@ -89,8 +89,9 @@
 									nhn.husky.EZCreator.createInIFrame({
 									 oAppRef: oEditors,
 									 elPlaceHolder: "replyInsert",
-									 sSkinURI: "<%=request.getContextPath()%>/smarteditor/SmartEditor2Skin.html",
-									 fCreator: "createSEditor2"
+									 sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
+									 fCreator: "createSEditor2",
+									 htParams: { fOnBeforeUnload : function(){}}
 									});
 								</script>
 							</fieldset>
@@ -101,7 +102,7 @@
 							</p>
 							<input type="button" name="create" id="btn-create-btn" class="bd-btn btn-default btn-wide" value="등록">
 							
-							<input type="hidden" name="re_writer" value="${sessionScope.loginUser.id}">
+							<input type="hidden" name="re_writer" value="${sessionScope.userid}">
 							<input type="hidden" id="re_bno" name="re_bno">
 						
 						</div>

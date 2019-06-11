@@ -10,9 +10,9 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="${path}/css/board_view.css?v=1"> 
+<link rel="stylesheet" href="${path}/resources/css/board_view.css?v=1"> 
 <title>QnA</title>
-<script type="text/javascript" src="${path}/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
 	<section>
@@ -23,7 +23,7 @@
 					<div class="page_body">
 						<div class="bd_hd">
 							<div class="bd_tit01">
-								<img alt="제목" src="${path}/images/ribon2.png" id="ribon">
+								<img alt="제목" src="${path}/resources/images/ribon2.png" id="ribon">
 							</div>
 							<div class="box-body">
 								<table class="table-boarded">
@@ -53,13 +53,13 @@
 														</span>
 													</div>
 													<div class="good01 text_center">
-														<img class="btn_img btn_good" alt="좋아요" src="${path}/images/good.png">
+														<img class="btn_img btn_good" alt="좋아요" src="${path}/resources/images/good.png">
 														<span class="good_cnt">
 															${one.goodcnt}
 														</span>
 													</div>
 													<div class="hits01 text_center">
-														<img class="btn_img btn_hits" alt="조회수" src="${path}/images/hits.png">
+														<img class="btn_img btn_hits" alt="조회수" src="${path}/resources/images/hits.png">
 														<span>${one.viewcnt}</span>
 													</div>
 												</div>
@@ -80,7 +80,7 @@
 								</table>
 								<div class="att_wrap">
 									<div class="att_area">
-										<img class="btn_img btn_att" alt="첨부파일" src="${path}/images/attachment1.png">
+										<img class="btn_img btn_att" alt="첨부파일" src="${path}/resources/images/attachment1.png">
 										<c:choose>
 											<c:when test="${one.filesize/1024/1024 > 1}">
 												<a href="download.swt?file=${one.filename}">
@@ -105,24 +105,25 @@
 								
 								<div class="btn_area">
 									
-									<c:if test="${sessionScope.loginUser.id == one.writer}">
+									<c:if test="${sessionScope.userid == one.writer}">
 										<a href="${path}/modifyView.swt?bno=${one.bno}">
-											<img class="bd-btns" id="btn_modi_view" alt="게시글 수정" src="${path}/images/regi.png">
+											<img class="bd-btns" id="btn_modi_view" alt="게시글 수정" src="${path}/resources/images/regi.png">
 										</a>
 										<a id="del_btn">
-											<img class="bd-btns" id="btn_del" alt="게시글 삭제" src="${path}/images/delete2.png">
+											<img class="bd-btns" id="btn_del" alt="게시글 삭제" src="${path}/resources/images/delete2.png">
 										</a>
 									</c:if>
 									
 									
 									<a>
-										<img class="bd-btns" id="btn_list" alt="게시글 목록" src="${path}/images/list.png">
+										<img class="bd-btns" id="btn_list" alt="게시글 목록" src="${path}/resources/images/list.png">
 									</a>
 									
-									
-									<a>
-										<img class="bd-btns" id="btn_rpl" alt="게시글 답변" src="${path}/images/reply_blue.png">
-									</a>
+									<c:if test="${!empty sessionScope.userid}">
+										<a>
+											<img class="bd-btns" id="btn_rpl" alt="게시글 답변" src="${path}/resources/images/reply_blue.png">
+										</a>
+									</c:if>
 									<!-- 좋아요 버튼 -->
 									<div id="wrap_like">
 										<button type="button" class="btn_like" id="btn_good">
@@ -270,9 +271,8 @@
 		// 댓글 띄우는 기능
 		function comment_list(){
 			$.ajax({
-				type: "post",
-				url: "commentlist.swt",
-				data: "bno=${one.bno}",
+				type: "get",
+				url: "${path}/reply/list?bno=${one.bno}",
 				success: function(result){
 					$("#commentList").html(result);
 				}

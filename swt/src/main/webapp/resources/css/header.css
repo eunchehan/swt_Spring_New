@@ -48,7 +48,7 @@
 	font-size: 16px!important; 
 	text-align: center;
 	float: left;
-	height: 80px;
+	height: 77px;
 	display: inline-block;
 	padding: 25px 10px;
 	color: white!important;
@@ -126,7 +126,6 @@ header > a:not([href]):not([tabindex]) {
 #logo{
 	padding-left: 32%;
 	padding-right: 32%;
-	height: 150px;
 	max-width: 100%;
 }
 #dropdown1 {
@@ -412,10 +411,7 @@ header > a:not([href]):not([tabindex]) {
 	font-size: 1.35em;
 }
 #topBtn:hover {
-	color: black;
-   /*  background-color: #E4E4E1;
-   			background-image: radial-gradient(at top center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.03) 100%), linear-gradient(to top, rgba(255,255,255,0.1) 0%, rgba(143,152,157,0.60) 100%);
-   			background-blend-mode: normal, multiply; */
+	color: #a8b6c4;
 	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 #topBtn:hover i {

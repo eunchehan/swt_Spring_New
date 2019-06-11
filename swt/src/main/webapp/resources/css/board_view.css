@@ -7,7 +7,6 @@ a{
 #contentWrapper {
     position: relative;
     background-color: white;
-    width: 1256px;
     margin: 0 auto;
     max-width: 80%;
     height: auto;
@@ -136,7 +135,7 @@ td:nth-child(2) {
 	text-align: right;
 }
 .hits01 span {
-	padding-right: 200px;
+	padding-right: 180px;
 	margin-right: 0;
 }
 .btn_img {
@@ -296,6 +295,8 @@ i.fa-heart {
 	padding-right: 5px;
 }
 /* 좋아요 버튼 끝 */
+
+/* commentlist */
 .list-link {
     border-bottom: 1.5px solid #555555;
     border-top: 1.5px solid #555555;
@@ -356,6 +357,12 @@ i.fa-heart {
 .panel-body {
     padding: 15px;
 }
+
+.panel-body > .fform > article > p {
+    padding-top: 25px;
+    padding-left: 20px;
+}
+
 .avatar-medium .avatar-photo {
     vertical-align: top;
     width: 70px;

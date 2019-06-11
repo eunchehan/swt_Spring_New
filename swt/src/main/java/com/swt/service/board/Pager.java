@@ -47,6 +47,7 @@ public class Pager {
 	
 	//블록의 갯수 계산
 	public void setTotBlock() {
+		// Math.ceil 올림 1.1->2
 		totBlock = (int)Math.ceil(totPage*1.0/BLOCK_SCALE);
 	}
 	
@@ -80,7 +81,7 @@ public class Pager {
 	}
 	//전체 페이지 갯수 계산 
 	public void setTotPage(int count) {
-		// Math.ceil() 올림 
+		// Math.ceil() 소숫점이 있으면 올림 0.2->1 1.0->1 1.1->2
 		totPage = (int)Math.ceil(count*1.0 / PAGE_SCALE);
 	}
 	public int getTotBlock() {

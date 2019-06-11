@@ -33,8 +33,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardDTO read(int bno) {
-		// TODO Auto-generated method stub
-		return null;
+		return bDao.read(bno);
 	}
 
 	@Override
@@ -44,8 +43,21 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void increaseViewCnt(int bno, HttpSession session) {
-		// TODO Auto-generated method stub
+		long update_time=0;
+		if(session.getAttribute("update_time_"+bno)!=null) {
+			// 최근에 조회수를 올린 시간
+			update_time = (long)session.getAttribute("update_time_"+bno);
+		}
+		long current_time = System.currentTimeMillis();
 		
+		// 일정 시간이 경과한 후 조회수 증가 처리
+		if(current_time - update_time > 24*60*60*1000) {
+			// 조회수 증가 처리
+			bDao.increaseViewCnt(bno);
+			
+			// 조회수를 올린 시간 저장
+			session.setAttribute("update_time_"+bno, current_time);
+		}
 	}
 
 	@Override

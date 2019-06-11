@@ -130,7 +130,7 @@
 						<li><a class="ihn_dot">·</a></li>
 						<li><a class="ihn" href="#">Teawear</a></li>
 						<li><a class="ihn_dot">·</a></li>
-						<li><a class="ihn" href="#">GIFT & SET</a></li>
+						<li><a class="ihn" href="#">Gift Set</a></li>
 						<li><a class="ihn_dot">·</a></li>
 						<li><a class="ihn" href="#">S.W.T</a></li>
 						<li><a class="ihn_dot">·</a></li>

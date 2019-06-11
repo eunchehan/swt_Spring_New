@@ -48,7 +48,7 @@
 								
 								<div class="box-body">
 									<table class="table table-boarded" summary="No., Title, Name, Date, Likes, Hits, attachments">
-										<caption>Q&A 게시글</caption>
+										<caption>QnA 게시글</caption>
 										<thead>
 											<tr style="width: 10px">
 												<th style="width: 50px">
@@ -92,7 +92,7 @@
 												<td>
 													<!-- 제목 -->
 													<div class="title_table">
-														<a href="${path}/boardView.swt?bno=${bDto.bno}">${bDto.title}</a>
+														<a href="${path}/board/view?bno=${bDto.bno}">${bDto.title}</a>
 														<c:if test="${bDto.replycnt >0}">
 															<span class="replyCnt_Color">${bDto.replycnt}</span>
 														</c:if>
@@ -239,6 +239,7 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</section>
