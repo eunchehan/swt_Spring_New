@@ -233,9 +233,9 @@
 			location.href = "boardList.swt";
 		
 		});
-		
+		// 댓글 등록 버튼을 눌렀을 때 동작 
 		$(document).on("click","#btn-create-btn", function(){
-			
+			// 스마트에디터에서 입력한 text를 <textarea id="replyInsert">에 보내주는 것임 
 			oEditors.getById["replyInsert"].exec("UPDATE_CONTENTS_FIELD",[]);
 			
 			
@@ -249,10 +249,10 @@
 				// 게시글번호 담아서 보냄 
 				var bno = '${one.bno}';
 				$('#re_bno').val(bno);
-				
+				//alert(content);
 				
 				$.ajax({
-					url: "replyAdd.swt",
+					url: "${path}/reply/create?bno="+bno,
 					type: "POST",
 					data: $("#frm_reply").serialize(),
 					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -280,13 +280,13 @@
 		}
 		// ajax는 연어처럼 출발했던 곳으로 돌아오는게 있음. 더 갈데가없으면 success(toggle 176)있는 쪽으로 돌아옴 
 		
+		// 댓글 삭제 버튼 눌렀을 때 동작
 		$(document).on("click",".reply-del",function(){
 			var rno = $(this).attr("data_num");
 			var bno = '${one.bno}';
 			
 			$.ajax({
-				url: "replyRemove.swt",
-				data: "rno=" + rno + "&bno=" + bno,
+				url: "${path}/reply/delete?rno="+rno+"&bno="+bno,
 				success: function(result){
 					comment_list();
 				},

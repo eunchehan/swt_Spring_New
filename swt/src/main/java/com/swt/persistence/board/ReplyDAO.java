@@ -10,5 +10,7 @@ public interface ReplyDAO {
 	// DB안타는 경우는 service쪽이랑 똑같이 복사해서 만들지 않음 
 	public List<ReplyDTO> list(int bno); // 댓글 목록 출력 
 	public void create(ReplyDTO rDto);	// 댓글 등록
-	public void delete(ReplyDTO rDto);	// 댓글 삭제 
+	public void update(int bno, String flag);	// 댓글 등록 시 댓글 갯수 증가 
+	public void delete(int rno);	// 댓글 삭제 
+	
 }

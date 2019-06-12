@@ -34,12 +34,12 @@
 							<img alt="Welcome" src="${path}/resources/images/ribon_wel.png">
 						</div>
 						<div id="login_modal_container">
-							<form name="" action="" method="POST" id="login_form">
+							<form method="POST" id="login_form">
 								<input type="text" class="idpw" id="login_id" name="login_id" placeholder="아이디"></input>
 								<input type="password" class="idpw" id="login_pw" name="login_pw" placeholder="패스워드"></input>
 							</form>
 
-							<form action="/action_page.php">
+							<form>
 							    <div class="custom-control custom-switch">
 							      <input type="checkbox" class="custom-control-input" id="switch1" name="example">
 							      <label class="custom-control-label" for="switch1">로그인 유지</label>
@@ -47,9 +47,7 @@
 							    </div>
 							</form>
 								<div>
-									<a href="#" id="btn_login">
-										<button class="login-btn">Login</button>
-									</a>
+									<button type="button" id="btn_login" class="login-btn">Login</button>
 								</div>
 								<span id="step_url"></span>
 						
@@ -250,6 +248,7 @@
 				success: function(data) {// controller부터 쭉 타고와서 controller return으로 보내준 String flag의 값이 담김 
 					if(data == "1") {
 						location.reload(); // 새로고침 
+						//alert("ㅠㅠㅠ");
 					} else if(data == "-1"){
 						$('#login_id').focus();
 						$('#step_url').text('회원 아이디 또는 비밀번호가 일치하지 않습니다.').css('display','block');

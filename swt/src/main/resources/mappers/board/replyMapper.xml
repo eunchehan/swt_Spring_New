@@ -11,4 +11,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND bno = #{bno}
 		ORDER BY rno
 	</select>
+	<insert id="create">
+		INSERT INTO tbl_reply(rno, content, writer, bno)
+		VALUES(seq_reply.NEXTVAL, #{content}, #{writer}, #{bno})
+	</insert>
+	<delete id="delete">
+		DELETE FROM tbl_reply 
+		WHERE rno=#{rno}
+	</delete>
+	
+	<!-- 해당게시글 replycnt +1 OR -1 -->
+	<update id="update">
+		UPDATE tbl_board SET
+		 <if test="flag == 'plus'">
+	   		  replycnt = replycnt + 1
+	   	 </if>
+	   	 <if test="flag == 'minus'">
+	   	 	  replycnt = replycnt - 1
+	   	 </if>
+		WHERE bno = #{bno}
+	</update>
 </mapper>

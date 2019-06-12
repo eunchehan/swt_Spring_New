@@ -91,7 +91,7 @@
 		.int {
 			display: block;
 			position: relative;
-			width: 95%; /* 자기가 가질수있는 영역의 처음부터 끝까지 100%. 얘의 영역을 알려면 얘의 부모를 봐야함.  */
+			width: 100%; /* 자기가 가질수있는 영역의 처음부터 끝까지 100%. 얘의 영역을 알려면 얘의 부모를 봐야함.  */
 			height: 29px;
 			padding-left: 10px;
 			line-height: 29px;
