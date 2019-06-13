@@ -65,7 +65,7 @@
 			<c:when test="${empty sessionScope.userid}">
 				<li class="list-group-item note-item clearfix">
 					<h5>
-						<a class="link">로그인</a>을 하시면 댓글을 등록할 수 있습니다.
+						<a class="link" id="login_link">로그인</a>을 하시면 댓글을 등록할 수 있습니다.
 					</h5>
 				</li>
 			</c:when>

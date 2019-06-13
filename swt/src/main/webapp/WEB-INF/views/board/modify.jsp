@@ -85,41 +85,6 @@
 									</table>
 									
 									<div class="btn_area">
-										<div class="att_wrap">
-											<!-- 기존 첨부파일 -->
-											<c:if test="${one.filesize>0}">
-												<div class="before_att_area">
-											        <div class="before_d_file_text">
-											            <img class="before_btn_img before_btn_att" alt="첨부파일" src="${path}/images/attachment2.png">	
-											            <span class="before_file_name" style="padding-left: 40px;"> 
-											            	${one.filename} (${one.filesize})
-											            </span>
-											            <span id="before_file_size"> </span>
-											            <%-- <span class="before_file_x_btn">
-											            	<img class="before_btn_img before_btn_att_del" alt="첨부파일 삭제" src="${path}/images/minus.png">
-											            </span> --%>
-											            <span class="file_msg">[첨부파일 삭제됨]</span>
-											            <i class="fas fa-check open_file_btn" id="check_btn"></i>
-											            <i class="fas fa-times close_file_btn close_basic_btn"></i>
-											            
-											        </div>
-											     </div>
-										    </c:if>
-									
-										     <!-- 글 수정 시 새로 첨부할 파일  --> 
-										     <div class="att_area">
-												<input type="file" name="b_file" id="b_file" style="display:none!important">
-										        <div class="d_file_text">
-										            <img class="btn_img btn_att" alt="첨부파일" src="${path}/images/attachment1.png">	
-										            <span class="file_name" style="padding-left: 40px;"> 
-										            	첨부된 파일이 없습니다. 
-										            </span>
-										            <span id="now_file_size"> </span>
-										            <span class="file_x_btn">
-										            	<img class="btn_img btn_att_del" alt="첨부파일 삭제" src="${path}/images/minus.png">
-										            </span>			      
-										        </div>
-											</div>
 										</div>
 										<div class="btn_right">
 											<a>
@@ -135,8 +100,8 @@
 								</div>
 								<input type="hidden" id="basic_check" name="basic_check">
 								<input type="hidden" name="hidden_bno" id="hidden_bno" value="${one.bno}">
-								<input type="hidden" name="bFileName" id="bFileName" value="${one.filename}">
-					            <input type="hidden" name="bFileSize" id="bFileSize" value="${one.filesize}">
+							
+							
 							</form>
 						</div>
 					</div>
@@ -148,13 +113,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
-			$('.btn_att').click(function(event) {
-			       $('#b_file').click();
-			});
-			$('.file_name').click(function(event) {
-			       $('#b_file').click();
-			});
-			
+		
 		
 			$("#btn_modi").click(function(){
 				
@@ -180,88 +139,11 @@
 				
 				$("#modify_frm").submit();
 			});
-			
-			// 첨부파일 삭제할때(삭제버튼 클릭시)동작
-			$('.file_x_btn > img').click(function(event) {
-	            $('.file_name').text("첨부된 파일이 없습니다.")
-	                               .css("color", "#BDBDBD")
-	                               .css("letter-spacing", "-1px");
-	            $('#b_file').replaceWith($("#b_file").clone(true));
-	            $('#b_file').val("");
-	            $('#now_file_size').text("");
-	            $('.file_x_btn > img').css("display", "none");
-	       
-	       });
-			
-			$('.before_file_x_btn > img').click(function(event) {
-	            $('.before_file_name').text("첨부된 파일이 없습니다.")
-	                               .css("color", "#BDBDBD")
-	                               .css("letter-spacing", "-1px");
-	            $('#before_b_file').replaceWith($("#before_b_file").clone(true));
-	            $('#before_before_b_file').val("");
-	            $('#before_now_file_size').text("");
-	            $('.before_file_x_btn > img').css("display", "none");
-	         
-	       });
-	       
-	       
-	       
-	       $('#b_file').change(function(event) {
-	            var filesize = $(this)[0].files;
-	            if(filesize.length < 1){
-	                  $('.file_name').text("선택된 파일 없음");
-	                  $('.file_x_btn > img').css("display", "none");
-	                  $("#now_file_size").text("");
-	            } else {
-	                  var filename = this.files[0].name;
-	                  var size = this.files[0].size;
-	                  var maxSize = 10 * 1024 * 1024;
-	                  var mbsize = size / (1024 * 1024);
-	                  
-	                  if(size > maxSize){
-	                       alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
-	                       $(".file_name").text("선택된 파일 없음")
-	                                          .css("color", "#BDBDBD")
-	                                          .css("letter-spacing", "-1px");
-	                       $("#b_file").val("");
-	                       $("#now_file_size").text("");
-	                     
-	                  } else {
-	                       $(".file_name").text(filename)
-	                                          .css("color", "black")
-	                                          .css("letter-spacing", "-1px");
-	                       $('.file_x_btn > img').css("display", "inline-block");
-	                    
-	                       
-	                       if(mbsize < 1){
-	                            var kbsize = size / 1024;
-	                            $("#now_file_size").text("("+kbsize.toFixed(1)+"kb)");
-	                       }else{
-	                            $("#now_file_size").text("("+mbsize.toFixed(1)+"mb)");
-	                       }
-	                  }
-	            }
-	       });
+		
 	       
 	      
 		});
 		
-		$(document).on('click','.close_basic_btn', function(){
-			$('.file_msg').css('display','inline-block');
-			$('.before_file_name').css('color',"#AAA").css('text-decoration','line-through');
-			$('.close_basic_btn').css('display','none');
-			$('#check_btn').css('display','inline-block');
-			$('#basic_check').val('no');
-		});
-		
-		$(document).on('click','#check_btn', function(){
-			$('.file_msg').css('display','none');
-			$('.before_file_name').css('color',"black").css('text-decoration','none');
-			$('.close_basic_btn').css('display','inline-block');
-			$('#check_btn').css('display','none');
-			$('#basic_check').val('yes');
-		});
-	
 	</script>
 </body>
 </html>

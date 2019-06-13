@@ -117,12 +117,7 @@ interceptor사용한 후 없어도 무방--%>
 	<%@ include file="../include/footer.jsp" %>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			/* $('.btn_att').click(function(event) {
-			       $('#b_file').click();
-			});
-			$('.file_name').click(function(event) {
-			       $('#b_file').click();
-			}); */
+			
 			$("#btn_regi").click(function(){
 				
 				oEditors.getById["boardListInsert"].exec("UPDATE_CONTENTS_FIELD",[]); //이걸해야 스마트에디터에서 값 가져옴 
@@ -150,53 +145,7 @@ interceptor사용한 후 없어도 무방--%>
 				$("#register_frm").submit();
 			});
 			
-			// 첨부파일 삭제할때(삭제버튼 클릭시)동작
-			/* $('.file_x_btn > img').click(function(event) {
-	            $('.file_name').text("첨부된 파일이 없습니다.")
-	                               .css("color", "#BDBDBD")
-	                               .css("letter-spacing", "-1px");
-	            $('#b_file').replaceWith($("#b_file").clone(true));
-	            $('#b_file').val("");
-	            $('#now_file_size').text("");
-	            $('.file_x_btn > img').css("display", "none");
-	           // $('.d_file_text > i').css("color", "#BDBDBD");
-	       }); */
-	      /*  $('#b_file').change(function(event) {
-	            var filesize = $(this)[0].files;
-	            if(filesize.length < 1){
-	                  $('.file_name').text("선택된 파일 없음");
-	                  $('.file_x_btn > img').css("display", "none");
-	                  $("#now_file_size").text("");
-	            } else {
-	                  var filename = this.files[0].name;
-	                  var size = this.files[0].size;
-	                  var maxSize = 10 * 1024 * 1024;
-	                  var mbsize = size / (1024 * 1024);
-	                  
-	                  if(size > maxSize){
-	                       alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
-	                       $(".file_name").text("선택된 파일 없음")
-	                                          .css("color", "#BDBDBD")
-	                                          .css("letter-spacing", "-1px");
-	                       $("#b_file").val("");
-	                       $("#now_file_size").text("");
-	                      // $('.d_file_text > i').css("color", "#BDBDBD");
-	                  } else {
-	                       $(".file_name").text(filename)
-	                                          .css("color", "black")
-	                                          .css("letter-spacing", "-1px");
-	                       $('.file_x_btn > img').css("display", "inline-block");
-	                       //$('.d_file_text > i').css("color", "mediumseagreen");
-	                       
-	                       if(mbsize < 1){
-	                            var kbsize = size / 1024;
-	                            $("#now_file_size").text("("+kbsize.toFixed(1)+"kb)");
-	                       }else{
-	                            $("#now_file_size").text("("+mbsize.toFixed(1)+"mb)");
-	                       }
-	                  }
-	            }
-	       }); */
+			
 			
 		});
 		

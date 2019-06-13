@@ -513,9 +513,11 @@ textarea {
     font-size: 14px;
 }
 .note-item > h5 > a {
-	text-decoration: none;
-	color: #2a6496;
 	font-weight: 600;
+}
+#login_link {
+	text-decoration: none;
+    color: #2a6496;
 }
 
 /* 삭제 확인 모달창 */

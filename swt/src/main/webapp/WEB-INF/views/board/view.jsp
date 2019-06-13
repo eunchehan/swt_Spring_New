@@ -78,28 +78,6 @@
 										</tr>
 									</tbody>
 								</table>
-								<div class="att_wrap">
-									<div class="att_area">
-										<img class="btn_img btn_att" alt="첨부파일" src="${path}/resources/images/attachment1.png">
-										<c:choose>
-											<c:when test="${one.filesize/1024/1024 > 1}">
-												<a href="download.swt?file=${one.filename}">
-													${one.filename}
-													(<fmt:formatNumber type="number" pattern="0.00" value="${one.filesize/1024/1024}">
-													</fmt:formatNumber> mb)
-												</a>
-											</c:when>
-											<c:otherwise>
-												<a href="download.swt?file=${one.filename}">
-													${one.filename}
-													(<fmt:formatNumber type="number" pattern="0.00" value="${one.filesize/1024}">
-													</fmt:formatNumber> kb)
-												</a>
-											</c:otherwise>
-											
-										</c:choose>
-									</div>
-								</div>
 								
 								
 								
@@ -225,7 +203,7 @@
 				$('#bd_modal_all').css('display','none');
 			});
 			$('#bd_btn_yes').click(function(){
-				location.href="deletePlay.swt?bno=${one.bno}&filename=${one.filename}";
+				
 			});
 		});
 		
