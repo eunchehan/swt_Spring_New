@@ -144,11 +144,11 @@
 												<td>
 													<!-- 첨부-->
 													<div class="text_center">
-														<c:if test="${bDto.filesize >0}">
+														<%-- <c:if test="${bDto.filesize >0}">
 															<!-- <i class="fas fa-sticky-note"></i> -->
 															<img class="btn_img btn_att" alt="첨부파일" src="${path}/resources/images/attachment1.png">
 															<!-- ${bDto.filesize} -->
-														</c:if>
+														</c:if> --%>
 													</div>
 												</td>
 											</tr>
@@ -246,16 +246,7 @@
 	<%@ include file="../include/footer.jsp" %>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	var message = '<%=message%>';
 		$(document).ready(function(){
-			
-			if(message=="nologin"){
-				$('#modal_all').css('display','flex');
-				$('#step_url').text('로그인 해주세요').css('display','block');
-				$('#login_id').focus();
-			}
-			
-			
 			var sort_option = "${map.sort_option}";
 			if(sort_option == "new"){
 				$("#orderNew").css("color","rgb(36, 195, 182)").css("font-weight", "bold").css("text-decoration", "underline");
@@ -269,24 +260,9 @@
 			
 			// 앞에 $(document)라고 시작안하면 안에 들어있음 
 			$("#btn_regi").on("click",function(){
-
-				$.ajax({
-					type: "POST",
-					url: "registerAjax.swt",
-					dataType: "json",
-					success: function(data){
-						if(data.message == "login"){
-							location.href = "registerView.swt";
-						} else if(data.message == "nologin") {
-							$('#modal_all').css('display','flex');
-							$('#step_url').text('로그인 해주세요').css('display','block');
-							$('#login_id').focus();
-						}
-					},
-					error: function(){
-						alert("System Error!!!!");
-					}
-				});
+				location.href="${path}/board/create";
+				// ${path} == context root == swt
+				
 			});
 			
 			

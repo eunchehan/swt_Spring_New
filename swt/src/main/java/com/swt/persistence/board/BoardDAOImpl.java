@@ -17,9 +17,8 @@ public class BoardDAOImpl implements BoardDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public void create(BoardDTO bDto) {
-		// TODO Auto-generated method stub
-		
+	public int create(BoardDTO bDto) {
+		return sqlSession.insert("board.create",bDto);
 	}
 
 	@Override

@@ -77,4 +77,32 @@ public class BoardController {
 		
 		return "board/view";
 	}
+	
+	// 게시글 등록 페이지 출력
+	@RequestMapping(value="create", method=RequestMethod.GET)
+	public String createView() {
+		log.info(">>>> 게시글 등록 페이지 출력");
+		return "board/register";
+	}
+	
+	// 게시글 등록 
+	@RequestMapping(value="create", method=RequestMethod.POST)
+	public String createPlay(BoardDTO bDto) {
+		log.info(">>>> 게시글 등록");
+		log.info(">>>>>>> DB를 통한 게시글 등록 액션");	// 출력만하는 곳이니까 따로 service없음 servlet에선 action만들어야했음. viewresolver 화면단 어디있는지 pullname을 만들어서 알려줌. 
+		log.info(bDto.toString());
+		
+		// sql의 실행결과인 0또는1이 담김
+		int result = service.create(bDto);	// service가 action같은 곳 실제 비즈니스로직 동작하는 부분 
+		// servlet에서도 엄밀히 따지면 controller에서 데이터 받아서 action으로 request로 넘겨주는 것이었음 
+		if(result>0) {
+			log.info(">>>>게시글 등록 성공");
+//			rttr.addFlashAttribute("message","Welcome! 1회성 데이터"); // 단발성으로 한번만 보낼 수 있음
+			return "redirect:/board/list"; // 게시글 등록하면 데이터 바뀌니까 redirect
+		} else {
+			log.info(">>>>게시글 등록 실패");
+			return "/board/list";
+		}
+		
+	}
 }

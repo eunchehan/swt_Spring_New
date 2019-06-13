@@ -23,6 +23,4 @@ public class BoardDTO {
 	private int goodcnt;
 	private String id;// 작성자 이름(tbl_member 테이블과 조인할때 사용)
 	private Date regdate;
-	private String filename;
-	private int filesize;
 }

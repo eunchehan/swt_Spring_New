@@ -2,21 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 <%@ include file="../include/common.jsp" %>
-<c:if test="${sessionScope.loginUser == null}">
+<%-- <c:if test="${sessionScope.userid == null}">
 		<script>
 			alert("로그인 하신 후 사용하세요.");
 			location.href="${path}/boardList.swt?message=nologin";
 		</script>
-</c:if>
+</c:if> 
+interceptor사용한 후 없어도 무방--%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="${path}/css/board_regi.css?v=1">
+<link rel="stylesheet" href="${path}/resources/css/board_regi.css?v=1">
 <title>게시글 등록</title>
-<script type="text/javascript" src="${path}/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
 	<section>
@@ -27,9 +28,9 @@
 					<div class="page_body">
 						<div class="bd_hd">
 							<div class="bd_tit01">
-								<img alt="제목" src="${path}/images/ribon2.png" id="ribon">
+								<img alt="제목" src="${path}/resources/images/ribon2.png" id="ribon">
 							</div>
-							<form class="register_form" id="register_frm" method="POST" action="registerPlay.swt" enctype="multipart/form-data">
+							<form class="register_form" id="register_frm" method="POST" action="${path}/board/create">
 								<div class="box-body">
 									<table class="table-boarded">
 										<caption>QnA 게시글</caption>
@@ -38,7 +39,7 @@
 												<th>
 													<div class="tb-left">제목</div>
 													<fieldset class="fform">
-														<input name="regi_title" class="form-control" id="regi_title">
+														<input name="title" class="form-control" id="regi_title">
 														<span class="step_url"></span>
 													</fieldset>
 												</th>
@@ -53,14 +54,14 @@
 														<span class="detail_wr">
 															<div class="tb-left">내용</div>
 															<fieldset class="fform">
-																
-																<textarea rows="1" cols="1" placeholder="내용" class="form-control" id="boardListInsert" name="boardListInsert" style='width:100%; min-width:260px;'></textarea>
+																<input type="hidden" name="" value="HTML">
+																<textarea rows="1" cols="1" placeholder="내용" class="form-control" id="boardListInsert" name="content" style='width:100%; min-width:260px;'></textarea>
 																<script type="text/javascript">
 																	var oEditors = [];
 																	nhn.husky.EZCreator.createInIFrame({
 																	 oAppRef: oEditors,
 																	 elPlaceHolder: "boardListInsert",
-																	 sSkinURI: "<%=request.getContextPath()%>/smarteditor/SmartEditor2Skin.html",
+																	 sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
 																	 fCreator: "createSEditor2"
 																	});
 																</script>
@@ -77,7 +78,7 @@
 												<td>
 													<div class="tb-left">작성자</div>
 													<fieldset class="fform">
-														<input class="form-control" name="regi_writer" id="regi_writer" value="${sessionScope.loginUser.id}" readonly="readonly">
+														<input class="form-control" name="writer" id="regi_writer" value="${sessionScope.userid}" readonly="readonly">
 													</fieldset>
 												</td>
 											</tr>
@@ -85,24 +86,24 @@
 									</table>
 									
 									<div class="btn_area">
-										<div class="att_wrap">
+										<%-- <div class="att_wrap">
 											<div class="att_area">
 											        <input type="file" name="b_file" id="b_file" style="display:none!important">
 											        <div class="d_file_text">
-											            <img class="btn_img btn_att" alt="첨부파일" src="${path}/images/attachment1.png">	
+											            <img class="btn_img btn_att" alt="첨부파일" src="${path}/resources/images/attachment1.png">	
 											            <span class="file_name" style="padding-left: 40px;"> 
 											            	첨부된 파일이 없습니다. 
 											            </span>
 											            <span id="now_file_size"> </span>
 											            <span class="file_x_btn">
-											            	<img class="btn_img btn_att_del" alt="첨부파일 삭제" src="${path}/images/minus.png">
+											            	<img class="btn_img btn_att_del" alt="첨부파일 삭제" src="${path}//resourcesimages/minus.png">
 											            </span>
 											            <!-- <i class="fas fa-times-circle"></i> --> 
 											        </div>
-												</div>
 											</div>
+										</div> --%>
 										<div class="btn_right">
-											<img class="bd-btns" id="btn_regi" alt="게시글 등록" src="${path}/images/regi.png">
+											<img class="bd-btns" id="btn_regi" alt="게시글 등록" src="${path}/resources/images/regi.png">
 										</div>
 									</div>
 								</div>
@@ -116,12 +117,12 @@
 	<%@ include file="../include/footer.jsp" %>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.btn_att').click(function(event) {
+			/* $('.btn_att').click(function(event) {
 			       $('#b_file').click();
 			});
 			$('.file_name').click(function(event) {
 			       $('#b_file').click();
-			});
+			}); */
 			$("#btn_regi").click(function(){
 				
 				oEditors.getById["boardListInsert"].exec("UPDATE_CONTENTS_FIELD",[]); //이걸해야 스마트에디터에서 값 가져옴 
@@ -150,7 +151,7 @@
 			});
 			
 			// 첨부파일 삭제할때(삭제버튼 클릭시)동작
-			$('.file_x_btn > img').click(function(event) {
+			/* $('.file_x_btn > img').click(function(event) {
 	            $('.file_name').text("첨부된 파일이 없습니다.")
 	                               .css("color", "#BDBDBD")
 	                               .css("letter-spacing", "-1px");
@@ -159,11 +160,8 @@
 	            $('#now_file_size').text("");
 	            $('.file_x_btn > img').css("display", "none");
 	           // $('.d_file_text > i').css("color", "#BDBDBD");
-	       });
-	       
-	       
-	       
-	       $('#b_file').change(function(event) {
+	       }); */
+	      /*  $('#b_file').change(function(event) {
 	            var filesize = $(this)[0].files;
 	            if(filesize.length < 1){
 	                  $('.file_name').text("선택된 파일 없음");
@@ -198,7 +196,7 @@
 	                       }
 	                  }
 	            }
-	       });
+	       }); */
 			
 		});
 		

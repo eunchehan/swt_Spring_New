@@ -147,7 +147,16 @@
 </header>
 
 <script type="text/javascript">
+	// LoginInterceptor에서 보내는 메세지 
+	var message = '${message}';	// 브라우저에 뜰 때는 실제값으로 바뀌어서 들어 감 
+	var uri = '${uri}';
+	
 	$(function(){
+		if(message == "nologin"){
+			$('#modal_all').css('display','flex');
+			$('#step_url').text('로그인 해주세요').css('display','block');
+			$('#login_id').focus();
+		}
 		// top버튼 
 		$(window).scroll(function(){
 			var scrollValue = $(this).scrollTop();
@@ -166,6 +175,9 @@
 			$('#login_id').focus();
 		});
 		$('#close_btn').click(function(){
+			$('#login_id').val("");
+			$('#login_pw').val("");
+			$('#step_url').css('display','none');
 			$('#modal_all').css('display','none');
 		});
 		$('#btn_login').click(function(){
@@ -247,8 +259,11 @@
 				data: "id="+id+"&pw="+pw,
 				success: function(data) {// controller부터 쭉 타고와서 controller return으로 보내준 String flag의 값이 담김 
 					if(data == "1") {
-						location.reload(); // 새로고침 
-						//alert("ㅠㅠㅠ");
+						if(uri == ''){ // interceptor 안 탄 경우
+							location.reload(); // 새로고침 
+						}else { // interceptor 탄 경우: 가야할 페이지가 있음
+							location.href = uri;
+						}
 					} else if(data == "-1"){
 						$('#login_id').focus();
 						$('#step_url').text('회원 아이디 또는 비밀번호가 일치하지 않습니다.').css('display','block');

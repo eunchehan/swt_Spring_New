@@ -4,8 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +28,39 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		if(session.getAttribute("userid")==null) {
 			log.info(">>>>Session값 없음, 이전 페이지 이동");
 			String referer = request.getHeader("referer");	// 원페이지 주소를 알려 줌 
-			response.sendRedirect(referer + "?message=nologin");
+			String uri = request.getRequestURI();
+			
+//			/board/list 문제 없음
+			
+//			로그아웃시
+//			/board/create 로그아웃
+//			/board/update
+//			/create와 /update만 subString으로 잘라야함
+			
+//			페이지이동을 referer로 하지말고 (referer로 이동하면 ERR_TOO_MANY_REDIRECTS 뜸) 
+//			/board/list로 이동해라
+			
+			int index = referer.lastIndexOf("/"); // 마지막 /가 있는 index 번호(위치값) : 6
+			int length = referer.length();	// 전체 길이 : 12
+			String url = referer.substring(index, length); // 6~12 : index부터 length까지 가져옴
+			log.info("수정된 URL: " + url);
+			
+			if(url.equals("/create")) {
+				response.sendRedirect(request.getContextPath()+"/board/list");
+				return false;
+			}
+			
+			
+			
+			// Login 페이지로 이동
+			// FlashMap: 1회성으로 데이터 담아서 보내줌
+			FlashMap flashMap = RequestContextUtils.getOutputFlashMap(request);
+			flashMap.put("message", "nologin"); //message라는 이름표에 nologin이라는 데이터를 담아서 보내줌 
+			flashMap.put("uri", uri);
+			log.info(">>>URI: " + uri);
+			RequestContextUtils.saveOutputFlashMap(referer, request, response);
+			response.sendRedirect(referer);
+			
 			return false;
 		}else {
 			log.info(">>>>Session값 있음, 액션 페이지 이동");
