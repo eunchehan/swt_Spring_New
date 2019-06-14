@@ -55,7 +55,7 @@ interceptor사용한 후 없어도 무방--%>
 															<div class="tb-left">내용</div>
 															<fieldset class="fform">
 																<input type="hidden" name="" value="HTML">
-																<textarea rows="1" cols="1" placeholder="내용" class="form-control" id="boardListInsert" name="content" style='width:100%; min-width:260px;'></textarea>
+																<textarea rows="1" cols="1" class="form-control" id="boardListInsert" name="content" style='width:100%; min-width:260px;'></textarea>
 																<script type="text/javascript">
 																	var oEditors = [];
 																	nhn.husky.EZCreator.createInIFrame({
@@ -86,22 +86,6 @@ interceptor사용한 후 없어도 무방--%>
 									</table>
 									
 									<div class="btn_area">
-										<%-- <div class="att_wrap">
-											<div class="att_area">
-											        <input type="file" name="b_file" id="b_file" style="display:none!important">
-											        <div class="d_file_text">
-											            <img class="btn_img btn_att" alt="첨부파일" src="${path}/resources/images/attachment1.png">	
-											            <span class="file_name" style="padding-left: 40px;"> 
-											            	첨부된 파일이 없습니다. 
-											            </span>
-											            <span id="now_file_size"> </span>
-											            <span class="file_x_btn">
-											            	<img class="btn_img btn_att_del" alt="첨부파일 삭제" src="${path}//resourcesimages/minus.png">
-											            </span>
-											            <!-- <i class="fas fa-times-circle"></i> --> 
-											        </div>
-											</div>
-										</div> --%>
 										<div class="btn_right">
 											<img class="bd-btns" id="btn_regi" alt="게시글 등록" src="${path}/resources/images/regi.png">
 										</div>

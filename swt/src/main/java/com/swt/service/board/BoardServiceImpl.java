@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.swt.domain.board.BoardDTO;
 import com.swt.persistence.board.BoardDAO;
+
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 public class BoardServiceImpl implements BoardService {
 	@Inject
@@ -19,15 +22,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void update(BoardDTO bDto) {
-		// TODO Auto-generated method stub
-		
+	public int update(BoardDTO bDto) {
+		return bDao.update(bDto);
 	}
 
 	@Override
-	public void delete(int bno) {
-		// TODO Auto-generated method stub
-		
+	public int delete(int bno) {
+		return bDao.delete(bno);
 	}
 
 	@Override
@@ -56,6 +57,7 @@ public class BoardServiceImpl implements BoardService {
 			
 			// 조회수를 올린 시간 저장
 			session.setAttribute("update_time_"+bno, current_time);
+			// log.info("update_time_"+update_time+"current_time_"+current_time);
 		}
 	}
 

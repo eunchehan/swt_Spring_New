@@ -88,7 +88,6 @@ public class BoardController {
 	// 게시글 등록 
 	@RequestMapping(value="create", method=RequestMethod.POST)
 	public String createPlay(BoardDTO bDto) {
-		log.info(">>>> 게시글 등록");
 		log.info(">>>>>>> DB를 통한 게시글 등록 액션");	// 출력만하는 곳이니까 따로 service없음 servlet에선 action만들어야했음. viewresolver 화면단 어디있는지 pullname을 만들어서 알려줌. 
 		log.info(bDto.toString());
 		
@@ -98,10 +97,53 @@ public class BoardController {
 		if(result>0) {
 			log.info(">>>>게시글 등록 성공");
 //			rttr.addFlashAttribute("message","Welcome! 1회성 데이터"); // 단발성으로 한번만 보낼 수 있음
-			return "redirect:/board/list"; // 게시글 등록하면 데이터 바뀌니까 redirect
+			return "redirect:/board/view?bno="+bDto.getBno(); // 게시글 등록하면 데이터 바뀌니까 redirect
 		} else {
 			log.info(">>>>게시글 등록 실패");
 			return "/board/list";
+		}
+		
+	}
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String updateView(BoardDTO bDto, Model model) {
+		log.info(">>>> 게시글 수정 페이지 출력");
+		int bno = bDto.getBno();
+		bDto = service.read(bno);
+		model.addAttribute("one",bDto);
+		return "/board/modify";
+	}
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String updatePlay(BoardDTO bDto) {
+		
+		log.info(">>>> DB를 통한 게시글 수정 액션");
+		log.info(bDto.toString());
+		
+		int result = service.update(bDto);
+		
+		
+		if(result>0) {
+			log.info(">>>>게시글 수정 성공");
+			return "redirect:/board/view?bno="+bDto.getBno();
+		} else {
+			log.info(">>>>게시글 수정 실패");
+			return "board/list";
+		}
+		
+	}
+	
+	@RequestMapping(value="delete", method=RequestMethod.GET)
+	public String deletePlay(int bno) {
+		
+		log.info(">>>> DB를 통한 게시글 삭제 액션");
+		
+		int result = service.delete(bno);
+		
+		if(result>0) {
+			log.info(">>>>게시글 삭제 성공");
+			return "redirect:/board/list";
+		} else {
+			log.info(">>>>게시글 삭제 실패");
+			return "board/list";
 		}
 		
 	}

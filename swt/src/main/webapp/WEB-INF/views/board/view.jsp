@@ -84,7 +84,7 @@
 								<div class="btn_area">
 									
 									<c:if test="${sessionScope.userid == one.writer}">
-										<a href="${path}/modifyView.swt?bno=${one.bno}">
+										<a href="${path}/board/update?bno=${one.bno}">
 											<img class="bd-btns" id="btn_modi_view" alt="게시글 수정" src="${path}/resources/images/regi.png">
 										</a>
 										<a id="del_btn">
@@ -202,13 +202,15 @@
 			$('#bd_btn_no').click(function(){
 				$('#bd_modal_all').css('display','none');
 			});
-			$('#bd_btn_yes').click(function(){
+			$('#bd_btn_yes').click(function(){// 삭제 확인 모달창에서 "예"버튼 눌렀을 때 
+				var bno = '${one.bno}';
+				location.href = "${path}/board/delete?bno="+bno;
 				
 			});
 		});
 		
 		$(document).on("click","#btn_list", function(){
-			location.href = "boardList.swt";
+			location.href = "${path}/board/list";
 		
 		});
 		// 댓글 등록 버튼을 눌렀을 때 동작 
