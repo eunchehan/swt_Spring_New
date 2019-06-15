@@ -138,6 +138,14 @@ td {
 .table td, .table th {
 	border: 3px double #dee2e6;
 }
+.title_table:hover {
+	background: #a199e5;
+    -webkit-transition: 0.4s all ease;
+    opacity: 0.7;
+}
+.title_table:hover a {
+	color: #fcfcfc;
+}
 #div_search {
     float: right;
     margin: 10px 0 20px;
@@ -253,12 +261,13 @@ td {
 	100%{opacity: 1;}
 }
 .replyCnt_Color {
-	background-color: rgb(180, 172, 206);
-	font-size: 11px;
-	color: white;
-	border-radius: 25px;
-	padding: 1px 7px;
-	
+    background-color: rgb(180, 172, 206);
+    font-size: 10.5px;
+    color: white;
+    border-radius: 25px;
+    padding: 0.8px 6px;
+    position: relative;
+    top: -1.6px;
 }
 /*검색결과*/
 #search_result{

@@ -102,18 +102,8 @@
 }
 .footer .footer_top .left_sec ul li a:hover {
 	color: inherit;
-	bold: 400;
-	text-decoration: underline;
 }
-/* .footer .footer_top .left_sec ul li a:before {
-    content: '';
-    background-color: #cecece;
-    width: 1px;
-    height: 15px;
-    position: absolute;
-    top: 10px;
-    left: 0;
-} */
+
 .footer .footer_top .right_sec {
     float: right;
     padding-right: 21px;
