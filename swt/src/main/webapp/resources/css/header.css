@@ -18,6 +18,28 @@
 	margin: 0 auto;
 	background-color: #66395C;
 	height: 77px;
+	position: relative;
+}
+
+.header_nav ul li {
+    float: left;
+}
+.header_nav ul{
+    float: left;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 25rem;
+}
+.ihn{
+	text-decoration: none;
+	font-size: 16px!important; 
+	text-align: center;
+	float: left;
+	height: 77px;
+	display: inline-block;
+	padding: 25px 10px;
+	color: white!important;
 }
 .two_wrap{
 	transition: .2s;
@@ -34,32 +56,11 @@
 	
 }
 
-.inner_header_nav{
-	width: 80%;
-    float: left;
-	margin: 0 350px; 
-}
-.inner_header_nav > li{
-	float:right;
-	
-}
-.inner_header_nav a{
-	text-decoration: none;
-	font-size: 16px!important; 
-	text-align: center;
-	float: left;
-	height: 77px;
-	display: inline-block;
-	padding: 25px 10px;
-	color: white!important;
-}
 .ihn:hover{
 	background-color: #DAD6E3;
 	color: #66395C;
 }
-.ihn_dot:hover{
-	color: white!important;
-}
+
 header > a:not([href]):not([tabindex]) {
     color: #A7AFCC!important;
     text-decoration: none;
@@ -135,7 +136,7 @@ header > a:not([href]):not([tabindex]) {
 	position: absolute;
 	display: block;
 	top: 77px;
-    width: 110px;
+    width: 100px;
 	color: white;
 	background-color: #66395C;
 	z-index: 999;
@@ -143,10 +144,14 @@ header > a:not([href]):not([tabindex]) {
 	display: none;  	
 }
 .dropdown2 > a {
-	text-align: left;
 	display: inline-block;
-	width: 110px;
+	width: 100px;
 	box-sizing: border-box;
+    height: 77px;
+    text-align: left;
+    color: white!important;
+    font-size: 16px;
+    padding: 16px;
 }
 #dropdown1:hover .dropdown2{
 	display: block;
@@ -404,6 +409,7 @@ header > a:not([href]):not([tabindex]) {
 	outline: none;
 	display: none;
 	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	z-index: 989;
 }
 #topBtn i {
 	transition: .3s;

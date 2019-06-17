@@ -114,33 +114,24 @@
 			</div>
 		</div>
 		<div class="header_nav">
-			<div class="inner_header">
-				<div class="inner_header_nav">
-					<ul>
-						<li id="dropdown1">
-							<a class="ihn" href="#">Tea Shop</a>
-							 <div class="dropdown2">
-								<a href="#">Tea</a>
-								<a href="#">Latte</a>
-								<a href="#">Tea Sachet</a>
-							</div>
-						</li>
-						<li><a class="ihn_dot">·</a></li>
-						<li><a class="ihn" href="#">Teawear</a></li>
-						<li><a class="ihn_dot">·</a></li>
-						<li><a class="ihn" href="#">Gift Set</a></li>
-						<li><a class="ihn_dot">·</a></li>
-						<li><a class="ihn" href="#">S.W.T</a></li>
-						<li><a class="ihn_dot">·</a></li>
-						<li><a class="ihn" href="${path}/board/list">CS Center</a></li>
-					</ul>
-				</div>
-				
-				<div id="search_box">
-					<input class="search_txt" id="searchtxt" type="text" name="searchtxt" placeholder="Search">
-					<i class="fas fa-search" id="header_search_btn"></i>
-				</div>
-				
+			<!-- <div class="inner_header_nav"> -->
+			<ul>
+				<li id="dropdown1">
+					<a class="ihn" href="#">Tea Shop</a>
+					 <div class="dropdown2">
+						<a href="#">Tea</a>
+						<a href="#">Latte</a>
+						<a href="#">Tea Sachet</a>
+					</div>
+				</li>
+				<li><a class="ihn" href="#">Teawear</a></li>
+				<li><a class="ihn" href="#">Gift Set</a></li>
+				<li><a class="ihn" href="#">S.W.T</a></li>
+				<li><a class="ihn" href="${path}/board/list">CS Center</a></li>
+			</ul>
+			<div id="search_box">
+				<input class="search_txt" id="searchtxt" type="text" name="searchtxt" placeholder="Search">
+				<i class="fas fa-search" id="header_search_btn"></i>
 			</div>
 		</div>
 	</div>

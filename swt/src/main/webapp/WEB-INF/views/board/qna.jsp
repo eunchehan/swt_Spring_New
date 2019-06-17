@@ -92,7 +92,7 @@
 												<td>
 													<!-- 제목 -->
 													<div class="title_table">
-														<a href="${path}/board/view?bno=${bDto.bno}">${bDto.title}</a>
+														<a href="${path}/board/view?bno=${bDto.bno}"><span id="pen">${bDto.title}</span></a>
 														<c:if test="${bDto.replycnt >0}">
 															<span class="replyCnt_Color">${bDto.replycnt}</span>
 														</c:if>

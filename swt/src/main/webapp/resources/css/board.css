@@ -138,14 +138,34 @@ td {
 .table td, .table th {
 	border: 3px double #dee2e6;
 }
-.title_table:hover {
+
+#pen {
+	position: relative;
+	background: none;
+}
+#pen:hover {
 	background: #a199e5;
-    -webkit-transition: 0.4s all ease;
-    opacity: 0.7;
-}
-.title_table:hover a {
 	color: #fcfcfc;
+	opacity: 0.7;
+	/* transform: translateY(-50%);
+	transition: background .5s ease-in-out; */
 }
+/* #pen::before {
+	content: '';
+	position: absolute;
+	width: 0%;
+	height: 1rem;
+	background: #a199e5;
+	top: 50%;
+	left: -1rem;
+	transform: translateY(-50%);
+	transition: width .5s ease-in-out;
+	z-index: -1;
+}
+#pen:hover::before {
+   width: 100%;
+} */
+
 #div_search {
     float: right;
     margin: 10px 0 20px;
