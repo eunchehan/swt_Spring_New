@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.swt.domain.board.BoardDTO;
 import com.swt.service.board.BoardService;
 import com.swt.service.board.Pager;
-import com.swt.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
