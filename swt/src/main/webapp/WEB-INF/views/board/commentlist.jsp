@@ -78,7 +78,7 @@
 									<img alt="사진" src="${path}/resources/images/avatar1.png">
 								</a>
 								<div class="avatar-info">
-									<a class="nickname" href="#">은체</a>
+									<a class="nickname" href="#">${sessionScope.userid}</a>
 								</div>
 							</div>
 							<fieldset class="fform">
