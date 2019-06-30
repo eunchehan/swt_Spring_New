@@ -56,7 +56,7 @@
 				<a href="#">FAQ</a>
 			</li>
 			<li>
-				<a href="#">QnA</a>
+				<a href="${path}/board/list">QnA</a>
 			</li>
 		</ul>
 	</div>

@@ -23,4 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE rownum <= 5
 		 ]]>
 	</select>
+	
+	<select id="teaList" parameterType="String" resultType="com.swt.domain.product.ProductDTO">
+		SELECT * FROM tbl_product WHERE p_type=#{p_type};
+	</select>
 </mapper>

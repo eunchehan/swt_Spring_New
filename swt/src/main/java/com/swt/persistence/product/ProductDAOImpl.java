@@ -25,4 +25,5 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectList("pdt.newList");
 	}
 
+
 }

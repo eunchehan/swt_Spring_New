@@ -269,7 +269,6 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 					</div>
 					<div class="category_block">
 						<div class="category" style="background-image: url(resources/images/cont_img04.jpg);">
-							<!-- 문법 오류 아닌가?  -->
 						</div>
 					</div>
 				</div>

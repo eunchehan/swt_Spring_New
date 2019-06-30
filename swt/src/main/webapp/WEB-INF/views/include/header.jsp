@@ -117,9 +117,9 @@
 			<!-- <div class="inner_header_nav"> -->
 			<ul>
 				<li id="dropdown1">
-					<a class="ihn" href="#">Tea Shop</a>
+					<a class="ihn" href="${path}/product/teashop">Tea Shop</a>
 					 <div class="dropdown2">
-						<a href="#">Tea</a>
+						<a href="${path}/product/tea?p_type=TEA">Tea</a>
 						<a href="#">Latte</a>
 						<a href="#">Tea Sachet</a>
 					</div>
@@ -129,10 +129,10 @@
 				<li><a class="ihn" href="#">S.W.T</a></li>
 				<li><a class="ihn" href="${path}/board/list">CS Center</a></li>
 			</ul>
-			<div id="search_box">
+			<!-- <div id="search_box">
 				<input class="search_txt" id="searchtxt" type="text" name="searchtxt" placeholder="Search">
 				<i class="fas fa-search" id="header_search_btn"></i>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </header>
@@ -177,7 +177,7 @@
 		});
 		var inputs = $('#searchtxt').val();
 		//검색바 
-		$('#header_search_btn').hover(function(){		
+		/* $('#header_search_btn').hover(function(){		
 			$('#searchtxt').css('display','block').css('opacity','0.7');	
 			$('#searchtxt').focus();
 		});	
@@ -200,12 +200,9 @@
 		        	$('#searchtxt').css('display','none');
 		        }
 		 
-		    });
+		    }); */
 		
-		/* $('.two_wrap').mouseleave(function(){		
-			$('#searchtxt').css('display','none');		
-		});	  */
-		// mouseenter mouseleave
+	
 		
 		/* logout버튼 누를 때 동작 */
 		$(".logout_btn").click(function(){
@@ -271,11 +268,11 @@
 		var jbOffset = $('.header_menu').offset();
 		$(window).scroll(function(){
 			if($(document).scrollTop()>0){
-				$('.jbFixed_menu').css('top','0px').css('position','fixed');
+				$('.jbFixed_menu').css('top','0px').css('position','fixed').css('transition','0.2s');
 				$('.two_wrap').css('top','-300px').css('position','fixed');
 				$('#header_line').css('opacity','0.85');
 			} else {
-				$('.jbFixed_menu').css('top','0px').css('position','relative');
+				$('.jbFixed_menu').css('top','0px').css('position','relative').css('transition','0.2s');
 				$('.two_wrap').css('top','0px').css('position','relative');
 				$('#header_line').css('opacity','1');
 			}

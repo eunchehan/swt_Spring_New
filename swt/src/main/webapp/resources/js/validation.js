@@ -154,8 +154,6 @@ function ajaxCheck(memId){
 //		<3>. 쿼리스트링: "idCheck.swt?id="+memId
 //		<1>,<2>,<3> 다 똑같음 Controller단에서 받을 때
 //		String id = request.getParmeter("id"); 이렇게 받으면 다 똑같은거임 
-		
-		
 		success: function(data) {
 			console.log(data);
 			// 29. Action단에서 전송한 message, id를 data 매개변수로 받음 
@@ -164,13 +162,13 @@ function ajaxCheck(memId){
 			// 아직 끝나지 않음! 호출한 곳으로 돌아가야 함. 
 			if(data == 1){
 				$("#error_id").css("display","block").css("color","#b30000").text("중복된 ID 입니다");
-				return "-1";
+				return false;
 			}else {
 				$("#error_id").css("display","block").css("color","dodgerblue").text("멋진 아이디네요");
-				return "1";
+				return true;
 			}
 			
-		},
+		}, 
 		error: function(){// success탔으면 error안탐. error탔으면 success안 탐. 둘 중 하나만 탐. 
 			alert("System Error!!!");
 		}

@@ -335,7 +335,12 @@
 		.addr_wrap{
 			position: relative;
 		}
-	
+		.birth_check_btn {
+			position: absolute;
+		    top: 1rem;
+		    right: 2rem;
+		    display: none;
+		}
 </style>
 </head>
 <body>
@@ -411,22 +416,23 @@
 								<div class="bir_yy">
 									<span class="ps_box">
 										<input type="text" id="yy" name="bir_yy" placeholder="년(4자,Year)" class="int" maxlength="4">
-										<span class="step_url"></span> 
+										<i class="fas fa-times birth_check_btn"></i>
+										<i class="fas fa-check birth_check_btn"></i>
 									</span>
 								</div>
 								<div class="bir_mm">
 									<span class="ps_mm">
 										<select id="mm" class="sel" name="bir_mm">
-											<option>월(Month)</option>
-											<option value="01">01(Jan.)</option>
-											<option value="02">02(Feb.)</option>
-											<option value="03">03(Mar.)</option>
-											<option value="04">04(Apr.)</option>
-											<option value="05">05(May)</option>
-											<option value="06">06(Jun)</option>
-											<option value="07">07(Jul.)</option>
-											<option value="08">08(Aug.)</option>
-											<option value="09">09(Sep.)</option>
+											<option value="0">월(Month)</option>
+											<option value="1">01(Jan.)</option>
+											<option value="2">02(Feb.)</option>
+											<option value="3">03(Mar.)</option>
+											<option value="4">04(Apr.)</option>
+											<option value="5">05(May)</option>
+											<option value="6">06(Jun)</option>
+											<option value="7">07(Jul.)</option>
+											<option value="8">08(Aug.)</option>
+											<option value="9">09(Sep.)</option>
 											<option value="10">10(Oct.)</option>
 											<option value="11">11(Nov.)</option>
 											<option value="12">12(Dec.)</option>
@@ -435,8 +441,9 @@
 								</div>
 								<div class="bir_dd">
 									<span class="ps_box">
-										<input type="text" id="dd" name="bir_dd" placeholder="일(Day)" class="int" maxlength="2">
-										<span class="step_url"></span>
+										<input type="text" id="dd" name="bir_dd" placeholder="일(ex.05,Day)" class="int" maxlength="2">
+										<i class="fas fa-times birth_check_btn"></i>
+										<i class="fas fa-check birth_check_btn"></i>
 									</span>
 								</div>
 							</div>
@@ -523,17 +530,17 @@
 	<script type="text/javascript" src="${path}/resources/js/validation.js"></script> 
 	<script type="text/javascript">
 	$(document).ready(function(){
-		
-			$('#join_btn_type').click(function(){
-				// email이 두 줄일 경우 email을 합치고 input(hidden) 담아야 전송가능
-			 /* var email_id = $('#email_id').val();
-				var email_url = $('#email_url').val();
-				var email = email_id+"@"+email_url;
-				$('#email').val(email); */
-				
-				$('#join_frm').submit();
-			});
-		
+		var flag = 0;
+		var addrflag = 0;
+		var idflag = 0;
+		var pwflag = 0;
+		var repwflag = 0;
+		var nameflag = 0;
+		var yearflag = 0;
+		var dayflag = 0;
+		var monthflag = 0;
+		var phoneflag = 0;
+		var mailflag = 0;
 			//우편번호, 주소 클릭시 다음주소API 창 출력
 			$('.addrbtn').click(function(){
 				var zipcode = $('.addrbtn').eq(0).val();
@@ -545,15 +552,19 @@
 				
 			});
 			
-			$('#sample6_detailAddress').blur(function(){
+			$('#sample6_detailAddress').keyup(function(){
 				var dAddr = $(this).val();
 				if(dAddr==""||dAddr.length==0){
 					$(this).next().text("필수입력 정보입니다").css("display","block").css("color","#b30000").css("font-size","13px").css("padding-left","15px");
+					addrflag = 0;
 					return false;
+				} else {
+					addrflag = 1;
+					return true;
 				}
 			});
 			// 1. input(#id)에 값을 입력 후 blur()하면 이벤트 발생
-			$("#id").blur(function(){
+			$("#id").keyup(function(){
 				// 2. input(#id) value값을 가져와 memId에 담음 
 				var memId = $.trim($("#id").val());
 				// 3. joinValidate의 checkId() 함수를 실행, memId를 매개변수로 보냄 
@@ -564,42 +575,38 @@
 					// 8-1(실패). code값이 0이 아닌 경우 => 유효한 값 아님 
 					// 			  경고 메시지 출력!
 					$(this).next().text(checkResult.desc).css('display','block').css('color','#b30000');
+					idflag = 0;
 					return false;
-				} else { 
+				} else if(checkResult.code == 0) { 
 					// 8-2(성공). code값이 0인 경우 => 유효한 값 
 					//			 중복값인지 Ajax(에이젝스)로 검증 시작!
 					// 9. ajaxCheck() 메서드 실행, memId를 매개변수로 보냄 
 					// 31. ajaxCheck(memId)의 return값이 1이면 return true; (유효성체크완료, 사용가능한 아이디) 
-					if(ajaxCheck(memId)=="1"){
+					// 유효한 ID: True, 중복 Check: False 인 상태
+					var result = ajaxCheck(memId); // 중복 check해주는 함수 호출  
+					// undefined 가져옴 
+					alert(result);
+					if(result==true) {
+						idflag = 1;
+						return true;
+					} else{
+						idflag = 0;
 						return true;
 					}
-				}
+				} 
+				idflag = 0;
 				return false; // if(ajaxCheck(memId)=="1") 제외하고는 return false;해서 종료
 				
-				/* if(id == ""||id.length==0){
-					$(this).next().text("필수입력 정보입니다.").css("display","block").css("color","#b30000");
-					return false;
-				} else if(id.match(regEmpty)) {
-					$(this).next().text("ID는 공백없이 입력해주세요.").css("display","block").css("color","#b30000");
-					return false;
-				} else if(reg.test(id)) {
-					$(this).next().text("올바른 ID를 입력해주세요.").css("display","block").css("color","#b30000");
-					return false;
-				} else if(id.length<6||id.length>15) {
-					$(this).next().text("ID는 공백없이 6자 이상~15자 이하 ").css("display","block").css("color","#b30000");
-					return false;
-				}
-				// 유효한 ID: True, 중복 Check: False 인 상태
-				ajaxCheck(id); // 중복 check해주는 함수 호출  */
 			});
 			
-			$("#pswd1").blur(function(){
+			$("#pswd1").keyup(function(){
 				var memPw = $.trim($("#pswd1").val());
 				var memRpw = $.trim($("#pswd2").val());
 				var checkResult  = joinValidate.checkPw(memPw,memRpw); // code, desc를 가져와서 변수에 담음 
 				
 				if(checkResult.code != 0) { //실패했을때
 					$(this).next().text(checkResult.desc).css('display','block').css('color','#b30000');
+					pwflag = 0;
 					return false;
 				} else { // code = 0일때. 즉, 성공했을때 success
 					$(this).next().text(checkResult.desc).css('display','block').css('color','dodgerblue');
@@ -608,21 +615,25 @@
 							$(".step_url").eq(2).text('사용가능한 비밀번호입니다').css("display","block").css("color","dodgerblue");
 						} else {
 							$(".step_url").eq(2).text('입력하신 비밀번호와 일치하지 않습니다').css("display","block").css("color","#b30000");
+							pwflag = 0;
 							return false;
 						}
 					}
+					pwflag = 1;
 					return true;
 				}
+				//pwflag = 0;
 				return false;
 			});
 			
-			$("#pswd2").blur(function(){
+			$("#pswd2").keyup(function(){
 				var memPw = $.trim($("#pswd1").val());
 				var memRpw = $.trim($("#pswd2").val());
 				var checkResult  = joinValidate.checkRpw(memPw,memRpw); // code, desc를 가져와서 변수에 담음 
 				
 				if(checkResult.code != 0) { //실패했을때
 					$(this).next().text(checkResult.desc).css('display','block').css('color','#b30000');
+					repwflag = 0;
 					return false;
 				} else { // code = 0일때. 즉, 성공했을때 success
 					$(this).next().text(checkResult.desc).css('display','block').css('color','dodgerblue');
@@ -631,34 +642,43 @@
 							$(".step_url").eq(2).text('비밀번호가 일치합니다').css("display","block").css("color","dodgerblue");
 						} else {
 							$(".step_url").eq(2).text('입력하신 비밀번호와 일치하지 않습니다').css("display","block").css("color","#b30000");
+							repwflag = 0;
 							return false;
 						}
 					}
+					pwflag = 1;
+					repwflag = 1;
 					return true;
 				}
+				repwflag = 0;
 				return false;
 			});
 			
 		//이름 1널값체크2중간에공백체크3length 4자제한 
-		$("#name").blur(function(){
+		$("#name").keyup(function(){
 				var name = $.trim($(this).val());
 				var regEmpty = /\s/g; // 공백 문자 
 				var nameReg = RegExp(/^[가-힣]{2,4}$/);
 				if(name == ""||name.length==0){
 					$(this).next().text("필수입력 정보입니다").css("display","block").css("color","#b30000");
+					nameflag = 0;
 					return false;
 				} else if(name.match(regEmpty)) {
 					$(this).next().text("이름은 공백없이 입력해주세요").css("display","block").css("color","#b30000");
+					nameflag = 0;
 					return false;
 				} else if(!nameReg.test(name)) {
 					$(this).next().text("이름은 표준한글만 입력가능합니다").css("display","block").css("color","#b30000");
+					nameflag = 0;
 					return false;
 				} else if(name.length<2||name.length>4) {
 					$(this).next().text("이름은 공백없이 2자 이상~4자 이하만 가능합니다").css("display","block").css("color","#b30000");
+					nameflag = 0;
 					return false;
 				} else {
 					$(this).next().text("멋진 이름이네요").css("display","block").css("color","dodgerblue");
-					$("#yy").select();
+					nameflag = 1;
+					return true;
 				}
 				
 			});
@@ -668,7 +688,247 @@
 		년도도 2019년 new 데이터 현재년도 계속 받아와서 그거보다 크지 않게 
 		1900년도부터  */
 		
-		$("#phone").blur(function(){
+		$("#yy").keyup(function(){
+			var regEmpty = /\s/g; // 공백 문자 
+			var year = $(this).val();
+			var format = /^(19[0-9][0-9]|2000)$/;
+			/* var format = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/; */
+			//alert(year);
+			
+			if(year==''||year.length==0){
+				$(this).next().next().css('display','none');
+				$(this).next().css('display','block').css('color','#b30000');
+				year.val('');
+				year.focus();
+				yearflag = 0;
+				return false;
+			} else if(year.match(regEmpty)) {
+				$(this).next().next().css('display','none');
+				$(this).next().css("display","block").css("color","#b30000");
+				year.focus();
+				yearflag = 0;
+				return false;
+			} else if(isNaN(year)) {
+				$(this).next().next().css('display','none');
+				// isNaN : 숫잔지 아닌지 판단. 숫자가 아닌 값이 들어오면 true 
+				$(this).next().css('display','block').css('color','#b30000');
+				year.focus();
+				yearflag = 0;
+				return false;
+			} else if(!format.test(year)) {
+				$(this).next().next().css('display','none');
+				$(this).next().css('display','block').css('color','#b30000');
+				year.focus();
+				yearflag = 0;
+				return false;
+			} else {
+				$(this).next().css('display','none');
+				$(this).next().next().css('display','block').css('color','#50d2bb');
+				yearflag = 1;
+				return true;
+			}
+			
+		});
+		
+		$("#mm").blur(function(){
+			var regEmpty = /\s/g; // 공백 문자 
+			var day = $('#dd').val();
+			var month = $(this).val();
+			var dFormat = /^(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			var sFormat = /^(0[1-9]|[1-2][0-9]|30)$/;
+			var feFormat = /^(0[1-9]|1[0-9]|2[0-9])$/;
+			/* var format = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/; */
+		    alert(day+","+month);
+			
+			//홀수달일땐 30일 짝수달엔 31일 2월은 28일이거나 29일 
+			
+			if(month==''||month.length==0){
+				$(this).next().next().css('display','none');
+				$(this).next().css('display','block').css('color','#b30000');
+				day.val('');
+				day.focus();
+				monthflag = 0;
+				dayflag = 0;
+				return false;
+			} else if(isNaN(month)) {
+				// isNaN : 숫잔지 아닌지 판단. 숫자가 아닌 값이 들어오면 true 
+				$(this).next().next().css('display','none');
+				$(this).next().css('display','block').css('color','#b30000');
+				day.focus();
+				monthflag = 0;
+				dayflag = 0;
+				return false;
+			} 
+			
+			if(month==0) {
+				$(this).next().next().css('display','none');
+				$(this).next().css('display','block').css('color','#b30000');
+				$("#mm").css('border','lpx solid #b30000');
+				monthflag = 0;
+				dayflag = 0;
+				return false;
+				if(month!=0){
+					if(month%2 == 1) {
+						$(this).next().css('display','none');
+						if(!sFormat.test(day)){
+							$(this).next().next().css('display','none');
+							$(this).next().css('display','none');
+							$(this).next().css('display','block').css('color','#b30000');
+							day.focus();
+							dayflag = 0;
+							return false;
+						} else {
+							$(this).next().css('display','none');
+							$(this).next().next().css('display','block').css('color','#50d2bb');
+							dayflag = 1;
+							return true;
+						}
+					} else if(month%2 == 0 && month != 2) {
+						$(this).next().css('display','none');
+						if(!dFormat.test(day)) {
+							$(this).next().next().css('display','none');
+							$(this).next().css('display','none');
+							$(this).next().css('display','block').css('color','#b30000');
+							day.focus();
+							dayflag = 0;
+							return false;
+						} else {
+							$(this).next().css('display','none');
+							$(this).next().next().css('display','block').css('color','#50d2bb');
+							dayflag = 1;
+							return true;
+						}
+					} else if(month == 2) {
+						$(this).next().css('display','none');
+						if(!feFormat.test(day)) {
+							$(this).next().next().css('display','none');
+							$(this).next().css('display','none');
+							$(this).next().css('display','block').css('color','#b30000');
+							day.focus();
+							dayflag = 0;
+							return false;
+						} else {
+							$(this).next().css('display','none');
+							$(this).next().next().css('display','block').css('color','#50d2bb');
+							dayflag = 1;
+							return true;
+						}
+					} 
+				}
+			} else {
+				$(this).next().css('display','none');
+				$(this).next().next().css('display','block').css('color','#50d2bb');
+				monthflag = 1;
+				dayflag = 1;
+				return true;
+			}
+			
+		});
+		
+		$("#dd").blur(function(){
+			var regEmpty = /\s/g; // 공백 문자 
+			var day = $(this).val();
+			var month = $("#mm").val();
+			var dFormat = /^(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			var sFormat = /^(0[1-9]|[1-2][0-9]|30)$/;
+			var feFormat = /^(0[1-9]|1[0-9]|2[0-9])$/;
+			/* var format = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/; */
+		    alert(day+","+month);
+			
+			//홀수달일땐 30일 짝수달엔 31일 2월은 28일이거나 29일 
+			
+			if(day==''||day.length==0){
+				$(this).next().next().css('display','none');
+				$(this).next().css('display','block').css('color','#b30000');
+				day.val('');
+				day.focus();
+				monthflag = 0;
+				dayflag = 0;
+				return false;
+			} else if(day.match(regEmpty)) {
+				$(this).next().next().css('display','none');
+				$(this).next().css("display","block").css("color","#b30000");
+				day.focus();
+				monthflag = 0;
+				dayflag = 0;
+				return false;
+			} else if(isNaN(day)) {
+				// isNaN : 숫잔지 아닌지 판단. 숫자가 아닌 값이 들어오면 true 
+				$(this).next().next().css('display','none');
+				$(this).next().css('display','block').css('color','#b30000');
+				day.focus();
+				monthflag = 0;
+				dayflag = 0;
+				return false;
+			} 
+			
+			if(month==0) {
+				$(this).next().next().css('display','none');
+				$(this).next().css('display','block').css('color','#b30000');
+				$("#mm").css('border','lpx solid #b30000');
+				monthflag = 0;
+				dayflag = 0;
+				return false;
+				if(month!=0){
+					if(month%2 == 1) {
+						$(this).next().css('display','none');
+						if(!sFormat.test(day)){
+							$(this).next().next().css('display','none');
+							$(this).next().css('display','none');
+							$(this).next().css('display','block').css('color','#b30000');
+							day.focus();
+							dayflag = 0;
+							return false;
+						} else {
+							$(this).next().css('display','none');
+							$(this).next().next().css('display','block').css('color','#50d2bb');
+							dayflag = 1;
+							return true;
+						}
+					} else if(month%2 == 0 && month != 2) {
+						$(this).next().css('display','none');
+						if(!dFormat.test(day)) {
+							$(this).next().next().css('display','none');
+							$(this).next().css('display','none');
+							$(this).next().css('display','block').css('color','#b30000');
+							day.focus();
+							dayflag = 0;
+							return false;
+						} else {
+							$(this).next().css('display','none');
+							$(this).next().next().css('display','block').css('color','#50d2bb');
+							dayflag = 1;
+							return true;
+						}
+					} else if(month == 2) {
+						$(this).next().css('display','none');
+						if(!feFormat.test(day)) {
+							$(this).next().next().css('display','none');
+							$(this).next().css('display','none');
+							$(this).next().css('display','block').css('color','#b30000');
+							day.focus();
+							dayflag = 0;
+							return false;
+						} else {
+							$(this).next().css('display','none');
+							$(this).next().next().css('display','block').css('color','#50d2bb');
+							dayflag = 1;
+							return true;
+						}
+					} 
+				}
+			} else {
+				$(this).next().css('display','none');
+				$(this).next().next().css('display','block').css('color','#50d2bb');
+				monthflag = 1;
+				dayflag = 1;
+				return true;
+			}
+			
+		});
+		
+		$("#phone").keyup(function(){
+			
 			var regEmpty = /\s/g; // 공백 문자 
 			var phone = $.trim($(this).val());
 			var phoneReg = RegExp(/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/);
@@ -676,47 +936,58 @@
 				$(this).next().css('display','block').text('필수입력 정보입니다').css('color','#b30000');
 				phone.val('');
 				phone.focus();
+				phoneflag = 0;
 				return false;
 			} else if(phone.match(regEmpty)) {
 				$(this).next().text("공백없이 입력해주세요").css("display","block").css("color","#b30000");
 				phone.select();
+				phoneflag = 0;
 				return false;
 			} else if(isNaN(phone)) {
 				// isNaN : 숫잔지 아닌지 판단. 숫자가 아닌 값이 들어오면 true 
 				$(this).next().css('display','block').text('숫자만 입력해주세요').css('color','#b30000');
 				phone.select();
+				phoneflag = 0;
 				return false;
 			} else if(!phoneReg.test(phone)) {
 				$(this).next().css('display','block').text('유효하지 않은 휴대폰 번호입니다').css('color','#b30000');
 				phone.select();
+				phoneflag = 0;
 				return false;
 			} else {
 				$(this).next().css('display','block').text('좋은 휴대폰 번호네요').css('color','dodgerblue');
-				// 말장난X. 폰트체도 깔끔하고 가독성 높은걸로. 귀여운거X
+				phoneflag = 1;
+				return true;
 			}
 		});
 		
-		$("#email").blur(function(){
+		$("#email").keyup(function(){
+			
 			var email = $.trim($("#email").val());
 			var regEmpty = /\s/g; // 공백 문자 
 			var regEmail = RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
 			if(email==''||email.length==0) {
 				$(this).next().css("display","block").text('필수입력 정보입니다').css('color','#b30000');
+				mailflag = 0;
 				return false;
 			} else if(email.match(regEmpty)){
 				$(this).next().css("display","block").text('공백없이 입력해주세요').css('color','#b30000');
+				mailflag = 0;
 				return false;
 			} else if(!regEmail.test(email)){
 				$(this).next().css("display","block").text('올바른 값을 입력해주세요').css('color','#b30000');
+				mailflag = 0;
 				return false;
 			} else{
-				$(this).next().css("display","block").text('샤이니한 이메일이네요').css('color','dodgerblue');
+				$(this).next().css("display","block").text('멋진 이메일이네요').css('color','dodgerblue');
+				mailflag = 1;
+				return true;
 			}  
 		});
 		
 		//change함수: 값(value)이 변화 됐을 때 적용
 		//메일 주소 선택 값 입력 
-		$('#selmail').change(function(){
+		/* $('#selmail').change(function(){
 			//input(키보드 입력값) select(선택값)는 val로 가져와야함. 나머지는 text로 가져 옴 
 			var selmail = $(this).val();
 			//alert(selmail);
@@ -731,8 +1002,48 @@
 				$('#email_url').blur();
 			}
 			//alert(selmail);
-		});
+		}); */
 		
+		$('#join_btn_type').click(function(){
+			// email이 두 줄일 경우 email을 합치고 input(hidden) 담아야 전송가능
+		 /* var email_id = $('#email_id').val();
+			var email_url = $('#email_url').val();
+			var email = email_id+"@"+email_url;
+			$('#email').val(email); */
+			
+			flag = nameflag + idflag + mailflag + phoneflag + pwflag + repwflag + yearflag + monthflag + dayflag + addrflag;
+			alert("총: "+flag+", name: "+nameflag + ", id: " + idflag + ", mail: " + mailflag + ", phone: " + phoneflag + 
+					", pw: " + pwflag + ", repw: " + repwflag + ", year: " + yearflag + ", month: " + monthflag + ", day: " + dayflag + ", addr: " + addrflag);
+			if(flag == 10){
+				$('#join_frm').submit();
+			} else{
+				alert("모두 정확한 값을 입력하였는지 확인해주세요.");
+//				$('.err_msg').css('color', '#ff1212').text('* 모두 정확한 값을 입력하였는지 확인해주세요.');
+				if(nameflag < 1){
+					$('#name').focus();
+				} else if(idflag < 1){
+					$('#id').focus();
+				} else if(mailflag < 1){
+					$('#email').focus();
+				} else if(phoneflag < 1){
+					$('#phone').focus();
+				} else if(pwflag < 1){
+					$('#pswd1').focus();
+				} else if(repwflag < 1){
+					$('#pswd2').focus();
+				} else if(yearflag < 1){
+					$('#yy').focus();
+				} else if(monthflag < 1){
+					$('#mm').select();
+				} else if(dayflag < 1){
+					$('#dd').focus();
+				} else if(addrflag < 1){
+					$('#sample6_detailAddress').focus();
+				}
+				return false;		    
+			} 
+			
+		});
 	});
 		
 		// 다음 지도 api
@@ -779,6 +1090,8 @@
 				}
 			}).open();
 		}
+		
+		
 	</script>
 </body>
 </html>

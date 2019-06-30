@@ -440,7 +440,7 @@ header > a:not([href]):not([tabindex]) {
 	cursor: pointer;
 }
 
-.fa-search:before {
+#header_search_btn:before {
 	font-size: 30px;
 	color: white;
 }

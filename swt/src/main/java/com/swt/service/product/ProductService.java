@@ -7,6 +7,6 @@ import com.swt.domain.product.ProductDTO;
 
 public interface ProductService {
 	
-	// 베스트상품과 신상품 목록  : 나는 이거 안 쓰고 있음 
+	// 베스트상품과 신상품 목록 
 	public HashMap<String, List<ProductDTO>> productList();
 }
