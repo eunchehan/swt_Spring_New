@@ -79,7 +79,7 @@ var joinValidate = {
 		},
 		checkId : function(memId) {
 			var regEmpty = /\s/g; // 공백 문자 
-			var reg = /[^a-z0-9-_.]+/g; // ID 유효성 체크 
+			var reg = /[^a-z0-9-_.]+/g; // []안과 같으면 false, 다르면 true
 			
 			// 4. member.jsp에서 전달한 매개변수 memId로 유효성체크 시작
 			// 1) null값 체크 				if

@@ -50,12 +50,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 				return false;
 			}
 			
-			
-			
 			// Login 페이지로 이동
 			// FlashMap: 1회성으로 데이터 담아서 보내줌
 			FlashMap flashMap = RequestContextUtils.getOutputFlashMap(request);
-			flashMap.put("message", "nologin"); //message라는 이름표에 nologin이라는 데이터를 담아서 보내줌 
+			flashMap.put("message", "nologin"); 
 			flashMap.put("uri", uri);
 			log.info(">>>URI: " + uri);
 			RequestContextUtils.saveOutputFlashMap(referer, request, response);

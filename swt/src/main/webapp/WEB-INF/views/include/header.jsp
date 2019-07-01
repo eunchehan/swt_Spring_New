@@ -148,19 +148,7 @@
 			$('#step_url').text('로그인 해주세요').css('display','block');
 			$('#login_id').focus();
 		}
-		// top버튼 
-		$(window).scroll(function(){
-			var scrollValue = $(this).scrollTop();
-			if(scrollValue > 40){
-				$('#topBtn').fadeIn();
-			} else {
-				$('#topBtn').fadeOut();
-			}
-		});
-		$('#topBtn').click(function(){
-			$('html,body').animate({scrollTop:0},150);
-		});
-		 //모달 로그인
+		
 		$('#open_btn').click(function(){
 			$('#modal_all').css('display','flex');
 			$('#login_id').focus();
@@ -175,7 +163,24 @@
 			var id = $.trim($('#login_id').val());
 			var pw = $.trim($('#login_pw').val());
 		});
+		
+		// top버튼 
+		$(window).scroll(function(){
+			var scrollValue = $(this).scrollTop();
+			if(scrollValue > 40){
+				$('#topBtn').fadeIn();
+			} else {
+				$('#topBtn').fadeOut();
+			}
+		});
+		$('#topBtn').click(function(){
+			$('html,body').animate({scrollTop:0},150);
+		});
+		
+		
 		var inputs = $('#searchtxt').val();
+		
+		
 		//검색바 
 		/* $('#header_search_btn').hover(function(){		
 			$('#searchtxt').css('display','block').css('opacity','0.7');	
@@ -217,7 +222,7 @@
 				}
 			});
 		});
-			
+		
 		$('#btn_login').click(function(){
 			var id = $.trim($('#login_id').val());
 			var pw = $.trim($('#login_pw').val());
@@ -243,7 +248,7 @@
 			$.ajax({
 				url: "${path}/member/login",
 				type: "POST",
-				dataType: "text", // return타입 데이터 flag는 String타입인가 화면단에선 text 
+				dataType: "text", // return타입 데이터 flag는 String타입, 화면단에선 text 
 				data: "id="+id+"&pw="+pw,
 				success: function(data) {// controller부터 쭉 타고와서 controller return으로 보내준 String flag의 값이 담김 
 					if(data == "1") {
@@ -268,11 +273,15 @@
 		var jbOffset = $('.header_menu').offset();
 		$(window).scroll(function(){
 			if($(document).scrollTop()>0){
-				$('.jbFixed_menu').css('top','0px').css('position','fixed').css('transition','0.2s');
-				$('.two_wrap').css('top','-300px').css('position','fixed');
+				$('.jbFixed_menu').css('top','0px').css('position','fixed')
+								  .css('transition','0.2s');
+				$('.two_wrap').css('top','-300px')
+						      .css('position','fixed');
 				$('#header_line').css('opacity','0.85');
 			} else {
-				$('.jbFixed_menu').css('top','0px').css('position','relative').css('transition','0.2s');
+				$('.jbFixed_menu').css('top','0px')
+								  .css('position','relative')
+								  .css('transition','0.2s');
 				$('.two_wrap').css('top','0px').css('position','relative');
 				$('#header_line').css('opacity','1');
 			}

@@ -352,7 +352,7 @@
 					//3. 현재비밀번호와 새비밀번호가 같은지 체크
 					$('#pswd1').focus();
 					$('.step_url').eq(1).text('현재 비밀번호와 다르게 입력해주세요.').css('color','#b30000');
-					return false; // 메서드 종료시켜서 조건에 맞지 않으면 submit못하게 막음 
+					return false; 
 				}
 				$('#pw_frm').submit();
 			});
