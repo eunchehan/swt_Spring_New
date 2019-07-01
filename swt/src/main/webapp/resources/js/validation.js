@@ -143,12 +143,13 @@ function ajaxCheck(memId){
 	//		데이터 포장방법: json
 	//		데이터 전달방법: POST방식 
 	//		결론: web.xml로 이동!
-	
+	var return_val = false;
 	// id에 값이 있는 경우에만 ajax 동작! : 중복체크 
 	$.ajax({				//주소창에 뜨는 url이니까 소문자
 		type: "POST",
 		url: "idcheck?id="+memId,
 		contentType: "application/json",
+		async: false,
 //		<1>. <input type="text" value=memID name="id">
 //		<2>. Ajax>> data: "id="+memid,
 //		<3>. 쿼리스트링: "idCheck.swt?id="+memId
@@ -162,10 +163,10 @@ function ajaxCheck(memId){
 			// 아직 끝나지 않음! 호출한 곳으로 돌아가야 함. 
 			if(data == 1){
 				$("#error_id").css("display","block").css("color","#b30000").text("중복된 ID 입니다");
-				return false;
+				return_val = false;
 			}else {
 				$("#error_id").css("display","block").css("color","dodgerblue").text("멋진 아이디네요");
-				return true;
+				return_val = true;
 			}
 			
 		}, 
@@ -173,6 +174,7 @@ function ajaxCheck(memId){
 			alert("System Error!!!");
 		}
 	});
+	return return_val;
 }
 
 

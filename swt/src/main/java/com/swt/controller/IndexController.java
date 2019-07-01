@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,12 +34,14 @@ public class IndexController {
 	// 구현했기때문에 인터페이스로 구현한 클래스에 있는 메서드를 바로 사용할 수 있는 것임 
 	
 	@RequestMapping("/")
-	public String index(Model model) {
+	public String index(Model model,HttpSession session) {
 		log.info(">>>>index 페이지");
 		HashMap<String, List<ProductDTO>> map = service.productList();
 		
 		// 화면단으로 데이터 전송 pLists라는 이름으로.. 화면단에서 ${pLists.}해서 값 꺼내쓰면 됨 
 		model.addAttribute("pLists", map);
+		
+		
 		return "index"; 
 		//DispathcerService로 가서 index가 뭔지 알기전에 ViewResolver로 감(suvlet-context.xml로 가서 정확한 화면단 위치 알아서
 		// DispathcerServlet으로 돌아와서 어딘지 정확히 경로 알아서 그 화면단으로 감 

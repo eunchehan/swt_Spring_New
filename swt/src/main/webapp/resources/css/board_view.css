@@ -210,6 +210,7 @@ td:nth-child(2) {
 }
 #btn_rpl{
 	float: left;
+    transform: rotate(180deg);
 }
 /* 좋아요 버튼 시작 */
 .btn_like {

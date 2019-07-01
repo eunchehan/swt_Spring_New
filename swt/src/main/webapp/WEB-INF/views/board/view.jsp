@@ -98,7 +98,7 @@
 									</a>
 									
 									<c:if test="${!empty sessionScope.userid}">
-										<a>
+										<a href="${path}/board/answer?bno=${one.bno}">
 											<img class="bd-btns" id="btn_rpl" alt="게시글 답변" src="${path}/resources/images/reply_blue.png">
 										</a>
 									</c:if>

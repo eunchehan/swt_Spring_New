@@ -581,9 +581,9 @@
 					// 8-2(성공). code값이 0인 경우 => 유효한 값 
 					//			 중복값인지 Ajax(에이젝스)로 검증 시작!
 					// 9. ajaxCheck() 메서드 실행, memId를 매개변수로 보냄 
-					// 31. ajaxCheck(memId)의 return값이 1이면 return true; (유효성체크완료, 사용가능한 아이디) 
+					// 31. ajaxCheck(memId)의 return값이 true이면 return true; (유효성체크완료, 사용가능한 아이디) 
 					// 유효한 ID: True, 중복 Check: False 인 상태
-					var result = ajaxCheck(memId); // 중복 check해주는 함수 호출  
+					result = ajaxCheck(memId); // 중복 check해주는 함수 호출  
 					// undefined 가져옴 
 					alert(result);
 					if(result==true) {
@@ -738,7 +738,7 @@
 			var sFormat = /^(0[1-9]|[1-2][0-9]|30)$/;
 			var feFormat = /^(0[1-9]|1[0-9]|2[0-9])$/;
 			/* var format = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/; */
-		    alert(day+","+month);
+		    //alert(day+","+month);
 			
 			//홀수달일땐 30일 짝수달엔 31일 2월은 28일이거나 29일 
 			
@@ -760,67 +760,65 @@
 				return false;
 			} 
 			
-			if(month==0) {
+			if(month!=0) {
+				if(month%2 == 1) {
+					$(this).next().css('display','none');
+					if(!sFormat.test(day)){
+						$(this).next().next().css('display','none');
+						$(this).next().css('display','block').css('color','#b30000');
+						day.focus();
+						monthflag = 0;
+						dayflag = 0;
+						return false;
+					} else {
+						$(this).next().css('display','none');
+						$(this).next().next().css('display','block').css('color','#50d2bb');
+						dayflag = 1;
+						monthflag = 1;
+						return true;
+					}
+				} else if(month%2 == 0 && month != 2) {
+					$(this).next().css('display','none');
+					if(!dFormat.test(day)) {
+						$(this).next().next().css('display','none');
+						$(this).next().css('display','block').css('color','#b30000');
+						day.focus();
+						monthflag = 0;
+						dayflag = 0;
+						return false;
+					} else {
+						$(this).next().css('display','none');
+						$(this).next().next().css('display','block').css('color','#50d2bb');
+						dayflag = 1;
+						monthflag = 1;
+						return true;
+					}
+				} else if(month == 2) {
+					$(this).next().css('display','none');
+					if(!feFormat.test(day)) {
+						$(this).next().next().css('display','none');
+						$(this).next().css('display','block').css('color','#b30000');
+						day.focus();
+						monthflag = 0;
+						dayflag = 0;
+						return false;
+					} else {
+						$(this).next().css('display','none');
+						$(this).next().next().css('display','block').css('color','#50d2bb');
+						dayflag = 1;
+						monthflag = 1;
+						return true;
+					}
+				} 
+				
+			} else {
+				$(this).next().css('display','none');
 				$(this).next().next().css('display','none');
 				$(this).next().css('display','block').css('color','#b30000');
 				$("#mm").css('border','lpx solid #b30000');
 				monthflag = 0;
 				dayflag = 0;
 				return false;
-				if(month!=0){
-					if(month%2 == 1) {
-						$(this).next().css('display','none');
-						if(!sFormat.test(day)){
-							$(this).next().next().css('display','none');
-							$(this).next().css('display','none');
-							$(this).next().css('display','block').css('color','#b30000');
-							day.focus();
-							dayflag = 0;
-							return false;
-						} else {
-							$(this).next().css('display','none');
-							$(this).next().next().css('display','block').css('color','#50d2bb');
-							dayflag = 1;
-							return true;
-						}
-					} else if(month%2 == 0 && month != 2) {
-						$(this).next().css('display','none');
-						if(!dFormat.test(day)) {
-							$(this).next().next().css('display','none');
-							$(this).next().css('display','none');
-							$(this).next().css('display','block').css('color','#b30000');
-							day.focus();
-							dayflag = 0;
-							return false;
-						} else {
-							$(this).next().css('display','none');
-							$(this).next().next().css('display','block').css('color','#50d2bb');
-							dayflag = 1;
-							return true;
-						}
-					} else if(month == 2) {
-						$(this).next().css('display','none');
-						if(!feFormat.test(day)) {
-							$(this).next().next().css('display','none');
-							$(this).next().css('display','none');
-							$(this).next().css('display','block').css('color','#b30000');
-							day.focus();
-							dayflag = 0;
-							return false;
-						} else {
-							$(this).next().css('display','none');
-							$(this).next().next().css('display','block').css('color','#50d2bb');
-							dayflag = 1;
-							return true;
-						}
-					} 
-				}
-			} else {
-				$(this).next().css('display','none');
-				$(this).next().next().css('display','block').css('color','#50d2bb');
-				monthflag = 1;
-				dayflag = 1;
-				return true;
 			}
 			
 		});
@@ -862,67 +860,65 @@
 				return false;
 			} 
 			
-			if(month==0) {
+			if(month!=0) {
+				if(month%2 == 1) {
+					$(this).next().css('display','none');
+					if(!sFormat.test(day)){
+						$(this).next().next().css('display','none');
+						$(this).next().css('display','block').css('color','#b30000');
+						day.focus();
+						monthflag = 0;
+						dayflag = 0;
+						return false;
+					} else {
+						$(this).next().css('display','none');
+						$(this).next().next().css('display','block').css('color','#50d2bb');
+						dayflag = 1;
+						monthflag = 1;
+						return true;
+					}
+				} else if(month%2 == 0 && month != 2) {
+					$(this).next().css('display','none');
+					if(!dFormat.test(day)) {
+						$(this).next().next().css('display','none');
+						$(this).next().css('display','block').css('color','#b30000');
+						day.focus();
+						monthflag = 0;
+						dayflag = 0;
+						return false;
+					} else {
+						$(this).next().css('display','none');
+						$(this).next().next().css('display','block').css('color','#50d2bb');
+						dayflag = 1;
+						monthflag = 1;
+						return true;
+					}
+				} else if(month == 2) {
+					$(this).next().css('display','none');
+					if(!feFormat.test(day)) {
+						$(this).next().next().css('display','none');
+						$(this).next().css('display','block').css('color','#b30000');
+						day.focus();
+						monthflag = 0;
+						dayflag = 0;
+						return false;
+					} else {
+						$(this).next().css('display','none');
+						$(this).next().next().css('display','block').css('color','#50d2bb');
+						dayflag = 1;
+						monthflag = 1;
+						return true;
+					}
+				} 
+				
+			} else {
+				$(this).next().css('display','none');
 				$(this).next().next().css('display','none');
 				$(this).next().css('display','block').css('color','#b30000');
 				$("#mm").css('border','lpx solid #b30000');
 				monthflag = 0;
 				dayflag = 0;
 				return false;
-				if(month!=0){
-					if(month%2 == 1) {
-						$(this).next().css('display','none');
-						if(!sFormat.test(day)){
-							$(this).next().next().css('display','none');
-							$(this).next().css('display','none');
-							$(this).next().css('display','block').css('color','#b30000');
-							day.focus();
-							dayflag = 0;
-							return false;
-						} else {
-							$(this).next().css('display','none');
-							$(this).next().next().css('display','block').css('color','#50d2bb');
-							dayflag = 1;
-							return true;
-						}
-					} else if(month%2 == 0 && month != 2) {
-						$(this).next().css('display','none');
-						if(!dFormat.test(day)) {
-							$(this).next().next().css('display','none');
-							$(this).next().css('display','none');
-							$(this).next().css('display','block').css('color','#b30000');
-							day.focus();
-							dayflag = 0;
-							return false;
-						} else {
-							$(this).next().css('display','none');
-							$(this).next().next().css('display','block').css('color','#50d2bb');
-							dayflag = 1;
-							return true;
-						}
-					} else if(month == 2) {
-						$(this).next().css('display','none');
-						if(!feFormat.test(day)) {
-							$(this).next().next().css('display','none');
-							$(this).next().css('display','none');
-							$(this).next().css('display','block').css('color','#b30000');
-							day.focus();
-							dayflag = 0;
-							return false;
-						} else {
-							$(this).next().css('display','none');
-							$(this).next().next().css('display','block').css('color','#50d2bb');
-							dayflag = 1;
-							return true;
-						}
-					} 
-				}
-			} else {
-				$(this).next().css('display','none');
-				$(this).next().next().css('display','block').css('color','#50d2bb');
-				monthflag = 1;
-				dayflag = 1;
-				return true;
 			}
 			
 		});

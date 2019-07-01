@@ -28,10 +28,11 @@ public class LogAdvice {
 	
 	// execution경로에 //는 하위패키지들이 다 들어갈 수 있다는 의미
 	// com.swt.controller. 패키지 안에 있는 모든 클래스들 중에서 뒤에 Controller로 끝나는 애들안에 있는 모든 메서드들을 실행할때 하겠다.
-	// com.swt.persistence. 안에 Impl로 끝나는 클래스 내의 모든 메서드들 실행할때 실행하겠다. 
-	@Around("execution(* com.swt.controller..*Controller.*(..))"
-			+ " or execution(* com.swt.service..*Impl.*(..))"
-			+ " or execution(* com.swt.persistence..*Impl.*(..))")
+	// com.swt.persistence. 안에 Impl로 끝나는 클래스 내의 모든 메서드들 실행할때 실행하겠다.
+	// 다시 실행 시키려면 밑에 3줄 주석 풀면 됨 
+//	@Around("execution(* com.swt.controller..*Controller.*(..))"
+//			+ " or execution(* com.swt.service..*Impl.*(..))"
+//			+ " or execution(* com.swt.persistence..*Impl.*(..))")
 	public Object logPrint(ProceedingJoinPoint joinPoint) throws Throwable {
 		// 메서드 시작시간
 		long start = System.currentTimeMillis();

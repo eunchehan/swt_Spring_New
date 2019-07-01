@@ -1,7 +1,5 @@
 package com.swt.persistence.board;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +9,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.swt.domain.board.BoardDTO;
 import com.swt.domain.board.ReplyDTO;
 
 import lombok.extern.slf4j.Slf4j;

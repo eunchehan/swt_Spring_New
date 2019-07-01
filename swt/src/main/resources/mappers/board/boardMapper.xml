@@ -6,20 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 게시글목록 출력 -->
 	<select id="listAll" resultType="com.swt.domain.board.BoardDTO">
 		<include refid="paging_header"/>
-		SELECT bno, title, content, writer, m.id, viewcnt, replycnt, goodcnt, b.regdate 
+		SELECT bno, title, content, writer, m.id, viewcnt, replycnt, goodcnt, b.regdate
 		FROM tbl_board b, tbl_member m 
 		<include refid="search"/>
 		<if test="sort_option == 'new'">
-			ORDER BY bno DESC
+			ORDER BY ref DESC, re_step
 		</if>
 		<if test="sort_option == 'good'">
-			ORDER BY goodcnt DESC, bno DESC
+			ORDER BY goodcnt DESC, ref DESC, re_step
 		</if>
 		<if test="sort_option == 'reply'">
-			ORDER BY replycnt DESC, bno DESC
+			ORDER BY replycnt DESC, ref DESC, re_step
 		</if>
 		<if test="sort_option == 'view'">
-			ORDER BY viewcnt DESC, bno DESC
+			ORDER BY viewcnt DESC, ref DESC, re_step
 		</if>
 		<include refid="paging_footer"/>
 	</select>
@@ -78,8 +78,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- selectKey는 main꺼 실행한 후에(order=AFTER) 실행하고 62란 결과값이 변수 Integer타입 bno에 담음 
 	      AFTER로 써서 return값을 보낼 땐  parameterType을 써줘야 그 변수에 들어감. -->
 	<insert id="create" parameterType="com.swt.domain.board.BoardDTO">
-		INSERT INTO tbl_board(bno,title,content,writer)
-		VALUES(seq_board.NEXTVAL,#{title},#{content},#{writer})
+		INSERT INTO tbl_board(bno,title,content,writer, ref, re_step, re_level)
+		VALUES(seq_board.NEXTVAL,#{title},#{content},#{writer}, seq_board.CURRVAL, 1, 0)
 		<selectKey keyProperty="bno" resultType="Integer" order="AFTER">
 			SELECT seq_board.CURRVAL FROM dual
 		</selectKey>
@@ -96,7 +96,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        	content = #{content}
 		WHERE bno = #{bno}
 	</update>
+	<update id="updateStep">
+		UPDATE tbl_board
+		SET re_step = re_step + 1
+		WHERE re_step > #{re_step} AND ref=#{ref} 
+	</update>
 	
+	<insert id="answer">
+		INSERT INTO tbl_board(bno,title,content,writer,ref,re_step,re_level)
+		VALUES(seq_board.NEXTVAL,#{title},#{content},#{writer},#{ref},#{re_step},#{re_level})
+	</insert>
 </mapper>
 
 

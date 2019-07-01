@@ -11,7 +11,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.swt.domain.board.BoardDTO;
+
+import lombok.extern.slf4j.Slf4j;
 @Repository
+@Slf4j
 public class BoardDAOImpl implements BoardDAO {
 	@Inject 
 	private SqlSession sqlSession;
@@ -62,6 +65,20 @@ public class BoardDAOImpl implements BoardDAO {
 		map.put("search_option", search_option);
 		map.put("keyword", "%"+keyword+"%");
 		return sqlSession.selectOne("board.countArticle",map);
+	}
+
+	@Override
+	public void updateStep(int re_step, int ref) {
+		Map<String, Integer> map = new HashMap<>();
+		log.info("re_step: "+re_step);
+		map.put("re_step", re_step);
+		map.put("ref", ref);
+		sqlSession.update("board.updateStep",map);
+	}
+
+	@Override
+	public void answer(BoardDTO bDto) {
+		sqlSession.insert("board.answer",bDto);
 	}
 
 }

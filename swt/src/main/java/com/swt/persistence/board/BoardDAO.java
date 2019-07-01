@@ -14,4 +14,6 @@ public interface BoardDAO {
 	public List<BoardDTO> listAll(String sort_option, String search_option, String keyword, int start, int end);	// 게시글 목록 
 	public void increaseViewCnt(int bno);	// 조회수 증가 처리 
 	public int countArticle(String search_option, String keyword);	// 레코드 갯수 계산
+	public void updateStep(int re_step, int ref);
+	public void answer(BoardDTO bDto);
 }

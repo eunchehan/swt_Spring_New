@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 <style type="text/css">
 .aside {
-    width: 260px;
+	width: 260px;
     float: left;
-    margin-right: 40px;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
     position: absolute;
 }
 .aside .title_wrap {
@@ -19,15 +20,16 @@
     text-align: center;
 }
 .aside .title_wrap .title {
-    display: table-cell;
+	display: table-cell;
     vertical-align: top;
     font-size: 22px;
-    color: black;
+    color: #adb5bd;
     text-align: left;
-    padding-bottom: 30px;
+    padding: 10px;
     border-bottom: 1px solid #dcdcdc;
     padding-left: 15px;
     font-weight: bold;
+    border: 4px double #dadada;
 }
 
 .aside ul li {
@@ -38,6 +40,12 @@
     line-height: 45px;
     display: block;
     padding-left: 20px;
+    color: #adb5bd;
+}
+
+.aside ul li a:hover {
+    font-weight: bold;
+    background: #ebebd5;
 }
 </style>
 </head>
