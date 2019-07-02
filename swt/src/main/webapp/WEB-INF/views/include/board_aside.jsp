@@ -61,10 +61,10 @@
 				<a href="#">NOTICE</a>
 			</li>
 			<li>
-				<a href="#">FAQ</a>
+				<a href="${path}/board/list">QnA</a>
 			</li>
 			<li>
-				<a href="${path}/board/list">QnA</a>
+				<a href="${path}/email/write">1:1 문의</a>
 			</li>
 		</ul>
 	</div>

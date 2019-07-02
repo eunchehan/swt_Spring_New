@@ -29,7 +29,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			log.info(">>>>Session값 없음, 이전 페이지 이동");
 			String referer = request.getHeader("referer");	// 원페이지 주소를 알려 줌 
 			String uri = request.getRequestURI();
+			String query = request.getQueryString(); // 쿼리스트링으로 받은 데이터도 같이 보내주기 위함
 			
+			if(query==null||query.equals("null")) {
+				query = "";
+			} else { // getQueryString()로 가져올 때 ?는 같이 안가져오기 때문에 추가 
+				query = "?" + query;
+			}
 //			/board/list 문제 없음
 			
 //			로그아웃시
@@ -54,8 +60,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			// FlashMap: 1회성으로 데이터 담아서 보내줌
 			FlashMap flashMap = RequestContextUtils.getOutputFlashMap(request);
 			flashMap.put("message", "nologin"); 
-			flashMap.put("uri", uri);
-			log.info(">>>URI: " + uri);
+			flashMap.put("uri", (uri+query));
+			log.info(">>>URI: " + (uri+query));
 			RequestContextUtils.saveOutputFlashMap(referer, request, response);
 			response.sendRedirect(referer);
 			
