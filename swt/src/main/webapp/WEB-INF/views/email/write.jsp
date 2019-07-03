@@ -31,8 +31,10 @@
     border-bottom: 3px solid #252851;
     padding: 1rem;
     margin-bottom: 1.5rem;
-    color: #252851;
-    letter-spacing: -1;
+}
+.mail-write-title > img {
+    width: 20rem;
+    height: 8rem;
 }
 </style>
 </head>
@@ -41,7 +43,7 @@
 		<div id="contentWrap">
 			<%@ include file="../include/board_aside.jsp" %>
 			<div id="content">
-				<h2 class="mail-write-title">1:1 문의</h2>
+				<h2 class="mail-write-title"><img src="${path}/resources/images/11service.png"></h2>
 				<form method="POST" action="${path}/email/send">
 					<input name="senderName" class="input-border" placeholder="보낸이"><br>
 					<input id="senderMail" name="senderMail" placeholder="example@mail.com 형식" class="input-border"><br>
