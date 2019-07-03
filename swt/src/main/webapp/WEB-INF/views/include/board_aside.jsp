@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <style type="text/css">
 .aside {
 	width: 260px;
@@ -49,24 +48,22 @@
 }
 </style>
 </head>
-<body>
-	<div class="aside">
-		<div class="title_wrap">
-			<p class="title">
-			CUSTOMER<br>SERVICE
-			</p>
-		</div>
-		<ul>
-			<li>
-				<a href="#">NOTICE</a>
-			</li>
-			<li>
-				<a href="${path}/board/list">QnA</a>
-			</li>
-			<li>
-				<a href="${path}/email/write">1:1 문의</a>
-			</li>
-		</ul>
+<div class="aside">
+	<div class="title_wrap">
+		<p class="title">
+		CUSTOMER<br>SERVICE
+		</p>
 	</div>
-</body>
+	<ul>
+		<li>
+			<a href="#">NOTICE</a>
+		</li>
+		<li>
+			<a href="${path}/board/list">QnA</a>
+		</li>
+		<li>
+			<a href="${path}/email/write">1:1 문의</a>
+		</li>
+	</ul>
+</div>
 </html>

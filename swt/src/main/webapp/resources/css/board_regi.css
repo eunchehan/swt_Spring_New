@@ -19,14 +19,7 @@ a{
     padding: 37px 0;
     border-top: 1px solid #f2f2f2 !important;
 }
-#content {
-	/*width: 900px;
-	height: 700px;
-	padding-bottom: 30px;
-    box-sizing: border-box;
-    margin: 0px 300px 30px;
-    padding: 20px;*/
-    
+#content { 
     height: auto;
     padding-bottom: 30px;
     box-sizing: border-box;
@@ -291,14 +284,11 @@ textarea {
 	font-weight: 600;
 }
 .step_url {
-	position: absolute;
-	top: 16px;
-	right: 13px;
-	font-size: 13px;
-	line-height: 18px;
-	color: #8e8e8e;
-	padding-right: 30px;
-	font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color: #b30000;
+    padding-top: 0.3rem;
+    font-weight: 400;
 }
 
 /*첨부파일*/

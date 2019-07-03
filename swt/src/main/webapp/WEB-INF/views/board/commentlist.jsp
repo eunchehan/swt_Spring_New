@@ -78,7 +78,7 @@
 									<img alt="사진" src="${path}/resources/images/avatar1.png">
 								</a>
 								<div class="avatar-info">
-									<a class="nickname" href="#">${sessionScope.userid}</a>
+									<a class="nickname" style="padding-top: 0.5rem; padding-left: 0.4rem;" href="#">${sessionScope.userid}</a>
 								</div>
 							</div>
 							<fieldset class="fform">
@@ -98,7 +98,7 @@
 						</div>
 						<div class="content-function-cog note-submit-buttons clearfix">
 							<p>
-								<a href="#" id="note-create-cancel-btn" class="bd-btn btn-default btn-wide" name="re_textarea" style="">취소</a>
+								<a id="note-create-cancel-btn" class="bd-btn btn-default btn-wide" name="re_textarea" style="">취소</a>
 							</p>
 							<input type="button" name="create" id="btn-create-btn" class="bd-btn btn-default btn-wide" value="등록">
 							

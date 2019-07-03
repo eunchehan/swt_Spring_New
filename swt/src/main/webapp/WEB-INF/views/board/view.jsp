@@ -223,13 +223,17 @@
 			
 			if(content == "<p><br></p>") {
 				// 유효성체크(null 체크)
-				$("#replyInsert").focus();//안가고있음
+				var oSelection = oEditors.getById["replyInsert"].getEmptySelection(); 
+				oSelection.selectNodeContents(oEditors.getById["replyInsert"].getWYSIWYGDocument().body); 
+				oSelection.collapseToStart();  // 시작위치(최상단)으로 이동
+				//oSelection.collapseToEnd(); // 끝(최하단)으로 이동 
+				oSelection.select(); 
+				oEditors.getById["replyInsert"].exec("FOCUS");
 				return false;
 			} else {
 				// 게시글번호 담아서 보냄 
 				var bno = '${one.bno}';
 				$('#re_bno').val(bno);
-				//alert(content);
 				
 				$.ajax({
 					url: "${path}/reply/create?bno="+bno,
@@ -237,7 +241,6 @@
 					data: $("#frm_reply").serialize(),
 					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 					success: function(){
-						//alert("성공");
 						comment_list(); // 댓글목록 최신화 
 						$("#replyInsert").val(""); // 댓글입력창 초기화 (등록이 되면 댓글입력칸은 비어있어야함)
 					},
@@ -276,6 +279,10 @@
 			});
 		});
 		
+		// 댓글 취소 버튼 눌렀을 때 동작
+		$(document).on("click","#note-create-cancel-btn",function(){
+			oEditors.getById["replyInsert"].exec("SET_IR",[""]); // 에디터 내용 초기화 
+		});
 		
 	
 	</script>	

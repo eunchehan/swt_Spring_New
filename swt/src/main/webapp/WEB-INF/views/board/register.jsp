@@ -112,6 +112,7 @@ interceptor사용한 후 없어도 무방--%>
 				// 게시글 내용 작성자 null안되게 유효성 체크
 				if(title==""||title.length==0){
 					$('.step_url').text('글을 등록하려면 입력해주세요').css('display','block');
+					$("#regi_title").focus();
 					return false;
 				} else {
 					$('.step_url').css('display','hidden');
@@ -120,6 +121,12 @@ interceptor사용한 후 없어도 무방--%>
 				
 				if(content == "<p><br></p>"){
 					$('.step_url').text('글을 등록하려면 입력해주세요').css('display','block');
+					var oSelection = oEditors.getById["boardListInsert"].getEmptySelection(); 
+					oSelection.selectNodeContents(oEditors.getById["boardListInsert"].getWYSIWYGDocument().body); 
+					oSelection.collapseToStart();  // 시작위치(최상단)으로 이동
+					//oSelection.collapseToEnd(); // 끝(최하단)으로 이동 
+					oSelection.select(); 
+					oEditors.getById["boardListInsert"].exec("FOCUS");
 					return false;
 				} else {
 					$('.step_url').css('display','hidden');

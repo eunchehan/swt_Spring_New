@@ -27,7 +27,6 @@
 									<div id="order_board">
 										<input type="hidden" value="new" id="code">
 										<span>
-											<!-- rgb(231, 29, 54) -->
 											<a href="${path}/board/list?sort_option=new&search_option=${map.search_option}&keyword=${map.keyword}" id="orderNew">최신순</a>
 										</span>
 										<span>
@@ -40,7 +39,6 @@
 											<a href="${path}/board/list?sort_option=view&search_option=${map.search_option}&keyword=${map.keyword}" id="orderCnt">조회순</a>
 										</span>
 									</div>
-									<!-- <button class="board_btn btn-primary">게시글 등록</button> -->
 									<a href="#">
 										<img id="btn_regi" alt="게시글 등록" src="${path}/resources/images/regi.png">
 									</a>
@@ -155,19 +153,16 @@
 									</table>
 									
 									<!-- 검색창 -->
-									<div class="div_search">
 									
+									<div class="div_search">
 										<select id="selsearch" name="selsearch">
 											<option value="all" selected="selected">제목+내용</option>
 											<option value="title">제목</option>
 											<option value="content">내용</option>
 											<option value="writer">작성자</option>
 										</select>
-										
 										<input type="text" placeholder="검색할 값을 입력하세요" id="search_board" name="search_board">
 										<a href="#" id="search_btn"><img alt="검색" src="${path}/resources/images/search2.png"></a>
-										
-										<!-- class="board_btn btn_search" -->
 									</div>
 									
 									<c:if test="${!empty map.keyword}">
@@ -216,7 +211,6 @@
 												<li>
 													<a href="${path}/board/list?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&search_option=${map.search_option}&keyword=${map.keyword}">
 														${map.pager.totPage}
-														<!-- <i class="fas fa-angle-right"></i> -->
 													</a>
 												</li>
 												

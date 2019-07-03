@@ -15,22 +15,20 @@
 }
 .header_nav{
 	width: 80%;
-	margin: 0 auto;
-	background-color: #66395C;
-	height: 77px;
-	position: relative;
+    margin: 0 auto;
+    background-color: #66395C;
+    height: 77px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .header_nav ul li {
     float: left;
 }
-.header_nav ul{
-    float: left;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 25rem;
-}
+
 .ihn{
 	text-decoration: none;
 	font-size: 16px!important; 
