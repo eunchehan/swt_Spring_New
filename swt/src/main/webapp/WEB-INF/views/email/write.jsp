@@ -45,12 +45,14 @@
 			<div id="content">
 				<h2 class="mail-write-title"><img src="${path}/resources/images/11service.png"></h2>
 				<form method="POST" action="${path}/email/send">
-					<input name="senderName" class="input-border" placeholder="보낸이"><br>
+					<input name="senderName" class="input-border" value="${sessionScope.name}" readonly="readonly"><br>
 					<input id="senderMail" name="senderMail" placeholder="example@mail.com 형식" class="input-border"><br>
 					<input name="receiveMail" value="euntestmail@gmail.com" readonly="readonly" class="input-border" id="receiveUser"><br>
 					<input name="subject" class="input-border" placeholder="제목"><br>
 					<textarea rows="5" cols="80" name="message"  id="message" class="input-border" placeholder="문의 내용"></textarea><br>
+					<c:if test="${!empty sessionScope.userid}">
 					<input type="submit" id="mail-submit-btn" value="전송">
+					</c:if>
 				</form>
 				<span style="color:#b30000; letter-spacing: -1; font-size: 0.85rem; margin-left: 0.3rem;">${message}</span>
 			</div>
