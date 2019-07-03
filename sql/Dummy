@@ -55,7 +55,7 @@ INSERT INTO tbl_product(p_code,p_type,p_name,p_price,p_img,p_cnt,p_good)
 VALUES(seq_product.NEXTVAL,'TEA SACHET','망고 멜랑',19000,'0140060000202.jpg','26','12');
 
 INSERT INTO tbl_product(p_code,p_type,p_name,p_price,p_img,p_cnt,p_good)
-VALUES(seq_product.NEXTVAL,'TEA SACHET','NYC 브렉퍼스트',17000,'0140060000232.jpg','32','15');
+VALUES(seq_product.NEXTVAL,'TEA SACHET','NYC 브렉퍼스트',17000,'0140060000212.jpg','32','15');
 
 INSERT INTO tbl_product(p_code,p_type,p_name,p_price,p_img,p_cnt,p_good)
 VALUES(seq_product.NEXTVAL,'LATTE','타바론 밀크티 베이스 750ml',22000,'0140050000122.jpg','20','5');
@@ -101,6 +101,7 @@ CREATE TABLE tbl_member(
     zipcode VARCHAR2(20) NOT NULL,
     addr1 VARCHAR2(200) NOT NULL,
     addr2 VARCHAR2(200) NOT NULL,
+    mtype VARCHAR2(10) DEFAULT '2' NOT NULL,
     regdate DATE DEFAULT SYSDATE
 );
 SELECT name
@@ -108,21 +109,29 @@ FROM tbl_member
 WHERE id='user01';
 SELECT * FROM tbl_member;
 INSERT INTO tbl_member(id,pw,name,bir_yy,bir_mm,bir_dd,phone,email,zipcode,addr1,addr2)
-VALUES('user01','1234','한은체',1994,01,01,01011112222,'user01@gmail.com','61241','광주 북구 유동 57-47','1층');
+VALUES('user01','1234','박선미',1994,01,01,01011112222,'user01@gmail.com','61241','광주 북구 유동 57-47','1층');
 INSERT INTO tbl_member(id,pw,name,bir_yy,bir_mm,bir_dd,phone,email,zipcode,addr1,addr2)
-VALUES('user02','1234','박선미',1994,01,02,01022223333,'user02@gmail.com','61241','광주 북구 유동 57-47','2층');
+VALUES('user02','1234','김도연',1994,01,02,01022223333,'user021@gmail.com','61241','광주 북구 유동 57-47','2층');
+INSERT INTO tbl_member(id,pw,name,bir_yy,bir_mm,bir_dd,phone,email,zipcode,addr1,addr2)
+VALUES('user04','1234','유수지',1994,01,02,01044445555,'user02@gmail.com','61241','광주 북구 유동 57-47','2층');
 INSERT INTO tbl_member(id,pw,name,bir_yy,bir_mm,bir_dd,phone,email,zipcode,addr1,addr2)
 VALUES('user03','1234','황수연',1994,01,03,01033334444,'user03@gmail.com','61241','광주 북구 유동 57-47','3층');
+
+INSERT INTO tbl_member(id,pw,name,bir_yy,bir_mm,bir_dd,phone,email,zipcode,addr1,addr2,mtype)
+VALUES('admin','1234','한은체',1994,07,18,01011112222,'eunchehan@gmail.com','61241','광주 북구 유동 57-47','1층','1');
+
+SELECT name, mtype FROM tbl_member
+		WHERE id='user01' AND pw='1234';
 
 COMMIT;
 
 -- swt 게시판 테이블 
-DROP SEQUENCE seq_board
+DROP SEQUENCE seq_board;
 CREATE SEQUENCE seq_board
 START WITH 1
 INCREMENT BY 1;
 
-DROP TABLE tbl_board;
+DROP TABLE tbl_board CASCADE CONSTRAINTS;
 CREATE TABLE tbl_board(
     bno NUMBER PRIMARY KEY,
     title VARCHAR2(200) NOT NULL,
@@ -132,34 +141,42 @@ CREATE TABLE tbl_board(
     replycnt NUMBER DEFAULT 0,
     goodcnt NUMBER DEFAULT 0,
     regdate DATE DEFAULT SYSDATE,
-    filename VARCHAR2(100),
-    filesize NUMBER
+    ref NUMBER NOT NULL,
+    re_step NUMBER NOT NULL,
+    re_level NUMBER NOT NULL
 );
 SELECT * FROM tbl_board
 ORDER BY bno DESC;
+DELETE FROM tbl_board;
 -- 10건 
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다1','테스트야~','user01');
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다1','테스트','user01', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다2','테스트','user02', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다3','테스트','user03', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다4','테스트','user04', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다5','테스트','user01', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다6','테스트','user02', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다7','테스트','user03', seq_board.CURRVAL, 1, 0);
 
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다2','테스트야~','user02');
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다3','테스트야~','user03');
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다4','테스트야~','user04');
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다5','테스트야~','user01');
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다6','테스트야~','user02');
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다7','테스트야~','user03');
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다8','테스트','user04', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다9','테스트','user01', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다10','테스트','user02', seq_board.CURRVAL, 1, 0);
 
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다8','테스트야~','user04');
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다9','테스트야~','user01');
-INSERT INTO tbl_board(bno,title,content, writer)
-VALUES(seq_board.NEXTVAL, '테스트페이지입니다10','테스트야~','user02');
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다11','테스트','user02', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다12','테스트','user02', seq_board.CURRVAL, 1, 0);
+INSERT INTO tbl_board(bno,title,content, writer, ref, re_step, re_level)
+VALUES(seq_board.NEXTVAL, '테스트페이지입니다13','테스트','user02', seq_board.CURRVAL, 1, 0);
 
 SELECT COUNT(*) FROM tbl_board;
 
@@ -168,9 +185,10 @@ FROM (SELECT rownum rnum, a.*
       FROM (SELECT *
             FROM tbl_board
             WHERE bno > 0
-            ORDER BY bno DESC
+            ORDER BY ref DESC, re_step
             ) a
      ) WHERE rnum BETWEEN 1 AND 10
+       ORDER BY rnum;
     
 -- 1. 가장 안쪽에 있는 subquery: 전체 게시글을 최신순으로 조회
 -- 2. 두 번째 subquery: 전체게시글 조회결과에 + rownum
@@ -215,4 +233,3 @@ INSERT INTO tbl_reply(rno, content, writer, bno)
 VALUES(seq_reply.NEXTVAL, '댓글5', 'user01', 9);
 
 SELECT * FROM tbl_reply;
-
