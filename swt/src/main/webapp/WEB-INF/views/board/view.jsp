@@ -96,8 +96,7 @@
 									<a>
 										<img class="bd-btns" id="btn_list" alt="게시글 목록" src="${path}/resources/images/list.png">
 									</a>
-									
-									<c:if test="${!empty sessionScope.userid}">
+									<c:if test="${sessionScope.mtype == '1' && !empty sessionScope.userid}">
 										<a href="${path}/board/answer?bno=${one.bno}">
 											<img class="bd-btns" id="btn_rpl" alt="게시글 답변" src="${path}/resources/images/reply_blue.png">
 										</a>
@@ -242,7 +241,7 @@
 					contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 					success: function(){
 						comment_list(); // 댓글목록 최신화 
-						$("#replyInsert").val(""); // 댓글입력창 초기화 (등록이 되면 댓글입력칸은 비어있어야함)
+						oEditors.getById["replyInsert"].exec("SET_IR",[""]);  // 에디터 내용 초기화 
 					},
 					error: function(){
 						alert("System Error!!!!");
@@ -251,7 +250,6 @@
 			}
 		});
 		
-		// 댓글 띄우는 기능
 		function comment_list(){
 			$.ajax({
 				type: "get",
@@ -261,6 +259,7 @@
 				}
 			});
 		}
+		
 		// ajax는 연어처럼 출발했던 곳으로 돌아오는게 있음. 더 갈데가없으면 success(toggle 176)있는 쪽으로 돌아옴 
 		
 		// 댓글 삭제 버튼 눌렀을 때 동작

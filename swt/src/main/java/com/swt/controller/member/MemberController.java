@@ -25,15 +25,20 @@ public class MemberController {
 	
 	@ResponseBody	
 	@RequestMapping(value="/login", method = RequestMethod.POST)	// 메서드 실행하라고 할때 타고오는 url 사용자가 url칠때 이걸 보고 찾음 controller단을
-	public String login(MemberDTO mDto, HttpSession session) {// 로그인한 정보를 session에 담아야함
+	public String login(MemberDTO mDto, HttpSession session, Model model) {// 로그인한 정보를 session에 담아야함
 								//이때는 세션 사용하려고 만들기만 함 service다녀와야 세션에 로그인정보가 담김
 		// 서비스는 순수 비즈니스 로직 동작하는 부분만 만드는 곳. controller에서 필요한 데이터 다 받아서 보내줌. 더 데이터가 필요하면 DAO에서 보내줌  
 		log.info(">>>>>>> AJAX:로그인");	
 		boolean result = service.login(mDto, session);	// 어떤 서비스사용할건지 필요한 data를 controller가 service에 주입. 
 		String flag = "-1";
 		if(result) {// result=true일때만 탐
+			log.info("로그인 성공");
 			flag="1";
+			//model.addAttribute("session", session);
+		} else {
+			log.info("로그인 실패");
 		}
+		
 		return flag;	
 	}
 	

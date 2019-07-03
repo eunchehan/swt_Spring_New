@@ -610,7 +610,7 @@
 				$(this).next().css("display","block").text('올바른 값을 입력해주세요').css('color','#b30000');
 				return false;
 			} else{
-				$(this).next().css("display","block").text('샤이니한 이메일이네요').css('color','dodgerblue');
+				$(this).next().css("display","block").text('멋진 이메일이네요').css('color','dodgerblue');
 				flag=true;
 				return flag;
 			}  

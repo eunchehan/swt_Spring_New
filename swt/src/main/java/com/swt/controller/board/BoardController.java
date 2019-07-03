@@ -152,8 +152,8 @@ public class BoardController {
 		log.info(">>>>>>>> 답글 등록 페이지 출력");
 		// 답글 달려고 하는 게시글 내용 
 		BoardDTO bDto = service.read(bno);	
-		bDto.setContent("<br><br>"+bDto.getContent()
-		+"<br><br>================<br><br><br>");
+		bDto.setContent(bDto.getContent()
+		+"<br>================<br>");
 		model.addAttribute("one", bDto);
 		return "board/answer";
 	}

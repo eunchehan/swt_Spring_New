@@ -27,9 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- parameterType 안써도 무방하지만 써주는 게 좋음 DAO메서드 매개변수 안에 타입있어서 MemberDTO타입인거 앎  -->
-	<!-- 전체값이 아니고 name값만 가져 옴 그래서 rersultType도 String -->
-	<select id="login" parameterType="com.swt.domain.member.MemberDTO" resultType="String">
-		SELECT name FROM tbl_member
+	<select id="login" parameterType="com.swt.domain.member.MemberDTO" resultType="com.swt.domain.member.MemberDTO">
+		SELECT name, mtype, id FROM tbl_member
 		WHERE id=#{id} AND pw=#{pw}
 	</select>
 	

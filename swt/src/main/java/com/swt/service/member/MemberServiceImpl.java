@@ -56,16 +56,19 @@ public class MemberServiceImpl implements MemberService {
 		
 		// session에 안 담아줘야 함 Why? 1)때문에 DB탐. 2,3)때문에 타는 거 아님. 1)의 결과에 따라 2)할지 3)할지 결정 service에서 session을 쓰는거고
 		// DB에선 1)만해서 id,pw체크 DB에선 session안씀
-		String name = mDao.login(mDto);
+		mDto = mDao.login(mDto);
+		log.info(mDto.toString());
 		boolean result = false;
-		if(name!=null) { // 로그인 성공 
+		if(mDto!=null) { // 로그인 성공 
 			// session에 회원정보를 담아야 함 
 			// id, name만 담음 필요할때마다 꺼내옴 
 			// 이때 세션에 실제 데이터가 들어감 
 			session.removeAttribute("userid");
 			session.removeAttribute("name");
+			session.removeAttribute("mtype");
 			session.setAttribute("userid", mDto.getId());	// id는 DTO에서 꺼내옴 
-			session.setAttribute("name", name); // name은 sql 실행한 결과 꺼내옴. select로 name만 출력했으니까 
+			session.setAttribute("name", mDto.getName()); // name은 sql 실행한 결과 꺼내옴. select로 name만 출력했으니까 
+			session.setAttribute("mtype", mDto.getMtype()); 
 			result = true;
 			log.info("session>>>>>>>"+session.getAttribute("name"));
 		}
@@ -93,9 +96,9 @@ public class MemberServiceImpl implements MemberService {
 		// 여기서 비즈니스 로직 처리
 		// DB에서 가져온 현재비밀번호와 사용자가 입력한 비밀번호가 같은지 체크해서
 		// 같으면 1, 틀리면 -1을 view단으로 전송 
-		String name = mDao.login(mDto); // sql문 결과 조회되면 맞는거고 안되면 틀린거임 login할때 sql문과 동일하니까 login메서드 재사용 
+		mDto = mDao.login(mDto); // sql문 결과 조회되면 맞는거고 안되면 틀린거임 login할때 sql문과 동일하니까 login메서드 재사용 
 		String result = "-1";
-		if(name!=null) {
+		if(mDto!=null) {
 			result="1";
 		}
 		return result;
