@@ -6,14 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 							<!-- depth가 닫라서 상위폴더로 나가서 경로 찾아가야함 -->
 <link rel="stylesheet" href="${path}/resources/css/common.css?v=1"> 
 <link rel="stylesheet" href="${path}/resources/css/header.css?v=1"> 
-
-
 <title>SleepWellTea</title>
-
 </head>
 <body>
 <!-- TOP버튼 -->
@@ -129,10 +125,6 @@
 				<li><a class="ihn" href="#">S.W.T</a></li>
 				<li><a class="ihn" href="${path}/board/list">CS Center</a></li>
 			</ul>
-			<!-- <div id="search_box">
-				<input class="search_txt" id="searchtxt" type="text" name="searchtxt" placeholder="Search">
-				<i class="fas fa-search" id="header_search_btn"></i>
-			</div> -->
 		</div>
 	</div>
 </header>
@@ -177,37 +169,7 @@
 			$('html,body').animate({scrollTop:0},150);
 		});
 		
-		
 		var inputs = $('#searchtxt').val();
-		
-		
-		//검색바 
-		/* $('#header_search_btn').hover(function(){		
-			$('#searchtxt').css('display','block').css('opacity','0.7');	
-			$('#searchtxt').focus();
-		});	
-		
-		$('#searchtxt').change(function(){		
-			$('#searchtxt').css('display','block').css('opacity','0.7');	
-		});
-		
-		$('#search_box').mouseleave(function(){		
-			$('#searchtxt').css('display','none');		
-		});	 
-		
-		$('#header_search_btn').click(function(){		
-			$('#searchtxt').hide();	
-		});	
-		
-		 $("input[name=searchtxt]").keydown(function (key) {
-			 
-		        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
-		        	$('#searchtxt').css('display','none');
-		        }
-		 
-		    }); */
-		
-	
 		
 		/* logout버튼 누를 때 동작 */
 		$(".logout_btn").click(function(){
