@@ -49,6 +49,8 @@
 			<mapping path="/board/create"/>
 			<mapping path="/board/update"/>
 			<mapping path="/board/delete"/>
+			<mapping path="/email/send"/>
+			<mapping path="/email/write"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>

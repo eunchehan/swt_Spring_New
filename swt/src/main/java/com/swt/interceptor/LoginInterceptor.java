@@ -54,8 +54,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			if(url.equals("/create")) {
 				response.sendRedirect(request.getContextPath()+"/board/list");
 				return false;
-			} else if(url.equals("/send")) {
-				response.sendRedirect(request.getContextPath()+"/board/list");
+			} else if(url.equals("/write")) {
+				response.sendRedirect(request.getContextPath()+"/");
 				return false;
 			}
 			
