@@ -81,4 +81,10 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert("board.answer",bDto);
 	}
 
+	@Override
+	public void addAttach(String fullName) {
+		log.info("파일첨부 테이블에 등록 DAO 옴");
+		sqlSession.insert("board.addAttach", fullName);
+	}
+
 }

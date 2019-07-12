@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginInterceptor extends HandlerInterceptorAdapter{
 	// interceptor쓰려면 HandlerInterceptorAdapter를 반드시 상속받아야함 
 	// 상속이라 오버라이딩 강제는 안 함. 
-	
+	// 메서드 실행 전의 동작이면 prehandler 메서드 실행 후의 동작이면  posthandler
 	// 메인액션 실행되기 전
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

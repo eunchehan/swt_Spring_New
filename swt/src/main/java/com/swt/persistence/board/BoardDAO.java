@@ -16,4 +16,5 @@ public interface BoardDAO {
 	public int countArticle(String search_option, String keyword);	// 레코드 갯수 계산
 	public void updateStep(int re_step, int ref);
 	public void answer(BoardDTO bDto);
+	public void addAttach(String fullName); // 첨부파일 동작
 }

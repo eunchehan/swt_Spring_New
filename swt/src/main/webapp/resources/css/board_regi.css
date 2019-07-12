@@ -334,3 +334,17 @@ textarea {
 #check_btn {
 	display: none;
 }
+.form-group .board_div {
+	border: 1.5px dashed #dadada;
+    background: white;
+	text-align: center;
+	height: 13rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #515151;
+}
+.uploadedList {
+	display: flex;
+	flex-wrap: wrap;
+}

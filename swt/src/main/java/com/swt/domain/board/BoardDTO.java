@@ -21,6 +21,7 @@ public class BoardDTO {
 	private int viewcnt;
 	private int replycnt;
 	private int goodcnt;
+	private String[] files; // 첨부파일 이름 배열
 	private String id;// 작성자 이름(tbl_member 테이블과 조인할때 사용)
 	private Date regdate;
 	private int ref;	// 게시글 그룹

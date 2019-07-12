@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swt.domain.board.BoardDTO;
 import com.swt.persistence.board.BoardDAO;
@@ -16,9 +17,23 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO bDao;
+	
+	@Transactional
 	@Override
 	public int create(BoardDTO bDto) {
-		return bDao.create(bDto);
+		
+		int result = bDao.create(bDto);
+		// attach 테이블에 첨부파일 이름 추가
+		String[] files = bDto.getFiles();
+		log.info(bDto.toString());
+		if(files==null) { // 첨부파일 없으면 skip
+			return result;
+		}
+		for (String name : files) {
+			bDao.addAttach(name); // attach 테이블에 insert 
+			log.info("swt 파일첨부 DAO 다녀옴");
+		}
+		return result;
 	}
 
 	@Override
