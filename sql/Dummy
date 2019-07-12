@@ -197,6 +197,27 @@ FROM (SELECT rownum rnum, a.*
 
 COMMIT;
 
+-- swt 게시판 첨부파일 테이블
+-- DRAG & DROP을 활용한 첨부파일
+-- 첨부파일 이름은 uuid를 사용하기 때문에 중복 안됨 
+DROP TABLE tbl_attach CASCADE CONSTRAINTS;
+CREATE TABLE tbl_attach(
+    fullname VARCHAR2(150) NOT NULL,
+    bno NUMBER NOT NULL,
+    regdate DATE DEFAULT SYSDATE
+);
+ALTER TABLE tbl_attach ADD CONSTRAINT pk_attach
+PRIMARY KEY(fullname);
+
+SELECT * FROM tbl_attach;
+SELECT * FROM tbl_board;
+
+ALTER TABLE tbl_attach
+ADD CONSTRAINT fk_attach_bno
+FOREIGN KEY(bno) REFERENCES tbl_board(bno)
+ON DELETE CASCADE;
+commit;
+
 -- swt 댓글 테이블
 DROP SEQUENCE seq_reply;
 CREATE SEQUENCE seq_reply
