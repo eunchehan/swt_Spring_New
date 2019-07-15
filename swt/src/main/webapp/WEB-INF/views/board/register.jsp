@@ -96,7 +96,7 @@ interceptor사용한 후 없어도 무방--%>
 														</div>
 													</div>
 													<div class="write_input_wrap">
-														<ul id="uplodedList" class="mailbox-attachments clearfix uploadedList"></ul>
+														<ul id="uploadedList" class="mailbox-attachments clearfix uploadedList"></ul>
 													</div>
 												</td>
 											</tr>
