@@ -5,6 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="member">
+
+	<select id="memberList" resultType="com.swt.domain.member.MemberDTO">
+		SELECT id,name FROM tbl_member
+	</select>
+
 	<select id="idCheck" parameterType="String" resultType="int">
 		SELECT COUNT(id) FROM tbl_member
 		WHERE id = #{id}

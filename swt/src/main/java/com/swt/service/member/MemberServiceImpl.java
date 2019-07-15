@@ -1,5 +1,7 @@
 package com.swt.service.member;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberServiceImpl implements MemberService {
 	@Inject
 	private MemberDAO mDao;
+	
+	@Override
+	public List<MemberDTO> memberList() {
+		return mDao.memberList();
+	}
 	
 	@Override
 	public int idCheck(String id) {

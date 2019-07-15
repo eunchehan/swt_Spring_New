@@ -1,8 +1,13 @@
 package com.swt.service.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Service;
+
 import com.swt.domain.member.MemberDTO;
+
 
 public interface MemberService {
 	// AJAX : ID 중복체크 
@@ -23,5 +28,7 @@ public interface MemberService {
 	public String pwCheck(MemberDTO mDto);
 	// 비밀번호 수정
 	public void pwUpdate(MemberDTO mDto);
+	// 회원 목록 출력
+	public List<MemberDTO> memberList();
 	
 }

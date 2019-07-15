@@ -1,5 +1,7 @@
 package com.swt.persistence.member;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +15,12 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberDAOImpl implements MemberDAO{
 	@Inject 
 	private SqlSession sqlSession;
+	
+	@Override
+	public List<MemberDTO> memberList() {
+		log.info("DAO탐");
+		return sqlSession.selectList("member.memberList");
+	}
 	
 	@Override
 	public int idCheck(String id) {
@@ -50,5 +58,6 @@ public class MemberDAOImpl implements MemberDAO{
 	public int delete(String id) {
 		 return sqlSession.delete("member.delete", id);
 	}
+
 
 }
