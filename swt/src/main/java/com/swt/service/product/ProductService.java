@@ -9,4 +9,6 @@ public interface ProductService {
 	
 	// 베스트상품과 신상품 목록 
 	public HashMap<String, List<ProductDTO>> productList();
+	// 상품 상세 페이지
+	public ProductDTO productView(String p_code);
 }

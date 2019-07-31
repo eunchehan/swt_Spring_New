@@ -25,5 +25,10 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectList("pdt.newList");
 	}
 
+	@Override
+	public ProductDTO productView(String p_code) {
+		return sqlSession.selectOne("pdt.view",p_code);
+	}
+
 
 }

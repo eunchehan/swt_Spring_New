@@ -32,6 +32,12 @@ public class ProductController {
 		return "product/teashop";
 	}
 	
-	
+	@GetMapping(value="view")
+	public String view(String p_code, Model model) {
+		log.info(">>> 상품 상세 페이지 이동: "+p_code);
+		ProductDTO pDto = service.productView(p_code);
+		model.addAttribute("one",pDto);
+		return "product/view";
+	}
 	
 }

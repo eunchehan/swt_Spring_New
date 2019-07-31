@@ -29,5 +29,10 @@ public class ProductServiceImpl implements ProductService{
 		return map;
 	}
 
+	@Override
+	public ProductDTO productView(String p_code) {
+		return pDao.productView(p_code);
+	}
+
 
 }

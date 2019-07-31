@@ -53,13 +53,23 @@
 			right: 26px;
 			top: 26px;
 			font-size: 22px;
-			color: #FFC000;
 			opacity: .5;
 			transition: .2s;
 		}
-		.cart_icon:hover {
+		.cart_icon:hover, .wish_icon:hover {
 			opacity: 1;
 		}
+		
+		.wish_icon {
+			position: absolute;
+		    right: 23.5px;
+		    top: 60px;
+		    font-size: 22px;
+		    color: #FFC000!important;
+		    opacity: .5;
+		    transition: .2s;
+		}
+		
 		.pd_img_wrap {
 			width: 380px;
 			height: 247px;
@@ -127,7 +137,8 @@
 	                        <div class="pd_text">
 	                            <span class="pd_price">${bList.p_price}원</span>
 	                        </div>
-	                        <a href="" class="cart_icon"><i class="fas fa-cart-plus"></i></a>
+	                       <!--  <a href="" class="cart_icon best_code"><i class="fas fa-cart-plus"></i></a>
+	                        <a href="" class="wish_icon best_code"><i class="far fa-star"></i></a> -->
 	                    </div>
                     </c:forEach>
                 </div>
@@ -150,7 +161,8 @@
 	                        <div class="pd_text">
 	                            <span class="pd_price">${nList.p_price}원</span>
 	                        </div>
-	                        <a href="" class="cart_icon"><i class="fas fa-cart-plus"></i></a>
+	                       <!--  <a href="" class="cart_icon new_code"><i class="fas fa-cart-plus"></i></a>
+	                        <a href="" class="wish_icon new_code"><i class="far fa-star"></i></a> -->
 	                    </div>
                     </c:forEach>
                 </div>		
@@ -158,5 +170,6 @@
 		</div>
 	</div>
 	<%@ include file="../include/footer.jsp" %>
+	
 </body>
 </html>
