@@ -34,5 +34,30 @@ public class ProductServiceImpl implements ProductService{
 		return pDao.productView(p_code);
 	}
 
+	@Override
+	public int wishCheck(String p_code, String id) {
+		return pDao.wishCheck(p_code,id);
+	}
+
+	@Override
+	public void wishUpdate(String p_code, String id) {
+		int result = pDao.wishCheck(p_code, id);
+		if(result>0) {
+			pDao.wishDelete(p_code,id);
+		} else {
+			pDao.wishInsert(p_code, id);
+		}
+	}
+
+	@Override
+	public List<HashMap<String, String>> wishList(String id) {
+		return pDao.wishList(id);
+	}
+
+	@Override
+	public void wishDelete(String p_code, String id) {
+		pDao.wishDelete(p_code, id);
+	}
+
 
 }

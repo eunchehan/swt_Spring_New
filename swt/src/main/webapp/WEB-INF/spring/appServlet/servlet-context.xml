@@ -52,6 +52,8 @@
 			<mapping path="/board/delete"/>
 			<mapping path="/email/send"/>
 			<mapping path="/email/write"/>
+			<mapping path="/product/wishCheck"/>
+			<mapping path="/product/wishUpdate"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>

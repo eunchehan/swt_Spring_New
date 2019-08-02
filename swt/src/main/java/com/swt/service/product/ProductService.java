@@ -11,4 +11,8 @@ public interface ProductService {
 	public HashMap<String, List<ProductDTO>> productList();
 	// 상품 상세 페이지
 	public ProductDTO productView(String p_code);
+	public int wishCheck(String p_code, String id);
+	public void wishUpdate(String p_code, String id);
+	public List<HashMap<String, String>> wishList(String id); 
+	public void wishDelete(String p_code, String id);
 }

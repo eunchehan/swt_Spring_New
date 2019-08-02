@@ -31,4 +31,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="view" resultType="com.swt.domain.product.ProductDTO">
 		SELECT * FROM tbl_product WHERE p_code=#{p_code}
 	</select>
+	
+	<select id="wishCheck" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM swt_wish WHERE p_code = #{p_code} AND id = #{id}
+	</select>
+	
+	<delete id="wishDelete" parameterType="hashmap">
+		DELETE FROM swt_wish WHERE p_code=#{p_code} AND id=#{id}
+	</delete>
+	
+	<insert id="wishInsert" parameterType="hashmap">
+		INSERT INTO swt_wish(p_code, id) VALUES(#{p_code},#{id})
+	</insert>
+	
+	<select id="wishList" parameterType="String" resultType="hashmap">
+		SELECT a.*, c.p_code as isempty
+		FROM tbl_product a, swt_wish b, swt_cart c
+		WHERE a.p_code = b.p_code AND b.p_code=c.p_code(+) AND b.id=#{id}
+		ORDER BY a.p_code DESC
+	</select>
 </mapper>

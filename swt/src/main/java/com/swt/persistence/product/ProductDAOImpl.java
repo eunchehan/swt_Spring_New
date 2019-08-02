@@ -1,5 +1,6 @@
 package com.swt.persistence.product;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -28,6 +29,35 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public ProductDTO productView(String p_code) {
 		return sqlSession.selectOne("pdt.view",p_code);
+	}
+
+	@Override
+	public int wishCheck(String p_code, String id) {
+		HashMap<String , Object> map = new HashMap<>();
+		map.put("p_code", p_code);
+		map.put("id", id);
+		return sqlSession.selectOne("pdt.wishCheck",map);
+	}
+
+	@Override
+	public void wishDelete(String p_code, String id) {
+		HashMap<String , Object> map = new HashMap<>();
+		map.put("p_code", p_code);
+		map.put("id", id);
+		sqlSession.delete("pdt.wishDelete",map);
+	}
+
+	@Override
+	public void wishInsert(String p_code, String id) {
+		HashMap<String , Object> map = new HashMap<>();
+		map.put("p_code", p_code);
+		map.put("id", id);
+		sqlSession.insert("pdt.wishInsert",map);
+	}
+
+	@Override
+	public List<HashMap<String, String>> wishList(String id) {
+		return sqlSession.selectList("pdt.wishList", id);
 	}
 
 

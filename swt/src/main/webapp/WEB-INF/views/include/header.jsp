@@ -89,7 +89,7 @@
 								<a href="${path}/member/update">Account</a>
 								<a href="${path}/member/pwupdate">Password</a>
 								<a href="#">Order</a>
-								<a href="#">WishList</a>
+								<a href="${path}/product/wishView">WishList</a>
 							</c:when>
 						</c:choose>
 						</div> 

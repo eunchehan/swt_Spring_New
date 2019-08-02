@@ -9,41 +9,29 @@
 <meta charset="UTF-8">
 <title>위시리스트</title>
 <style type="text/css">
-body{
-	background-color: #fafafa;
-}
-.section_box {
-	width: 100%;
-	min-width: 1350px;
-	padding: 150px 0px;
-}
 .info_title {
 	width: 1350px;
     font-size: 35px;
     margin: 0px auto;
-    padding: 0px 50px 30px;
+    padding: 0px 75px 30px;
     position: relative;
     box-sizing: border-box;
 }
 .info_title_bar {
 	position: absolute;
-	width: 7px;
-	height: 32px;
-	background-color: #444;
 	top: 11.5px;
 	left: 30px;
 }
-.lecture_box{
-	margin:25px auto;
-	width: 50%;
-	padding: 20px;
-	border-radius: 5px;
-	background: white;
-	display: flex;
-	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
-	box-sizing: border-box;
-	position: relative;
-	min-width: 870px;
+.product_box{
+    margin: 25px auto;
+    width: 50%;
+    padding: 20px;
+    background: white;
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+    min-width: 870px;
+    border: 3px double #eee;
 }
 .empty_box {
 	width: 100%;
@@ -56,43 +44,42 @@ body{
 	padding-bottom: 5px;
 	color: tomato;
 }
-.lecture_img_box{
+.product_img_box{
 	width: 200px;
 	height: 128.9px;
 	overflow: hidden;
 }
-.lecture_img{
+.product_img{
 	width: 100%;
-	height: 100%;
+    height: 130%;
+    position: relative;
+    bottom: 1.25rem;
 }
-.lecture_text{
+.product_text{
 	margin: 3px 0px 3px 30px;
 	width: 455px;
 	height: 100%;
 	box-sizing: border-box;
 }
-.lecture_title {
+.product_title {
 	font-size: 20px;
 	font-weight: bold;
 }
-.lecture_bottom {
+.product_bottom {
 	position: absolute;
 	width: 455px;
 	bottom: 25px;
 	padding-top: 11px;
 	border-top: 1px solid #dadada;
 }
-.lecture_paytext{
+.product_paytext{
 	position: absolute;
 	right: 28px;
-	top: 21px;
+	top: 45px;
 	width: 130px;
 }
-.paytext_top {
-	text-align: right;
-}
+
 .paytext_price{
-	text-align: right;
 	font-size: 20px;
 	flex:1;
 }
@@ -108,7 +95,6 @@ body{
 	margin-top: 10px;
 	margin-left: 20px;
 	transition: .2s;
-	border-radius: 15px;
 }
 .wish_btn {
 	display: block;
@@ -122,7 +108,6 @@ body{
 	margin-top: 5px;
 	margin-left: 20px;
 	transition: .2s;
-	border-radius: 15px;
 }
 .noempty_btn {
 	display: block;
@@ -139,28 +124,31 @@ body{
 	border-radius: 15px;
 }
 .cart_btn:hover {
-	color: #79CDCF;
-	border: 1px solid #79CDCF;
+    color: #225285;
+    border: 1px solid #225285;
 }
 .wish_btn:hover {
-	color: #FFC000;
-	border: 1px solid #FFC000;
+    color: #a03758;
+    border: 1px solid #a03758;
 }
 .noempty_btn:hover {
 	color: #FFC000;
 	border: 1px solid #FFC000;
+}
+#productName {
+	font-size: 1.5rem;
 }
 </style>
 </head>
 <body>
 	<div id="contentWrapper" class="content01 container">
 		<div id="contentWrap">
-			<div id="content">
+			<div>
 				<!-- 가장 큰 박스 -->
 				<div class="section_box">
-					<div class="lecture_container">
+					<div class="product_container">
 						<div class="info_title">위시리스트
-				        	<div class="info_title_bar"></div>
+				        	<div class="info_title_bar"><i class="far fa-star" id="wish_star"></i></div>
 				        </div>
 				        <div id="wishlist"></div>
 					</div>
@@ -170,7 +158,35 @@ body{
 	</div>
 	<%@ include file="../include/footer.jsp" %>
 	<script type="text/javascript">
-	
+		$(document).ready(function(){
+			wishList();
+		});
+		
+		function wishList(){
+			$.ajax({
+				type: "GET",
+				url: "${path}/product/wishList",
+				success: function(result){
+					$("#wishlist").html(result);
+				}, error: function(){
+					alert("wishList error!!");
+				}
+			});
+		}
+		
+		$(document).on("click",".wish_btn", function(){
+			var p_code = $(this).attr("data-src");
+			$.ajax({
+				type: "POST",
+				url: "${path}/product/wishDelete?p_code="+p_code,
+				success: function(){
+					alert("성공적으로 삭제되었습니다.");
+					wishList();
+				}, error: function(){
+					alert("wishDelete error!!");
+				}		
+			});
+		});
 	</script>
 </body>
 </html>

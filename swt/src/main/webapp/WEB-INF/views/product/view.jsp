@@ -421,17 +421,30 @@
     	function wishCheck(){
     		$.ajax({
     			type: "POST",
-    			url: "${path}/product/wish?p_code="+p_code+"&id="+id,
+    			url: "${path}/product/wishCheck?p_code="+p_code+"&id="+id,
     			success: function(data){
-    				if (data > 0) {
-						$('.wish_btn').html('<i class="far fa-star" id="wish_star"></i>');
-					} else {
+    				if (data > 0) { // 위시리스트 추가 된 상태
 						$('.wish_btn').html('<i class="fas fa-star" id="wish_star"></i>');
+					} else { // 위시리스트 추가된 안 된 상태
+						$('.wish_btn').html('<i class="far fa-star" id="wish_star"></i>');
 					}
     			}, error: function(){
     				alert("wishCheck error!!");
     			}
     			
+    		});
+    	}
+    	
+    	function wishUpdate(){
+    		$.ajax({
+    			type: "POST",
+    			url: "${path}/product/wishUpdate?p_code="+p_code+"&id="+id,
+    			success: function(data){
+    				wishCheck();
+    			}, error: function(){
+    				alert("로그인 후 이용해주세요.");
+    			}
+    		
     		});
     	}
    </script>
