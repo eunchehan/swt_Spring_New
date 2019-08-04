@@ -3,6 +3,10 @@ package com.swt.service.product;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import com.swt.domain.board.BoardDTO;
+import com.swt.domain.product.CartDTO;
 import com.swt.domain.product.ProductDTO;
 
 public interface ProductService {
@@ -15,4 +19,6 @@ public interface ProductService {
 	public void wishUpdate(String p_code, String id);
 	public List<HashMap<String, String>> wishList(String id); 
 	public void wishDelete(String p_code, String id);
+	public int cartAdd(String p_code, int amount, String id);
+	public List<HashMap<String, String>> cartList(String id);
 }

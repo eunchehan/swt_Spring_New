@@ -15,39 +15,34 @@ body{
 .section_box {
 	width: 100%;
 	min-width: 1350px;
-	padding: 150px 0px;
 }
 .info_title {
 	width: 1350px;
     font-size: 35px;
     margin: 0px auto;
-    padding: 0px 50px 30px;
+    padding: 0px 75px 30px;
     position: relative;
     box-sizing: border-box;
 }
 .info_title_bar {
 	position: absolute;
-	width: 7px;
-	height: 32px;
-	background-color: #444;
 	top: 11.5px;
 	left: 30px;
 }
 .container_all {
 	display: flex;
-	justify-content: center;
 }
-.lecture_box{
+.product_box{
 	margin:25px auto;
 	width: 50%;
 	padding: 20px;
 	border-radius: 5px;
 	background: white;
 	display: flex;
-	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
 	box-sizing: border-box;
 	position: relative;
-	min-width: 870px;
+	min-width: 700px;
+	border: 3px double #eee;
 }
 .empty_box {
 	width: 100%;
@@ -60,44 +55,43 @@ body{
 	padding-bottom: 5px;
 	color: tomato;
 }
-.lecture_img_box{
+.product_img_box{
 	width: 200px;
 	height: 128.9px;
 	overflow: hidden;
 }
-.lecture_img{
+.product_img{
 	width: 100%;
-	height: 100%;
+    height: 130%;
+    position: relative;
+    bottom: 1.25rem;
 }
-.lecture_text{
+.product_text{
 	margin: 3px 0px 3px 30px;
 	width: 455px;
 	height: 100%;
 	box-sizing: border-box;
 }
-.lecture_title {
+.product_title {
 	font-size: 20px;
 	font-weight: bold;
 }
-.lecture_bottom {
+.product_bottom {
 	position: absolute;
 	width: 455px;
 	bottom: 25px;
 	padding-top: 11px;
 	border-top: 1px solid #dadada;
 }
-.lecture_paytext{
+.product_paytext{
 	position: absolute;
 	right: 28px;
-	top: 21px;
 	width: 130px;
 }
 .paytext_top {
-	text-align: right;
 	margin-top: 3px;
 }
 .paytext_price{
-	text-align: right;
 	font-size: 20px;
 	flex:1;
 }
@@ -110,20 +104,13 @@ body{
 	box-sizing: border-box;
 	border: 1px solid #ddd;
 	color: #999;
-	margin-top: 38px;
-	margin-left: 20px;
+	margin-top: 10px;
 	transition: .2s;
-	border-radius: 15px;
 }
 .delete_btn:hover {
-	color: #FFC000;
-	border: 1px solid #FFC000;
+	color: #a03758;
+    border: 1px solid #a03758;
 }
-
-
-
-
-
 
 .pay_container {
 	margin: 25px 0px 25px 40px;
@@ -172,7 +159,7 @@ body{
 .pay_btn{
 	height: 50px;
 	width: 100%;
-	background: #79CDCF;
+	background: #269497;
 	font-size: 22px;
 	color: white;
 	text-align: center;
@@ -190,7 +177,8 @@ body{
 	right: 0px;
 	bottom: 0px;
 	z-index: -5;
-	background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+	background-color: #E4E4E1;
+ 	background-image: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
 	background-size: 500%;
 	transition: 0.2s;
 }
@@ -225,24 +213,27 @@ body{
 	padding: 0px 0px 16px;
 	display: none;
 }
-.lecture_flex {
+.product_flex {
 	display: flex;
 	align-items: center;
 }
-.lecture_check {
+.product_check {
 	width: 20px;
 	height: 20px;
 	margin-right: 20px;
+}
+#productName {
+	font-size: 1.5rem;
 }
 </style>
 </head>
 <body>
 	<div id="contentWrapper" class="content01 container">
 		<div id="contentWrap">
-			<div id="content">
+			<div>
 				<div class="section_box">
 					<div class="info_title">장바구니
-			        	<div class="info_title_bar"></div>
+			        	<div class="info_title_bar"><i class="fas fa-shopping-cart"></i></div>
 			        </div>
 			        <div id="cartList"></div>
 				</div>
@@ -251,7 +242,21 @@ body{
 	</div>
 	<%@ include file="../include/footer.jsp" %>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			cartList();
+		});
 		
+		function cartList(){
+			$.ajax({
+				type: "GET",
+				url: "${path}/product/cartList",
+				success: function(result){
+					$("#cartList").html(result);
+				}, error: function(){
+					alert("cartList error!!");
+				}
+			});
+		}
 	</script>
 </body>
 </html>

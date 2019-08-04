@@ -1,16 +1,23 @@
 package com.swt.service.product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.swt.domain.board.BoardDTO;
+import com.swt.domain.product.CartDTO;
 import com.swt.domain.product.ProductDTO;
 import com.swt.persistence.product.ProductDAO;
+
+import lombok.extern.slf4j.Slf4j;
 // 실제 Service를 동작하는 Class에는 @Service를 추가해야 함
 @Service
+@Slf4j
 public class ProductServiceImpl implements ProductService{
 
 	@Inject
@@ -57,6 +64,28 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void wishDelete(String p_code, String id) {
 		pDao.wishDelete(p_code, id);
+	}
+
+	@Override
+	public int cartAdd(String p_code, int amount, String id) {
+		int flag = 1;
+		List<CartDTO> list = pDao.cartCheck(id);
+		for (CartDTO cartDTO : list) {
+			if(p_code.equals(cartDTO.getP_code())) {
+				flag = 0;
+				break;
+			}
+		}
+		if(flag==1) {
+			pDao.cartAdd(p_code,amount,id);
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public List<HashMap<String, String>> cartList(String id) {
+		return pDao.cartList(id);
 	}
 
 

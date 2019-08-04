@@ -187,6 +187,23 @@
 				}		
 			});
 		});
+		
+		$(document).on("click", ".cart_btn", function(){
+			var p_code = $(this).attr("data-src");
+			$.ajax({
+				type: "GET",
+				url: "${path}/product/cartAdd?p_code="+p_code,
+				success: function(data){
+					if (data>0) {
+						alert("장바구니로 등록되었습니다.");
+					} else {
+						alert("이미 등록된 상품입니다.");
+					}
+				}, error: function(){
+					alert("cartAdd error!!");
+				}
+			});
+		});
 	</script>
 </body>
 </html>

@@ -223,42 +223,11 @@
 	    height: 8%;
 	    padding: 0.1rem 0;
 	}
-	#pricevalue {
+	#p_price {
 		font-size: 17px;
 		font-weight: bold;
 	}
-	/* 수량 버튼  */
-	/* #productDetail .thumb-info .info .table-opt .opt-spin .btns {
-	    width: 25px;
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: center;
-
-	}
-	.btns > a {
-		font-size: 15px;
-	}
-	.btns > a > i:first {
-		order: 1;
-		padding: -10px 0;
-	}
-	.btns > a > i:last {
-		order: 2;
-	}
-	.opt-spin {
-		position: relative;
-	}
-	.btns {
-		position: absolute;
-		top: -0px;
-		left: 80px;
-	}
-	.btn-up {
-		height: 2px;
-	 }
-	 .btn-down {
-		height: 2px;
-	 } */
+	
 
 	.sns{
 		height: 35px;
@@ -343,7 +312,7 @@
 													<td class="price">
 														<div class="tb-left">가 격</div>
 														<div class="tb-left">
-															<span id="pricevalue" class="price">${one.p_price}</span>
+															<span id="p_price" class="price">${one.p_price}</span>
 															원
 														</div>
 													</td>
@@ -362,11 +331,9 @@
 														<div class="tb-left">
 															<div class="opt-spin">
 																<select id="amount" name="amount">
-																	<option value="1" selected="selected">1</option>
-																	<option value="2">2</option>
-																	<option value="3">3</option>
-																	<option value="4">4</option>
-																	<option value="5">5</option>
+																	<c:forEach begin="1" end="5" var="i">
+																		<option value="${i}">${i}</option>
+																	</c:forEach>
 																</select>
 															</div>
 														</div>
@@ -392,7 +359,7 @@
 										</table>
 									</div>
 									<div class="prd-btns">
-										<a href="#" class="detail_buy_now"><span>장바구니 담기</span></a>
+										<a class="detail_buy_now cart_btn"><span>장바구니 담기</span></a>
 									</div>
 								</div>
 							</div>
@@ -407,6 +374,7 @@
 	<script type="text/javascript">
 		var id = "${sessionScope.userid}";
 		var p_code = "${one.p_code}";
+		
     	$(document).ready(function(){
     		wishCheck();
     		
@@ -414,7 +382,7 @@
 	    		wishUpdate();
 	    	});
 	    	$(".cart_btn").click(function(){
-	    		cartAdd();
+	    		cartAdd(); 
 	    	});
     	});
     	
@@ -445,6 +413,24 @@
     				alert("로그인 후 이용해주세요.");
     			}
     		
+    		});
+    	}
+    	
+    	function cartAdd(){
+    		var amount = $('#amount').val();
+    		alert("장바구니 담은 수량: "+amount);
+    		$.ajax({
+    			type: "GET",
+    			url: "${path}/product/cartAdd?p_code="+p_code+"&amount="+amount,
+    			success: function(data){
+    				if (data>0) {
+						alert("장바구니에 추가 되었습니다. flag: "+data);
+					} else {
+						alert("이미 추가된 상품입니다.");
+					}
+    			}, error: function(){
+    				alert("cartAdd error!!");
+    			}
     		});
     	}
    </script>

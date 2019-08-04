@@ -3,6 +3,7 @@ package com.swt.persistence.product;
 import java.util.HashMap;
 import java.util.List;
 
+import com.swt.domain.product.CartDTO;
 import com.swt.domain.product.ProductDTO;
 
 public interface ProductDAO {
@@ -14,4 +15,8 @@ public interface ProductDAO {
 	public void wishDelete(String p_code, String id);
 	public void wishInsert(String p_code, String id);
 	public List<HashMap<String, String>> wishList(String id);
+	public int cartAdd(String p_code, int amount, String id);
+	public List<HashMap<String, String>> cartList(String id);
+	public List<CartDTO> cartCheck(String id);
+	
 }

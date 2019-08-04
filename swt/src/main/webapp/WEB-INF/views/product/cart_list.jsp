@@ -10,50 +10,53 @@
 </head>
 <body>
 	<div class="container_all">
-        <div class="lecture_container">
-   		
-		<div class="lecture_box">
+        <div class="product_container">
+   		<c:choose>
+   		<c:when test="${empty cart}">
+		<div class="product_box">
 			<div class="empty_box">
 				<div>
 					<i class="fas fa-exclamation-circle empty_icon"></i>
 				</div>
-				추가된 강좌가 없습니다.
+				추가된 상품이 없습니다.
 			</div>
 		</div>
-   	
-   		
-		<div class="lecture_flex">
-			<div class="lecture_box">
-				<div class="lecture_img_box">
-					<a href="">
-						<img class="lecture_img" src="">
+   		</c:when>
+   		<c:otherwise>
+   		<c:forEach items="${cart}" var="list" varStatus="status">
+		<div class="product_flex">
+			<div class="product_box">
+				<div class="product_img_box">
+					<a href="${path}/product/view?p_code=${list.P_CODE}">
+						<img class="product_img" src="${path}/resources/images/${list.P_IMG}">
 					</a>
 				</div>
-				<div class="lecture_text">
-					<div class="lecture_title"><a href=""></a></div>
-					<div class="lecture_bottom">
-	                    <div>제품명ㅣ</div>
-                    </div>								
+				<div class="product_text">
+					<div class="product_title"><a id="productName">${list.P_NAME}</a></div>
+					<div class="product_bottom">
+						<div class="paytext_top">
+							수량: ${list.AMOUNT}개
+						</div>
+						<div class="paytext_price">
+							금액: ${list.MONEY}원
+						</div>
+	                </div>
 				</div>
-				<div class="lecture_paytext">
-					<div class="paytext_top">
-						금액
-					</div>
-					<div class="paytext_price">
-						<fmt:formatNumber value="" pattern="#,###원" />
-					</div>
+				<div class="product_paytext">
 					<a><span class="delete_btn" data-src="" data-index="">장바구니 삭제</span></a>
 				</div>
 			</div>
 		</div>
-		
+		</c:forEach>
+		</c:otherwise>
+		</c:choose>
 		</div>
-		
+		<c:if test="${!empty cart}">
 		<div class="pay_container">
 	   		<div class="pay_box">
 		        <div class="price_title_box">
 		            <span class="price_title">총계</span>
-		            <span class="price_num"><fmt:formatNumber value="" pattern="#,###원"/></span>
+		            <span class="price_num">
 		        </div>
 		        <div class="pay_info_box">
 					<span class="pay_check">
@@ -70,7 +73,7 @@
 		        <div class="pay_btn"><span class="pay_btn_text">결 제 하 기</span></div>
 	        </div>
        	</div>
-       
+        </c:if>
  	</div>
 </body>
 </html>

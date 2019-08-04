@@ -94,7 +94,7 @@
 						</c:choose>
 						</div> 
 					</li>
-					<li><a href="#">Cart</a></li>
+					<li><a href="${path}/product/cartView">Cart</a></li>
 				
 				</ul>
 

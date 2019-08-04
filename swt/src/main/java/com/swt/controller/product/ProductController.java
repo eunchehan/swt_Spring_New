@@ -2,6 +2,7 @@ package com.swt.controller.product;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.swt.domain.board.BoardDTO;
+import com.swt.domain.product.CartDTO;
 import com.swt.domain.product.ProductDTO;
 import com.swt.service.product.ProductService;
 
@@ -78,5 +81,28 @@ public class ProductController {
 		log.info(">>>>> 위시리스트 삭제");
 		String id = (String)session.getAttribute("userid");
 		service.wishDelete(p_code, id);
+	}
+	
+	@ResponseBody
+	@GetMapping(value="/cartAdd")
+	public int cartAdd(String p_code, int amount, HttpSession session) {
+		log.info(">>>>> 장바구니에 상품 추가- 상품코드:"+p_code+"수량: "+amount);
+		String id = (String)session.getAttribute("userid");
+		int flag = service.cartAdd(p_code, amount, id);
+		log.info("flag: "+flag);
+		return flag;
+	}
+	
+	@GetMapping(value="/cartView")
+	public String cartView() {
+		return "product/cart";
+	}
+	
+	@GetMapping(value="/cartList")
+	public String cartList(HttpSession session,Model model) {
+		String id = (String)session.getAttribute("userid");
+		List<HashMap<String, String>> list = service.cartList(id);
+		model.addAttribute("cart",list);
+		return "product/cart_list";
 	}
 }

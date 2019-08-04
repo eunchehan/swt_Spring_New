@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.swt.domain.board.BoardDTO;
 import com.swt.domain.product.ProductDTO;
+import com.swt.domain.product.CartDTO;
 
 @Repository	// DAO라고 인식시켜줌 
 public class ProductDAOImpl implements ProductDAO {
@@ -58,6 +60,25 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<HashMap<String, String>> wishList(String id) {
 		return sqlSession.selectList("pdt.wishList", id);
+	}
+
+	@Override
+	public int cartAdd(String p_code, int amount, String id) {
+		HashMap<String , Object> map = new HashMap<>();
+		map.put("p_code", p_code);
+		map.put("amount", amount);
+		map.put("id", id);
+		return sqlSession.insert("pdt.cartAdd", map);
+	}
+
+	@Override
+	public List<HashMap<String, String>> cartList(String id) {
+		return sqlSession.selectList("pdt.cartList", id);
+	}
+
+	@Override
+	public List<CartDTO> cartCheck(String id) {
+		return sqlSession.selectList("pdt.cartCheck",id);
 	}
 
 

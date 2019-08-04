@@ -50,4 +50,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE a.p_code = b.p_code AND b.p_code=c.p_code(+) AND b.id=#{id}
 		ORDER BY a.p_code DESC
 	</select>
+	
+	<insert id="cartAdd" parameterType="hashmap">
+		INSERT INTO swt_cart(cart_id, p_code, id, amount)
+		VALUES(seq_cart.NEXTVAL, #{p_code}, #{id}, #{amount})
+	</insert>
+	
+	<select id="cartList" parameterType="String" resultType="hashmap">
+		SELECT a.p_code, a.p_type, a.p_name, a.p_price, a.p_img, b.amount, a.p_price*b.amount money
+		FROM tbl_product a, swt_cart b
+		WHERE a.p_code = b.p_code AND b.id=#{id}
+	</select>
+	
+	<select id="cartCheck" resultType="com.swt.domain.product.CartDTO">
+		SELECT * FROM swt_cart
+		WHERE id = #{id}
+	</select>
 </mapper>
