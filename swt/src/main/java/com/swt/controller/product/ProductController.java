@@ -98,14 +98,18 @@ public class ProductController {
 		return "product/cart";
 	}
 	
+	
 	@GetMapping(value="/cartList")
 	public String cartList(HttpSession session,Model model) {
 		String id = (String)session.getAttribute("userid");
 		List<HashMap<String, String>> list = service.cartList(id);
 		model.addAttribute("cart",list);
+		int total = service.cartTotal(id);
+		model.addAttribute("total",total);
 		return "product/cart_list";
 	}
 	
+	@ResponseBody 
 	@GetMapping(value="/cartDelete")
 	public void cartDelete(HttpSession session, int index) {
 		String id = (String)session.getAttribute("userid");

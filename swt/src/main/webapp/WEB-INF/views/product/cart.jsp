@@ -9,6 +9,17 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 <style type="text/css">
+#cartContentWrapper {
+	position: relative;
+    background-color: white;
+    margin: 0 auto;
+    max-width: 80%;
+    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-left: 3px double #dee2e6;
+    border-right: 3px double #dee2e6;
+}
 body{
 	background-color: #fafafa;
 }
@@ -228,7 +239,7 @@ body{
 </style>
 </head>
 <body>
-	<div id="contentWrapper" class="content01 container">
+	<div id="cartContentWrapper" class="content01 container">
 		<div id="contentWrap">
 			<div>
 				<div class="section_box">
@@ -262,7 +273,7 @@ body{
 			var index = $(this).attr("data-index");
 			$.ajax({
 				type: "GET",
-				url: "${path}/lecture/cartDelete?index="+index,
+				url: "${path}/product/cartDelete?index="+index,
 				success: function(){
 					alert("장바구니에서 삭제되었습니다.");
 					cartList();

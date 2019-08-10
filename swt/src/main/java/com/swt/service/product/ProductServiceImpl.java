@@ -93,5 +93,10 @@ public class ProductServiceImpl implements ProductService{
 		pDao.cartDelete(id, index);
 	}
 
+	@Override
+	public int cartTotal(String id) {
+		return pDao.cartTotal(id);
+	}
+
 
 }

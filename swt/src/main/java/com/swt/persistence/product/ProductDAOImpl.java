@@ -89,5 +89,10 @@ public class ProductDAOImpl implements ProductDAO {
 		sqlSession.delete("pdt.cartDelete",map);
 	}
 
+	@Override
+	public int cartTotal(String id) {
+		return sqlSession.selectOne("pdt.cartTotal",id);
+	}
+
 
 }

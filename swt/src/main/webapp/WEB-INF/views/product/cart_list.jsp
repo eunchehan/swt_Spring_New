@@ -56,7 +56,7 @@
 	   		<div class="pay_box">
 		        <div class="price_title_box">
 		            <span class="price_title">총계</span>
-		            <span class="price_num">
+		            <span class="price_num">${total}
 		        </div>
 		        <div class="pay_info_box">
 					<span class="pay_check">

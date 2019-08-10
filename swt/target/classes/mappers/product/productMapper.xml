@@ -70,4 +70,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="cartDelete" parameterType="hashmap">
 		DELETE FROM swt_cart WHERE ID=#{id} AND cart_id=#{cart_id}
 	</delete>
+	
+	<select id="cartTotal" resultType="int">
+		SELECT SUM(a.p_price*amount) total
+		FROM tbl_product a, swt_cart b
+		WHERE a.p_code = b.p_code AND b.id=#{id}
+	</select>
 </mapper>

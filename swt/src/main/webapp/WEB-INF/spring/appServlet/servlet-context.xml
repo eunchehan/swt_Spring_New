@@ -54,6 +54,7 @@
 			<mapping path="/email/write"/>
 			<mapping path="/product/wishCheck"/>
 			<mapping path="/product/wishUpdate"/>
+			<mapping path="/product/cartView"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>

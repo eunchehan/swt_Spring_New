@@ -159,7 +159,7 @@
 		// top버튼 
 		$(window).scroll(function(){
 			var scrollValue = $(this).scrollTop();
-			if(scrollValue > 40){
+			if(scrollValue > 50){
 				$('#topBtn').fadeIn();
 			} else {
 				$('#topBtn').fadeOut();

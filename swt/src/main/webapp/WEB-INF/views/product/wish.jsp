@@ -174,7 +174,7 @@
 			});
 		}
 		
-		$(document).on("click",".wish_btn", function(){
+		$(document).on("click",".noempty_btn", function(){
 			var p_code = $(this).attr("data-src");
 			$.ajax({
 				type: "POST",
@@ -190,9 +190,10 @@
 		
 		$(document).on("click", ".cart_btn", function(){
 			var p_code = $(this).attr("data-src");
+			var amount = 1;
 			$.ajax({
 				type: "GET",
-				url: "${path}/product/cartAdd?p_code="+p_code,
+				url: "${path}/product/cartAdd?p_code="+p_code+"&amount="+amount,
 				success: function(data){
 					if (data>0) {
 						alert("장바구니로 등록되었습니다.");
