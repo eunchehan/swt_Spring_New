@@ -9,6 +9,17 @@
 <meta charset="UTF-8">
 <title>위시리스트</title>
 <style type="text/css">
+#wishContentWrapper {
+	position: relative;
+    background-color: white;
+    margin: 0 auto;
+    max-width: 80%;
+    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-left: 3px double #dee2e6;
+    border-right: 3px double #dee2e6;
+}
 .info_title {
 	width: 1350px;
     font-size: 35px;
@@ -141,7 +152,7 @@
 </style>
 </head>
 <body>
-	<div id="contentWrapper" class="content01 container">
+	<div id="WishContentWrapper" class="content01 container">
 		<div id="contentWrap">
 			<div>
 				<!-- 가장 큰 박스 -->
@@ -190,10 +201,9 @@
 		
 		$(document).on("click", ".cart_btn", function(){
 			var p_code = $(this).attr("data-src");
-			var amount = 1;
 			$.ajax({
 				type: "GET",
-				url: "${path}/product/cartAdd?p_code="+p_code+"&amount="+amount,
+				url: "${path}/product/cartAdd?p_code="+p_code+"&amount=1",
 				success: function(data){
 					if (data>0) {
 						alert("장바구니로 등록되었습니다.");

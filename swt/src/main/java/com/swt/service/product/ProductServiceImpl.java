@@ -94,8 +94,13 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int cartTotal(String id) {
+	public String cartTotal(String id) {
 		return pDao.cartTotal(id);
+	}
+
+	@Override
+	public void cartUpdate(String p_code, int amount, String id) {
+		pDao.cartUpdate(p_code, amount, id);
 	}
 
 

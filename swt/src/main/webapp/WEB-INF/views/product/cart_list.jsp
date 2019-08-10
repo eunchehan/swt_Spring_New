@@ -35,7 +35,8 @@
 					<div class="product_title"><a id="productName">${list.P_NAME}</a></div>
 					<div class="product_bottom">
 						<div class="paytext_top">
-							수량: ${list.AMOUNT}개
+							수량: <input type="text" class="pdAmount" value="${list.AMOUNT}" data-modi="${list.P_CODE}" name="amount">개
+							<a class="modiAmount" data-modiCode="${list.P_CODE}" data-modiId="${list.CART_ID}">변경</a>
 						</div>
 						<div class="paytext_price">
 							금액: ${list.MONEY}원
@@ -51,12 +52,12 @@
 		</c:otherwise>
 		</c:choose>
 		</div>
-		<c:if test="${!empty cart}">
+		<c:if test="${!empty cart && !empty total}">
 		<div class="pay_container">
 	   		<div class="pay_box">
 		        <div class="price_title_box">
 		            <span class="price_title">총계</span>
-		            <span class="price_num">${total}
+		            <span class="price_num">${total}</span>
 		        </div>
 		        <div class="pay_info_box">
 					<span class="pay_check">

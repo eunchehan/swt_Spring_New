@@ -10,8 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.swt.domain.board.BoardDTO;
 import com.swt.domain.product.ProductDTO;
-import com.swt.domain.product.CartDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
+import com.swt.domain.product.CartDTO;
+@Slf4j
 @Repository	// DAO라고 인식시켜줌 
 public class ProductDAOImpl implements ProductDAO {
 
@@ -90,8 +93,18 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public int cartTotal(String id) {
-		return sqlSession.selectOne("pdt.cartTotal",id);
+	public String cartTotal(String id) {
+		String total = sqlSession.selectOne("pdt.cartTotal",id);
+		return total;
+	}
+
+	@Override
+	public void cartUpdate(String p_code, int amount, String id) {
+		HashMap<String , Object> map = new HashMap<>();
+		map.put("p_code", p_code);
+		map.put("amount", amount);
+		map.put("id", id);
+		sqlSession.update("pdt.cartUpdate",map);
 	}
 
 

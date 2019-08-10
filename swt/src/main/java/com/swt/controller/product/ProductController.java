@@ -86,8 +86,8 @@ public class ProductController {
 	@ResponseBody
 	@GetMapping(value="/cartAdd")
 	public int cartAdd(String p_code, int amount, HttpSession session) {
-		log.info(">>>>> 장바구니에 상품 추가- 상품코드:"+p_code+"수량: "+amount);
 		String id = (String)session.getAttribute("userid");
+		log.info(">>>>> 장바구니에 상품 추가- 상품코드:"+p_code+"수량: "+amount);
 		int flag = service.cartAdd(p_code, amount, id);
 		log.info("flag: "+flag);
 		return flag;
@@ -104,8 +104,9 @@ public class ProductController {
 		String id = (String)session.getAttribute("userid");
 		List<HashMap<String, String>> list = service.cartList(id);
 		model.addAttribute("cart",list);
-		int total = service.cartTotal(id);
+		String total = service.cartTotal(id);
 		model.addAttribute("total",total);
+		
 		return "product/cart_list";
 	}
 	
@@ -114,5 +115,13 @@ public class ProductController {
 	public void cartDelete(HttpSession session, int index) {
 		String id = (String)session.getAttribute("userid");
 		service.cartDelete(id, index);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="/cartUpdate")
+	public void cartUpdate(String p_code, int amount, HttpSession session) {
+		log.info(">>>>> 장바구니 상품 수량 변경");
+		String id = (String)session.getAttribute("userid");
+		service.cartUpdate(p_code, amount, id);
 	}
 }

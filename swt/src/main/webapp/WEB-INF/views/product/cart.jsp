@@ -236,6 +236,20 @@ body{
 #productName {
 	font-size: 1.5rem;
 }
+.modiAmount {
+	text-align: center;
+    padding: 5px 7px;
+    font-size: 13px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    color: whitesmoke;
+    margin-top: 10px;
+    transition: .2s;
+    background: #d75e15;
+}
+.pdAmount {
+	width: 1.5rem;
+}
 </style>
 </head>
 <body>
@@ -281,6 +295,31 @@ body{
 					alert("cartDelete error!!");
 				}
 			});
+		});
+		
+		$(document).on("click", ".modiAmount", function(){
+			var amount = $.trim($(".pdAmount").val());
+			var p_code = $(".pdAmount").attr("data-modi");
+			alert(p_code+","+amount);
+			var regEmpty = /\s/g; // 공백 문자 
+			
+ 			if(isNaN(amount)==true){
+ 				alert("수량은 숫자만 입력해주세요.");
+				return false;
+			} else if(amount.match(regEmpty)){
+				alert("수량은 반드시 입력해주세요.");
+				return false;
+			} else {
+				$.ajax({
+					type: "POST",
+					url: "${path}/product/cartUpdate?amount="+amount+"&p_code="+p_code,
+					success: function(){
+						cartList();
+					}, error: function(){
+						alert("수량 변경 실패");
+					}
+				});
+			}
 		});
 	</script>
 </body>

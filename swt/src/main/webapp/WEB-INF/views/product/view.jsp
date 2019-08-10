@@ -418,13 +418,12 @@
     	
     	function cartAdd(){
     		var amount = $('#amount').val();
-    		alert("장바구니 담은 수량: "+amount);
     		$.ajax({
     			type: "GET",
     			url: "${path}/product/cartAdd?p_code="+p_code+"&amount="+amount,
     			success: function(data){
     				if (data>0) {
-						alert("장바구니에 추가 되었습니다. flag: "+data);
+						alert("장바구니에 추가 되었습니다.");
 					} else {
 						alert("이미 추가된 상품입니다.");
 					}
