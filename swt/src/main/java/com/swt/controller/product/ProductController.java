@@ -105,4 +105,10 @@ public class ProductController {
 		model.addAttribute("cart",list);
 		return "product/cart_list";
 	}
+	
+	@GetMapping(value="/cartDelete")
+	public void cartDelete(HttpSession session, int index) {
+		String id = (String)session.getAttribute("userid");
+		service.cartDelete(id, index);
+	}
 }

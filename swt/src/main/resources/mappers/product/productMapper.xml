@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="cartList" parameterType="String" resultType="hashmap">
-		SELECT a.p_code, a.p_type, a.p_name, a.p_price, a.p_img, b.amount, a.p_price*b.amount money
+		SELECT a.p_code, a.p_type, a.p_name, a.p_price, a.p_img, b.amount, b.cart_id, a.p_price*b.amount money
 		FROM tbl_product a, swt_cart b
 		WHERE a.p_code = b.p_code AND b.id=#{id}
 	</select>
@@ -66,4 +66,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM swt_cart
 		WHERE id = #{id}
 	</select>
+	
+	<delete id="cartDelete" parameterType="hashmap">
+		DELETE FROM swt_cart WHERE ID=#{id} AND cart_id=#{cart_id}
+	</delete>
 </mapper>

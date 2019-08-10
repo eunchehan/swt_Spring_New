@@ -257,6 +257,20 @@ body{
 				}
 			});
 		}
+		
+		$(document).on("click", ".delete_btn", function(){
+			var index = $(this).attr("data-index");
+			$.ajax({
+				type: "GET",
+				url: "${path}/lecture/cartDelete?index="+index,
+				success: function(){
+					alert("장바구니에서 삭제되었습니다.");
+					cartList();
+				}, error: function(){
+					alert("cartDelete error!!");
+				}
+			});
+		});
 	</script>
 </body>
 </html>

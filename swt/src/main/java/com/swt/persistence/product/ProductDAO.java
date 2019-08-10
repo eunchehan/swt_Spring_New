@@ -18,5 +18,6 @@ public interface ProductDAO {
 	public int cartAdd(String p_code, int amount, String id);
 	public List<HashMap<String, String>> cartList(String id);
 	public List<CartDTO> cartCheck(String id);
+	public void cartDelete(String id, int index);
 	
 }

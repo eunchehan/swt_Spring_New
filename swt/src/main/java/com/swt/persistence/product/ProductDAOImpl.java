@@ -81,5 +81,13 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectList("pdt.cartCheck",id);
 	}
 
+	@Override
+	public void cartDelete(String id, int index) {
+		HashMap<String , Object> map = new HashMap<>();
+		map.put("cart_id", index);
+		map.put("id", id);
+		sqlSession.delete("pdt.cartDelete",map);
+	}
+
 
 }

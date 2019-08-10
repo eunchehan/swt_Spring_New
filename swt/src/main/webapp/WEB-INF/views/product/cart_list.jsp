@@ -43,7 +43,7 @@
 	                </div>
 				</div>
 				<div class="product_paytext">
-					<a><span class="delete_btn" data-src="" data-index="">장바구니 삭제</span></a>
+					<a><span class="delete_btn" data-src="${list.P_CODE}" data-index="${list.CART_ID}">상품 삭제</span></a>
 				</div>
 			</div>
 		</div>
