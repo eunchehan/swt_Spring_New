@@ -1,4 +1,4 @@
-# SleepWellTea_Spring_New
+# SleepWellTea
 자기 전에 마셔도 잠이 잘 오는 무카페인 tea를 판매하는 쇼핑몰 웹 페이지 :first_quarter_moon_with_face:
 ## 개발 환경
 프로그래밍 언어 `JAVA` `Servlet/JSP`
