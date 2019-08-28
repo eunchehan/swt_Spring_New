@@ -37,6 +37,14 @@ SELECT name, mtype FROM tbl_member
 
 COMMIT;
 
+-- 권한 정보 테이블 
+DROP TABLE tbl_authorities;
+CREATE TABLE tbl_authorities(
+    username VARCHAR2(45) PRIMARY KEY,
+    authority VARCHAR2(45) NOT NULL
+);
+
+
 -- 상품 sequence
 DROP SEQUENCE seq_product;
 CREATE SEQUENCE seq_product
