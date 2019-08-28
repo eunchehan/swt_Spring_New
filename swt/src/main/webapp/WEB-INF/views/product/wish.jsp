@@ -129,10 +129,9 @@
 	box-sizing: border-box;
 	border: 1px solid #ddd;
 	color: #999;
-	margin-top: 46px;
+	margin-top: 5px;
 	margin-left: 20px;
 	transition: .2s;
-	border-radius: 15px;
 }
 .cart_btn:hover {
     color: #225285;
@@ -144,7 +143,7 @@
 }
 .noempty_btn:hover {
 	color: #FFC000;
-	border: 1px solid #FFC000;
+	border: 1px solid #a03758;
 }
 #productName {
 	font-size: 1.5rem;

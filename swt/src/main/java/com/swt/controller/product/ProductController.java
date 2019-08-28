@@ -21,107 +21,105 @@ import com.swt.service.product.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Controller
 @Slf4j
 @RequestMapping("product/*")
 public class ProductController {
 	@Inject
 	private ProductService service;
-	
-	@GetMapping(value="teashop")
+
+	@GetMapping(value = "teashop")
 	public String teaShop(Model model) {
 		log.info(">>> Tea 상품 리스트 페이지 이동");
 		HashMap<String, List<ProductDTO>> map = service.productList();
-		model.addAttribute("map",map);
-		
+		model.addAttribute("map", map);
+
 		return "product/teashop";
 	}
-	
-	@GetMapping(value="view")
+
+	@GetMapping(value = "view")
 	public String view(String p_code, Model model) {
-		log.info(">>> 상품 상세 페이지 이동: "+p_code);
+		log.info(">>> 상품 상세 페이지 이동: " + p_code);
 		ProductDTO pDto = service.productView(p_code);
-		model.addAttribute("one",pDto);
+		model.addAttribute("one", pDto);
 		return "product/view";
 	}
-	
+
 	@ResponseBody
-	@PostMapping(value="wishCheck")
+	@PostMapping(value = "wishCheck")
 	public int wishCheck(String p_code, String id) {
-		log.info(">>> 위시리스트 체크, 상품코드: "+p_code+",아이디: "+id);
-		int resultVal = service.wishCheck(p_code,id);
+		log.info(">>> 위시리스트 체크, 상품코드: " + p_code + ",아이디: " + id);
+		int resultVal = service.wishCheck(p_code, id);
 		return resultVal;
 	}
-	
+
 	@ResponseBody
-	@PostMapping(value="wishUpdate")
+	@PostMapping(value = "wishUpdate")
 	public void wishUpdate(String p_code, String id) {
-		log.info(">>> 위시리스트 업데이트, 상품코드: "+p_code+",아이디: "+id);
-		service.wishUpdate(p_code,id);
+		log.info(">>> 위시리스트 업데이트, 상품코드: " + p_code + ",아이디: " + id);
+		service.wishUpdate(p_code, id);
 	}
-	
-	@GetMapping(value="wishView")
+
+	@GetMapping(value = "wishView")
 	public String wishView() {
 		return "product/wish";
 	}
-	
-	@GetMapping(value="wishList")
+
+	@GetMapping(value = "wishList")
 	public String wishList(HttpSession session, Model model) {
-		String id = (String)session.getAttribute("userid");
-		log.info(">>>> 위시리스트 목록 출력, 아이디: "+ id);
+		String id = (String) session.getAttribute("userid");
+		log.info(">>>> 위시리스트 목록 출력, 아이디: " + id);
 		List<HashMap<String, String>> list = service.wishList(id);
 		model.addAttribute("wish", list);
 		return "product/wish_list";
 	}
-	
+
 	@ResponseBody
-	@PostMapping(value="/wishDelete")
+	@PostMapping(value = "/wishDelete")
 	public void wishDelete(String p_code, HttpSession session) {
 		log.info(">>>>> 위시리스트 삭제");
-		String id = (String)session.getAttribute("userid");
+		String id = (String) session.getAttribute("userid");
 		service.wishDelete(p_code, id);
 	}
-	
+
 	@ResponseBody
-	@GetMapping(value="/cartAdd")
+	@GetMapping(value = "/cartAdd")
 	public int cartAdd(String p_code, int amount, HttpSession session) {
-		String id = (String)session.getAttribute("userid");
-		log.info(">>>>> 장바구니에 상품 추가- 상품코드:"+p_code+"수량: "+amount);
+		String id = (String) session.getAttribute("userid");
+		log.info(">>>>> 장바구니에 상품 추가- 상품코드:" + p_code + "수량: " + amount);
 		int flag = service.cartAdd(p_code, amount, id);
-		log.info("flag: "+flag);
+		log.info("flag: " + flag);
 		return flag;
 	}
-	
-	@GetMapping(value="/cartView")
+
+	@GetMapping(value = "/cartView")
 	public String cartView() {
 		return "product/cart";
 	}
-	
-	
-	@GetMapping(value="/cartList")
-	public String cartList(HttpSession session,Model model) {
-		String id = (String)session.getAttribute("userid");
+
+	@GetMapping(value = "/cartList")
+	public String cartList(HttpSession session, Model model) {
+		String id = (String) session.getAttribute("userid");
 		List<HashMap<String, String>> list = service.cartList(id);
-		model.addAttribute("cart",list);
+		model.addAttribute("cart", list);
 		String total = service.cartTotal(id);
-		model.addAttribute("total",total);
-		
+		model.addAttribute("total", total);
+
 		return "product/cart_list";
 	}
-	
-	@ResponseBody 
-	@GetMapping(value="/cartDelete")
+
+	@ResponseBody
+	@GetMapping(value = "/cartDelete")
 	public void cartDelete(HttpSession session, int index) {
-		String id = (String)session.getAttribute("userid");
+		String id = (String) session.getAttribute("userid");
 		service.cartDelete(id, index);
 	}
-	
+
 	@ResponseBody
-	@PostMapping(value="/cartUpdate")
-	public void cartUpdate(String p_code, int amount, HttpSession session) {
+	@GetMapping(value = "/cartUpdate")
+	public void cartUpdate(int cart_id, int amount, HttpSession session) {
 		log.info(">>>>> 장바구니 상품 수량 변경");
-		String id = (String)session.getAttribute("userid");
-		service.cartUpdate(p_code, amount, id);
+		String id = (String) session.getAttribute("userid");
+		service.cartUpdate(cart_id, amount, id);
 	}
 }

@@ -35,8 +35,8 @@
 					<div class="product_title"><a id="productName">${list.P_NAME}</a></div>
 					<div class="product_bottom">
 						<div class="paytext_top">
-							수량: <input type="text" class="pdAmount" value="${list.AMOUNT}" data-modi="${list.P_CODE}" name="amount">개
-							<a class="modiAmount" data-modiCode="${list.P_CODE}" data-modiId="${list.CART_ID}">변경</a>
+							수량: <input type="text" class="pdAmount" value="${list.AMOUNT}" name="amount">개
+							<a class="modiAmount" data-modiId="${list.CART_ID}" onclick="cartUpdate(${status.index})">변경</a>
 						</div>
 						<div class="paytext_price">
 							금액: ${list.MONEY}원

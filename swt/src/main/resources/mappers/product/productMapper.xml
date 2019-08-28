@@ -80,6 +80,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="cartUpdate" parameterType="hashmap">
 		UPDATE swt_cart
 		SET amount=#{amount}
-		WHERE id=#{id} AND p_code=#{p_code}
+		WHERE id=#{id} AND cart_id=#{cart_id}
 	</update>
 </mapper>

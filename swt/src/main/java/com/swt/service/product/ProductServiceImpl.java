@@ -99,8 +99,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void cartUpdate(String p_code, int amount, String id) {
-		pDao.cartUpdate(p_code, amount, id);
+	public void cartUpdate(int cart_id, int amount, String id) {
+		pDao.cartUpdate(cart_id, amount, id);
 	}
 
 

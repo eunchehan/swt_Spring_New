@@ -99,9 +99,9 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public void cartUpdate(String p_code, int amount, String id) {
+	public void cartUpdate(int cart_id, int amount, String id) {
 		HashMap<String , Object> map = new HashMap<>();
-		map.put("p_code", p_code);
+		map.put("cart_id", cart_id);
 		map.put("amount", amount);
 		map.put("id", id);
 		sqlSession.update("pdt.cartUpdate",map);

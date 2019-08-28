@@ -128,9 +128,9 @@ body{
 	width: 400px;
 }
 .pay_box{
-	border:1px solid #444;
-	background-color: white;
-	padding: 20px;
+    border: 3px double #dadada;
+    background-color: #f8f9fa;
+    padding: 20px;
 	width: 100%;
 }
 .price_title_box{
@@ -297,10 +297,11 @@ body{
 			});
 		});
 		
-		$(document).on("click", ".modiAmount", function(){
-			var amount = $.trim($(".pdAmount").val());
-			var p_code = $(".pdAmount").attr("data-modi");
-			alert(p_code+","+amount);
+		function cartUpdate(index) {
+			var i = index;
+			var amount = $.trim($(".modiAmount").eq(i).prev().val());
+			var cart_id = $(".modiAmount").attr("data-modiID");
+			alert(i+","cart_id+","+amount);
 			var regEmpty = /\s/g; // 공백 문자 
 			
  			if(isNaN(amount)==true){
@@ -311,8 +312,8 @@ body{
 				return false;
 			} else {
 				$.ajax({
-					type: "POST",
-					url: "${path}/product/cartUpdate?amount="+amount+"&p_code="+p_code,
+					type: "get",
+					url: "${path}/product/cartUpdate?amount="+amount+"&cart_id="+cart_id,
 					success: function(){
 						cartList();
 					}, error: function(){
@@ -320,7 +321,7 @@ body{
 					}
 				});
 			}
-		});
+		}
 	</script>
 </body>
 </html>

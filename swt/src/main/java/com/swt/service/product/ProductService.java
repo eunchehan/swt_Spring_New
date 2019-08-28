@@ -23,5 +23,5 @@ public interface ProductService {
 	public List<HashMap<String, String>> cartList(String id);
 	public void cartDelete(String id, int index);
 	public String cartTotal(String id);
-	public void cartUpdate(String p_code, int amount, String id);
+	public void cartUpdate(int cart_id, int amount, String id);
 }
